@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <title>WEB 實境解謎遊戲 - 方案體驗</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Inter:wght@400;600&family=JetBrains+Mono:wght@500&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-text: #222;
+            --secondary-text: #555;
+            --bg-color: #fff;
+
+            /* 機能型 - 藍色系 */
+            --blue-main: #2980b9;
+            --blue-bg: #eaf2f8;
+            --blue-border: #aed6f1;
+
+            /* 劇場型 - 紅色系 */
+            --red-main: #c0392b;
+            --red-bg: #fdedec;
+            --red-border: #fadbd8;
+        }
+
+        @page {
+            size: A4 portrait;
+            margin: 0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #e0e0e0;
+            font-family: 'Noto Sans TC', sans-serif;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .page {
+            width: 210mm;
+            height: 297mm;
+            background: white;
+            /* 關鍵修改：6mm 留白 */
+            padding: 6mm 10mm;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- Header & Intro --- */
+        header {
+            padding-bottom: 15px;
+        }
+
+        h1 {
+            margin: 0 0 12px 0;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-text);
+            text-align: center;
+        }
+
+        /* 導言區塊 */
+        .intro-container {
+            background-color: #f9f9f9;
+            padding: 12px 15px;
+            border-radius: 6px;
+            border: 2px solid #666;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .intro-p {
+            margin: 0;
+            font-size: 14.5px;
+            line-height: 1.5;
+            color: #444;
+            text-align: justify;
+        }
+
+        .intro-highlight {
+            font-weight: 700;
+            color: #000;
+        }
+
+        /* --- Main Content Grid --- */
+        .content-grid {
+            display: flex;
+            gap: 20px;
+            /* 左右欄間距 */
+            flex: 1;
+        }
+
+        .column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 欄位標題 */
+        .col-header {
+            font-size: 20px;
+            font-weight: 700;
+            padding: 8px 10px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid;
+            letter-spacing: 1px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+
+        .col-intro-container {
+            background-color: #f9f9f9;
+            padding: 12px 15px;
+            border-radius: 6px;
+            border: 2px solid #666;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .col-header-hint {
+            font-size: 12px;
+            color: #8d8d8d;
+            font-weight: normal;
+            letter-spacing: 0;
+        }
+
+        /* --- 遊戲簡介與 QR Code 區塊 (新) --- */
+        .game-info-block {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 6px;
+            gap: 10px;
+        }
+
+        .game-desc {
+            flex: 1;
+        }
+
+        .game-desc h3 {
+            margin: 0 0 4px 0;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .game-desc p {
+            margin: 0;
+            font-size: 13px;
+            line-height: 1.5;
+            color: #666;
+        }
+
+        .qr-placeholder-wrap {
+            padding: 4px;
+            background: #fff;
+            border: 1px solid #999;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .qr-placeholder {
+            width: 80px;
+            height: 80px;
+
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+
+
+        /* 顏色識別系統 */
+        /* Blue Column */
+        .col-blue .col-header {
+            color: var(--blue-main);
+            border-color: var(--blue-main);
+            background-color: var(--blue-bg);
+        }
+
+        .col-blue .game-info-block {
+            background-color: var(--blue-bg);
+            border: 1px solid var(--blue-border);
+        }
+
+        .col-blue .ans-box {
+            border-left: 3px solid var(--blue-main);
+            background: #f0f7fb;
+        }
+
+        /* Red Column */
+        .col-red .col-header {
+            color: var(--red-main);
+            border-color: var(--red-main);
+            background-color: var(--red-bg);
+        }
+
+        .col-red .game-info-block {
+            background-color: var(--red-bg);
+            border: 1px solid var(--red-border);
+        }
+
+        .col-red .ans-box {
+            border-left: 3px solid var(--red-main);
+            background: #fff5f5;
+        }
+
+        /* --- 列表項目 --- */
+        .list-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            flex: 1;
+            /* 填滿剩餘空間 */
+        }
+
+        .item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed #ddd;
+        }
+
+        .item:last-child {
+            border-bottom: none;
+        }
+
+        /* 上排資訊 */
+        .item-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ch-info {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+        }
+
+        .ch-num {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 15px;
+            color: #bbb;
+            width: 20px;
+        }
+
+        .ch-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--primary-text);
+        }
+
+        .tag {
+            font-size: 12px;
+            padding: 1px 6px;
+            border-radius: 4px;
+            background: #f0f0f0;
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* 說明文字 */
+        .desc {
+            font-size: 14px;
+            color: #666;
+            margin-left: 26px;
+            /* 對齊標題 */
+        }
+
+        /* 解答區塊 */
+        .ans-box {
+            margin-top: 2px;
+            margin-left: 26px;
+            /* 對齊標題 */
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 500;
+            color: #000;
+            display: flex;
+            align-items: center;
+        }
+
+        .ans-label {
+            font-family: 'Noto Sans TC', sans-serif;
+            font-size: 14px;
+            color: #999;
+            margin-right: 8px;
+            font-weight: normal;
+        }
+
+        /* 圖片處理 */
+        .img-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .scan-img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            border: 1px solid #ddd;
+            padding: 2px;
+            background: white;
+            border-radius: 4px;
+            margin-left: 10px;
+        }
+
+        @media print {
+            body {
+                background: none;
+            }
+
+            .page {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                box-shadow: none;
+                padding: 6mm;
+            }
+
+            .col-header,
+            .game-info-block,
+            .ans-box,
+            .tag {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+
+        .footer {
+            margin-top: 30px;
+
+            font-size: 13px;
+            color: #6c757d;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="page">
+        <header>
+            <h1>WEB 實境解謎遊戲 - 方案體驗</h1>
+
+            <div class="intro-container">
+                <p class="intro-p">為滿足不同專案規模與預算需求，本服務提供「機能型」與「劇場型」兩種專案方案。
+                </p>
+                <!-- <p class="intro-p">
+                    <span class="intro-highlight">機能型</span>
+                    採模組化快速開發，適合短期活動或首次嘗試實境解謎的專案，
+                    <span class="intro-highlight">劇場型</span>
+                    以相同的系統基礎為核心，進一步進行內容層面的深度客製，著重整體沉浸感與完成度，適合重視品牌體驗或規劃長期使用的專案。
+                </p> -->
+                <p class="intro-p">以下展示兩款以相同場域（桃園神社）為基礎，採用不同方案開發的 Demo 遊戲，歡迎掃描或點擊 QR Code 進行體驗，比較兩種方案在呈現上的差異。</p>
+            </div>
+        </header>
+
+        <div class="content-grid">
+
+            <div class="column col-blue">
+                <div class="col-intro-container">
+                    <p class="intro-p">
+                        <span class="intro-highlight">機能型</span>
+                        以標準模組化系統快速開發，重點在於穩定執行與成本可控，適合短期活動或首次嘗試實境解謎的專案。
+                    </p>
+                    <p class="intro-p">
+                        <span class="intro-highlight">劇場型</span>
+                        以相同的系統基礎為核心，進一步進行內容層面的深度客製，著重整體沉浸感與完成度，適合重視品牌體驗或規劃長期使用的專案。
+                    </p>
+
+                </div>
+
+                <div class="col-header">機能型：夏日記事
+
+                    <span class="col-header-hint">掃描/點擊 QR 進行體驗</span>
+                </div>
+
+                <div class="game-info-block">
+                    <div class="game-desc">
+                        <h3>遊戲簡介</h3>
+                        <p>你在書店發現殘缺日記，記錄著未竟的告白，唯有解開線索，才能拼湊女孩真正的心意，與那個夏日的結局。</p>
+                    </div>
+                    <div class="qr-placeholder-wrap">
+                        <a href="https://ksgnote.realeff.com" class="qr-placeholder"
+                            style="background-image: url(image/15.png)"> </a>
+
+                    </div>
+                </div>
+
+
+                <div class="list-container">
+
+                    <div class="item">
+                        <div class="item-meta">
+                            <div class="ch-info">
+                                <span class="ch-num">01</span>
+                                <span class="ch-title">謎題・石燈</span>
+                            </div>
+                            <span class="tag">數字</span>
+                        </div>
+
+                        <div class="ans-box"><span class="ans-label">解答</span>122221</div>
+                    </div>
+
+                    <div class="item">
+                        <div class="item-meta">
+                            <div class="ch-info">
+                                <span class="ch-num">02</span>
+                                <span class="ch-title">謎題・鳥居</span>
+                            </div>
+                            <span class="tag">數字</span>
+                        </div>
+                        <div class="ans-box"><span class="ans-label">解答</span>128</div>
+                    </div>
+
+                    <div class="item">
+                        <div class="item-meta">
+                            <div class="ch-info">
+                                <span class="ch-num">03</span>
+                                <span class="ch-title">謎題・參拜</span>
+                            </div>
+                            <span class="tag">數字</span>
+                        </div>
+                        <div class="ans-box"><span class="ans-label">解答</span>416523</div>
+                    </div>
+
+                    <div class="item">
+                        <div class="item-meta">
+                            <div class="ch-info">
+                                <span class="ch-num">04</span>
+                                <span class="ch-title">謎題・狛犬</span>
+                            </div>
+                            <span class="tag">數字</span>
+                        </div>
+                        <div class="ans-box"><span class="ans-label">解答</span>2258</div>
+                    </div>
+
+                    <div class="item">
+                        <div class="item-meta">
+                            <div class="ch-info">
+                                <span class="ch-num">05</span>
+                                <span class="ch-title">謎題・本殿</span>
+                            </div>
+                            <span class="tag">數字</span>
+                        </div>
+                        <div class="ans-box"><span class="ans-label">解答</span>1322231</div>
+                    </div>
+
+                    <div class="item">
+                        <div class="item-meta">
+                            <div class="ch-info">
+                                <span class="ch-num">06</span>
+                                <span class="ch-title">謎題・最終之謎</span>
+                            </div>
+                            <span class="tag">文字</span>
+                        </div>
+                        <div class="ans-box"><span class="ans-label">解答</span>KIMIGASUKIDAYO</div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="column col-red">
+                <div class="col-header">劇場型：無社之神
+
+                    <span class="col-header-hint">掃描/點擊 QR 進行體驗</span>
+                </div>
+
+                <div class="game-info-block">
+                    <div class="game-desc">
+                        <h3>遊戲簡介</h3>
+                        <p>靈異調查員王大熊被捲入一場突如其來的神祇失控危機，必須在一切混亂爆發前，找到「歸位」的關鍵。</p>
+                    </div>
+                    <div class="qr-placeholder-wrap">
+                        <a href="https://noshrine.realeff.com" class="qr-placeholder"
+                            style="background-image: url(image/16.png)"> </a>
+
+                    </div>
+                </div>
+
+                <div class="list-container">
+
+                    <div class="item">
+                        <div class="item-meta">
+                            <div class="ch-info">
+                                <span class="ch-num">01</span>
+                                <span class="ch-title">艋舺龍山·觀音靈籤</span>
+                            </div>
+                            <span class="tag">互動</span>
+                        </div>
+                        <div class="ans-box"><span class="ans-label">解答</span>連續擲出三次聖筊</div>
+                    </div>
+
+                    <div class="item">
+                        <div class="item-meta">
+                            <div class="ch-info">
+                                <span class="ch-num">02</span>
+                                <span class="ch-title">潛禍將興·兇</span>
+                            </div>
+                            <span class="tag">拼字</span>
+                        </div>
+                        <div class="ans-box"><span class="ans-label">解答</span>桃園神社</div>
+                    </div>
+
+                    <div class="item">
+                        <div class="item-meta">
+                            <div class="ch-info">
+                                <span class="ch-num">03</span>
+                                <span class="ch-title">咦？難不成是我眼花了？</span>
+                            </div>
+                            <span class="tag">文字</span>
+                        </div>
+                        <div class="ans-box"><span class="ans-label">解答</span>KASUGAYAMA</div>
+                    </div>
+
+                    <div class="item">
+                        <div class="item-meta">
+                            <div class="ch-info">
+                                <span class="ch-num">04</span>
+                                <span class="ch-title">迷霧深處·狛犬</span>
+                            </div>
+                            <span class="tag">互動</span>
+                        </div>
+                        <div class="ans-box"><span class="ans-label">解答</span>將橘、藍、黃三色小球同時運至鳥居</div>
+                    </div>
+
+                    <div class="item">
+                        <div class="item-meta">
+                            <div class="ch-info">
+                                <span class="ch-num">05</span>
+                                <span class="ch-title">古怪的雙十鳥居</span>
+                            </div>
+                            <span class="tag">數字</span>
+                        </div>
+                        <div class="ans-box"><span class="ans-label">解答</span>407</div>
+                    </div>
+
+
+                    <div class="item">
+                        <div class="img-wrapper">
+                            <div style="flex:1">
+                                <div class="item-meta">
+                                    <div class="ch-info">
+                                        <span class="ch-num">06</span>
+                                        <span class="ch-title">呃…走錯片場了？</span>
+                                    </div>
+                                    <span class="tag">互動</span>
+                                </div>
+
+                                <div class="ans-box"><span class="ans-label">解答</span>將符文如右圖嵌入</div>
+                            </div>
+                            <img src="image/18.png" class="scan-img">
+                        </div>
+                    </div>
+
+                    <div class="item" style="border-bottom: none;">
+                        <div class="img-wrapper">
+                            <div style="flex:1">
+                                <div class="item-meta">
+                                    <div class="ch-info">
+                                        <span class="ch-num">07</span>
+                                        <span class="ch-title">舊日印記·回歸</span>
+                                    </div>
+                                    <span class="tag">互動</span>
+                                </div>
+
+                                <div class="ans-box"><span class="ans-label">解答</span>掃描圖案 (右圖)</div>
+                            </div>
+                            <img src="image/02.webp" class="scan-img">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="footer">&copy; 2026 實境效應事務所 | Solution Experience</div>
+    </div>
+
+</body>
+
+</html>
