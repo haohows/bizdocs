@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="zh-TW">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -10,7 +11,8 @@
        ========================================================================== */
     :root {
       --color-m-primary: #1a1a1a;
-      --color-m-accent: #b38b5d; /* 質感香檳金 */
+      --color-m-accent: #b38b5d;
+      /* 質感香檳金 */
       --color-m-bg: #f8f9fa;
       --color-m-surface: #ffffff;
       --color-m-border: #e9ecef;
@@ -18,18 +20,22 @@
       --color-m-muted: #868e96;
     }
 
-    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang TC", "Microsoft JhengHei", sans-serif;
       line-height: 1.6;
       color: var(--color-m-text);
       background: var(--color-m-bg);
-      max-width: 600px; /* 手機預設寬度 */
+      max-width: 600px;
+      /* 手機預設寬度 */
       margin: 0 auto;
       padding: 0;
       font-size: 15px;
-      box-shadow: 0 0 30px rgba(0,0,0,0.03);
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.03);
       min-height: 100vh;
     }
 
@@ -39,6 +45,7 @@
       border-bottom: 2px solid var(--color-m-accent);
       padding: 30px 20px 25px;
     }
+
     .m-title-block h1 {
       font-size: 24px;
       margin: 0 0 5px;
@@ -47,11 +54,13 @@
       font-weight: bold;
       line-height: 1.3;
     }
+
     .m-title-block .m-subtitle {
       font-size: 13px;
       color: var(--color-m-muted);
       font-family: monospace;
     }
+
     .m-meta-info {
       margin-top: 15px;
       font-size: 12px;
@@ -61,11 +70,22 @@
       border-radius: 6px;
       border: 1px solid var(--color-m-border);
     }
-    .m-meta-info p { margin-bottom: 4px !important; }
+
+    .m-meta-info p {
+      margin-bottom: 4px !important;
+    }
 
     /* === Sections === */
-    section { padding: 20px; padding-bottom: 30px; border-bottom: 1px solid var(--color-m-border); }
-    section:last-of-type { border-bottom: none; }
+    section {
+      padding: 20px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid var(--color-m-border);
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
     h2 {
       font-size: 20px;
       color: var(--color-m-primary);
@@ -75,6 +95,7 @@
       margin-bottom: 20px;
       font-weight: bold;
     }
+
     h3 {
       font-size: 16px;
       color: var(--color-m-primary);
@@ -84,6 +105,7 @@
       display: flex;
       align-items: center;
     }
+
     h3::before {
       content: "";
       display: inline-block;
@@ -92,7 +114,13 @@
       background: var(--color-m-accent);
       margin-right: 8px;
     }
-    .m-intro-text { font-size: 14px; color: var(--color-m-text); text-align: justify; margin-bottom: 15px; }
+
+    .m-intro-text {
+      font-size: 14px;
+      color: var(--color-m-text);
+      text-align: justify;
+      margin-bottom: 15px;
+    }
 
     /* === Comparison Table (Mobile Optimized Side-by-Side) === */
     .m-pro-comparison-table {
@@ -100,26 +128,43 @@
       background: var(--color-m-surface);
       border-radius: 8px;
       overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
       margin-bottom: 20px;
       border-collapse: collapse;
     }
-    .m-pro-comparison-table th, .m-pro-comparison-table td {
+
+    .m-pro-comparison-table th,
+    .m-pro-comparison-table td {
       border: 1px solid var(--color-m-border);
       padding: 15px 10px;
       vertical-align: top;
       font-size: 13px;
       text-align: left;
     }
-    .m-pro-comparison-table th { background: #fdfdfd; color: var(--color-m-primary); font-weight: bold; }
-    .m-pro-comparison-table .m-pro-current-plan-header, .m-pro-comparison-table .m-pro-current-plan {
+
+    .m-pro-comparison-table th {
+      background: #fdfdfd;
+      color: var(--color-m-primary);
+      font-weight: bold;
+    }
+
+    .m-pro-comparison-table .m-pro-current-plan-header,
+    .m-pro-comparison-table .m-pro-current-plan {
       border-left: 2px solid var(--color-m-accent) !important;
       border-right: 2px solid var(--color-m-accent) !important;
       background: #fffcf8;
       width: 40%;
     }
-    .m-pro-comparison-table .m-pro-current-plan-header { border-top: 2px solid var(--color-m-accent) !important; position: relative; }
-    .m-pro-comparison-table tr:last-child .m-pro-current-plan { border-bottom: 2px solid var(--color-m-accent) !important; }
+
+    .m-pro-comparison-table .m-pro-current-plan-header {
+      border-top: 2px solid var(--color-m-accent) !important;
+      position: relative;
+    }
+
+    .m-pro-comparison-table tr:last-child .m-pro-current-plan {
+      border-bottom: 2px solid var(--color-m-accent) !important;
+    }
+
     .m-pro-badge {
       display: inline-block;
       background: var(--color-m-accent);
@@ -130,9 +175,21 @@
       margin-bottom: 5px;
       white-space: nowrap;
     }
-    .m-pro-plan-title { display: block; font-size: 15px; font-weight: bold; color: var(--color-m-primary); }
-    .m-pro-plan-price { display: block; font-size: 11px; color: var(--color-m-muted); margin-top: 4px; }
-    
+
+    .m-pro-plan-title {
+      display: block;
+      font-size: 15px;
+      font-weight: bold;
+      color: var(--color-m-primary);
+    }
+
+    .m-pro-plan-price {
+      display: block;
+      font-size: 11px;
+      color: var(--color-m-muted);
+      margin-top: 4px;
+    }
+
     /* === Demo Section === */
     .m-pro-demo-section {
       background: var(--color-m-surface);
@@ -140,19 +197,88 @@
       border-radius: 8px;
       padding: 20px;
       margin-top: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
     }
-    .m-pro-demo-title { font-weight: bold; font-size: 16px; color: var(--color-m-primary); display: block; margin-bottom: 10px; }
-    .m-pro-demo-content { font-size: 14px; margin-bottom: 10px; color: var(--color-m-text); text-align: justify; }
-    .m-pro-disclaimer { font-size: 13px; color: var(--color-m-muted); margin-bottom: 10px; border-bottom: 1px dashed var(--color-m-border); padding-bottom: 15px;}
-    .m-pro-demo-ans { font-size: 12px; color: #d9534f; font-weight: bold; margin-top: 6px; }
-    .m-demo-qrcode-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
-    .m-demo-qrcode { text-align: center; background: var(--color-m-bg); padding: 15px 10px; border-radius: 8px; border: 1px solid var(--color-m-border); position: relative; }
-    .m-demo-qrcode.m-mark { border: 2px solid var(--color-m-accent); }
-    .m-demo-qrcode.m-mark .m-pro-badge { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); }
-    .m-qrcode-placeholder { display: block; aspect-ratio: 1; background-size: cover; background-position: center; border-radius: 8px; margin-bottom: 10px; border: 1px solid var(--color-m-border); }
-    .m-demo-gameName { font-size: 13px; font-weight: bold; color: var(--color-m-primary); margin-top: 6px; }
-    .m-demo-experience-text { font-size: 11px; color: var(--color-m-muted); margin-top: 4px; }
+
+    .m-pro-demo-title {
+      font-weight: bold;
+      font-size: 16px;
+      color: var(--color-m-primary);
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .m-pro-demo-content {
+      font-size: 14px;
+      margin-bottom: 10px;
+      color: var(--color-m-text);
+      text-align: justify;
+    }
+
+    .m-pro-disclaimer {
+      font-size: 13px;
+      color: var(--color-m-muted);
+      margin-bottom: 10px;
+      border-bottom: 1px dashed var(--color-m-border);
+      padding-bottom: 15px;
+    }
+
+    .m-pro-demo-ans {
+      font-size: 12px;
+      color: #d9534f;
+      font-weight: bold;
+      margin-top: 6px;
+    }
+
+    .m-demo-qrcode-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .m-demo-qrcode {
+      text-align: center;
+      background: var(--color-m-bg);
+      padding: 15px 10px;
+      border-radius: 8px;
+      border: 1px solid var(--color-m-border);
+      position: relative;
+    }
+
+    .m-demo-qrcode.m-mark {
+      border: 2px solid var(--color-m-accent);
+    }
+
+    .m-demo-qrcode.m-mark .m-pro-badge {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .m-qrcode-placeholder {
+      display: block;
+      aspect-ratio: 1;
+      background-size: cover;
+      background-position: center;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      border: 1px solid var(--color-m-border);
+    }
+
+    .m-demo-gameName {
+      font-size: 13px;
+      font-weight: bold;
+      color: var(--color-m-primary);
+      margin-top: 6px;
+    }
+
+    .m-demo-experience-text {
+      font-size: 11px;
+      color: var(--color-m-muted);
+      margin-top: 4px;
+    }
 
     /* === Data Cards (Replaces Tables for Mobile) === */
     .m-data-card {
@@ -161,8 +287,9 @@
       border-radius: 8px;
       padding: 16px;
       margin-bottom: 15px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
     }
+
     .m-data-row {
       display: flex;
       justify-content: space-between;
@@ -171,12 +298,14 @@
       padding-bottom: 10px;
       border-bottom: 1px solid #f1f3f5;
     }
+
     .m-data-row.m-full {
       flex-direction: column;
       border: none;
       margin: 0;
       padding: 0;
     }
+
     .m-data-label {
       font-size: 11px;
       color: var(--color-m-muted);
@@ -186,20 +315,31 @@
       min-width: 65px;
       font-weight: 600;
     }
+
     .m-data-value {
       font-size: 14px;
       color: var(--color-m-primary);
       flex-grow: 1;
       text-align: right;
     }
+
     .m-data-row.m-full .m-data-value {
       text-align: left;
       margin-top: 6px;
       color: var(--color-m-text);
       line-height: 1.6;
     }
-    .m-data-value ul { padding-left: 18px; margin: 4px 0 0 0; text-align: left; }
-    .m-data-value li { margin-bottom: 6px; }
+
+    .m-data-value ul {
+      padding-left: 18px;
+      margin: 4px 0 0 0;
+      text-align: left;
+    }
+
+    .m-data-value li {
+      margin-bottom: 6px;
+    }
+
     .m-data-qty {
       background: #fdf8f3;
       color: var(--color-m-accent);
@@ -210,8 +350,20 @@
       border: 1px solid #f5ebd9;
       display: inline-block;
     }
-    .m-price-col { font-family: monospace; font-weight: bold; color: var(--color-m-primary); font-size: 14px; }
-    .m-desc { font-size: 13px; color: var(--color-m-muted); display: block; margin-top: 2px; }
+
+    .m-price-col {
+      font-family: monospace;
+      font-weight: bold;
+      color: var(--color-m-primary);
+      font-size: 14px;
+    }
+
+    .m-desc {
+      font-size: 13px;
+      color: var(--color-m-muted);
+      display: block;
+      margin-top: 2px;
+    }
 
     /* === Visual Grid === */
     .m-visual-reference {
@@ -221,6 +373,7 @@
       border: 1px solid var(--color-m-border);
       margin: 25px 0;
     }
+
     .m-reference-tag {
       font-size: 11px;
       font-weight: bold;
@@ -231,6 +384,7 @@
       display: flex;
       align-items: center;
     }
+
     .m-reference-tag::before {
       content: "INTERFACE PREVIEW";
       background: #e9ecef;
@@ -240,8 +394,19 @@
       font-size: 9px;
       margin-right: 8px;
     }
-    .m-visual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-    .m-visual-item { display: flex; flex-direction: column; align-items: center; }
+
+    .m-visual-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .m-visual-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
     .m-screen-mock {
       width: 100%;
       aspect-ratio: 195/370;
@@ -252,8 +417,9 @@
       background-size: cover;
       background-position: center;
       margin-bottom: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     }
+
     .m-screen-mock::before {
       content: '';
       position: absolute;
@@ -265,6 +431,7 @@
       background: var(--color-m-primary);
       border-radius: 3px;
     }
+
     .m-screen-mock::after {
       content: '';
       position: absolute;
@@ -276,7 +443,13 @@
       background: var(--color-m-border);
       border-radius: 2px;
     }
-    .m-visual-label { font-size: 12px; font-weight: bold; color: var(--color-m-primary); text-align: center; }
+
+    .m-visual-label {
+      font-size: 12px;
+      font-weight: bold;
+      color: var(--color-m-primary);
+      text-align: center;
+    }
 
     /* === Flow Container === */
     .m-flow-container {
@@ -289,6 +462,7 @@
       border-radius: 8px;
       border: 1px solid var(--color-m-border);
     }
+
     .m-flow-step {
       background: var(--color-m-bg);
       border: 1px solid var(--color-m-border);
@@ -297,6 +471,7 @@
       text-align: center;
       position: relative;
     }
+
     .m-flow-step::after {
       content: '↓';
       position: absolute;
@@ -307,9 +482,22 @@
       color: var(--color-m-accent);
       z-index: 1;
     }
-    .m-flow-step:last-child::after { display: none; }
-    .m-flow-step strong { font-size: 16px; color: var(--color-m-primary); display: block; margin-bottom: 4px; }
-    .m-flow-step span { font-size: 13px !important; color: var(--color-m-muted); }
+
+    .m-flow-step:last-child::after {
+      display: none;
+    }
+
+    .m-flow-step strong {
+      font-size: 16px;
+      color: var(--color-m-primary);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .m-flow-step span {
+      font-size: 13px !important;
+      color: var(--color-m-muted);
+    }
 
     /* === Standard Price Box === */
     .m-standard-price-box {
@@ -319,8 +507,9 @@
       border-radius: 8px;
       text-align: center;
       margin: 30px 0;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
     }
+
     .m-standard-price-box h3 {
       color: var(--color-m-accent);
       font-size: 13px;
@@ -329,7 +518,11 @@
       justify-content: center;
       border: none;
     }
-    .m-standard-price-box h3::before { display: none; }
+
+    .m-standard-price-box h3::before {
+      display: none;
+    }
+
     .m-standard-price-box .m-price-tag {
       display: block;
       font-size: 32px;
@@ -338,6 +531,7 @@
       margin-bottom: 10px;
       color: white;
     }
+
     .m-standard-price-box .m-price-note {
       display: block;
       font-size: 13px;
@@ -345,11 +539,12 @@
       margin-bottom: 15px;
       line-height: 1.5;
     }
+
     .m-standard-price-box .m-price-warning {
       display: block;
       font-size: 13px;
       color: #ff8787;
-      border-top: 1px solid rgba(255,255,255,0.1);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
       padding-top: 15px;
       text-align: left;
       font-weight: bold;
@@ -357,11 +552,41 @@
     }
 
     /* === Workflow List === */
-    .m-header-section { margin-bottom: 20px; }
-    .m-section-intro { font-size: 14px; color: var(--color-m-text); line-height: 1.6; margin: 0; }
-    .m-workflow-list { position: relative; padding-left: 20px; margin-top: 20px; list-style: none; margin-left: 0; }
-    .m-workflow-list::before { content: ''; position: absolute; left: 5px; top: 5px; bottom: 0; width: 2px; background: var(--color-m-border); }
-    .m-workflow-item { position: relative; margin-bottom: 35px; padding-left: 20px; }
+    .m-header-section {
+      margin-bottom: 20px;
+    }
+
+    .m-section-intro {
+      font-size: 14px;
+      color: var(--color-m-text);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .m-workflow-list {
+      position: relative;
+      padding-left: 20px;
+      margin-top: 20px;
+      list-style: none;
+      margin-left: 0;
+    }
+
+    .m-workflow-list::before {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 5px;
+      bottom: 0;
+      width: 2px;
+      background: var(--color-m-border);
+    }
+
+    .m-workflow-item {
+      position: relative;
+      margin-bottom: 35px;
+      padding-left: 20px;
+    }
+
     .m-workflow-item::before {
       content: '';
       position: absolute;
@@ -373,8 +598,21 @@
       border: 2px solid var(--color-m-primary);
       border-radius: 50%;
     }
-    .m-step-header { font-size: 16px; font-weight: bold; color: var(--color-m-primary); margin-bottom: 8px; }
-    .m-step-desc { font-size: 14px; color: var(--color-m-text); margin-bottom: 12px; text-align: justify; }
+
+    .m-step-header {
+      font-size: 16px;
+      font-weight: bold;
+      color: var(--color-m-primary);
+      margin-bottom: 8px;
+    }
+
+    .m-step-desc {
+      font-size: 14px;
+      color: var(--color-m-text);
+      margin-bottom: 12px;
+      text-align: justify;
+    }
+
     .m-sop-box {
       background: var(--color-m-surface);
       border: 1px solid var(--color-m-border);
@@ -384,10 +622,30 @@
       color: var(--color-m-text);
       border-radius: 0 4px 4px 0;
     }
-    .m-sop-box.m-critical { background: #fffcf8; border-color: #fce8cd; border-left-color: #e67e22; }
-    .m-sop-title { display: block; font-weight: bold; color: var(--color-m-primary); margin-bottom: 4px; font-size: 13px; }
-    .m-sop-box.m-critical .m-sop-title { color: #e67e22; }
-    strong.m-highlight { color: #d32f2f; font-weight: bold; }
+
+    .m-sop-box.m-critical {
+      background: #fffcf8;
+      border-color: #fce8cd;
+      border-left-color: #e67e22;
+    }
+
+    .m-sop-title {
+      display: block;
+      font-weight: bold;
+      color: var(--color-m-primary);
+      margin-bottom: 4px;
+      font-size: 13px;
+    }
+
+    .m-sop-box.m-critical .m-sop-title {
+      color: #e67e22;
+    }
+
+    strong.m-highlight {
+      color: #d32f2f;
+      font-weight: bold;
+    }
+
     .m-deadline {
       background: #e9ecef;
       padding: 2px 6px;
@@ -406,17 +664,64 @@
       border-radius: 8px;
       padding: 20px;
       margin: 20px 0;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
     }
-    .m-custom-bonus-style ul { padding-left: 0; margin: 0; list-style: none; }
-    .m-custom-bonus-style > ul > li { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #f1f3f5; }
-    .m-custom-bonus-style > ul > li:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
-    .m-custom-bonus-style strong { display: block; font-size: 15px; color: var(--color-m-primary); margin-bottom: 6px; }
-    .m-custom-bonus-style .m-desc { display: block; font-size: 14px; color: var(--color-m-text); line-height: 1.6; }
-    .m-sub-desc-scope { padding-left: 20px; margin-top: 8px; list-style: disc; }
-    .m-sub-desc-scope li { margin-bottom: 6px; font-size: 13px; color: var(--color-m-muted); border: none; padding: 0; }
-    
-    .m-footer { text-align: center; padding: 30px; font-size: 12px; color: var(--color-m-muted); border-top: 1px solid var(--color-m-border); font-family: monospace; margin-top: 20px; }
+
+    .m-custom-bonus-style ul {
+      padding-left: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .m-custom-bonus-style>ul>li {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #f1f3f5;
+    }
+
+    .m-custom-bonus-style>ul>li:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .m-custom-bonus-style strong {
+      display: block;
+      font-size: 15px;
+      color: var(--color-m-primary);
+      margin-bottom: 6px;
+    }
+
+    .m-custom-bonus-style .m-desc {
+      display: block;
+      font-size: 14px;
+      color: var(--color-m-text);
+      line-height: 1.6;
+    }
+
+    .m-sub-desc-scope {
+      padding-left: 20px;
+      margin-top: 8px;
+      list-style: disc;
+    }
+
+    .m-sub-desc-scope li {
+      margin-bottom: 6px;
+      font-size: 13px;
+      color: var(--color-m-muted);
+      border: none;
+      padding: 0;
+    }
+
+    .m-footer {
+      text-align: center;
+      padding: 30px;
+      font-size: 12px;
+      color: var(--color-m-muted);
+      border-top: 1px solid var(--color-m-border);
+      font-family: monospace;
+      margin-top: 20px;
+    }
 
     /* ==========================================================================
        RWD 樣式 (Tablet & Desktop)
@@ -426,7 +731,7 @@
         max-width: 1000px;
         margin: 40px auto;
         border-radius: 12px;
-        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
       }
 
       header {
@@ -436,27 +741,62 @@
         border-radius: 12px 12px 0 0;
         padding: 40px 40px 30px;
       }
-      .m-title-block { margin-bottom: 0; }
-      .m-title-block h1 { font-size: 28px; }
-      .m-meta-info { margin-top: 0; min-width: 280px; padding: 16px; }
 
-      section { padding: 40px; }
+      .m-title-block {
+        margin-bottom: 0;
+      }
+
+      .m-title-block h1 {
+        font-size: 28px;
+      }
+
+      .m-meta-info {
+        margin-top: 0;
+        min-width: 280px;
+        padding: 16px;
+      }
+
+      section {
+        padding: 40px;
+      }
 
       /* PC 網格佈局轉換 */
-      .m-rwd-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-      .m-rwd-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-      
-      .m-data-card { 
-        margin-bottom: 0; 
-        display: flex; 
-        flex-direction: column; 
-        height: 100%; 
+      .m-rwd-grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
       }
-      .m-data-row.m-full { flex-grow: 1; }
+
+      .m-rwd-grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+
+      .m-data-card {
+        margin-bottom: 0;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      .m-data-row.m-full {
+        flex-grow: 1;
+      }
 
       /* 流程圖水平化 */
-      .m-flow-container { flex-direction: row; padding: 30px; gap: 15px; }
-      .m-flow-step { flex: 1; padding: 20px 10px; margin-bottom: 0; }
+      .m-flow-container {
+        flex-direction: row;
+        padding: 30px;
+        gap: 15px;
+      }
+
+      .m-flow-step {
+        flex: 1;
+        padding: 20px 10px;
+        margin-bottom: 0;
+      }
+
       .m-flow-step::after {
         content: '→';
         top: 50%;
@@ -466,21 +806,49 @@
         transform: translateY(-50%);
         font-size: 20px;
       }
-      .m-flow-step:last-child::after { display: none; }
+
+      .m-flow-step:last-child::after {
+        display: none;
+      }
 
       /* 視覺預覽擴展為 4 欄 */
-      .m-visual-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+      .m-visual-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+      }
 
       /* Demo 區塊並排 */
-      .m-pro-demo-section.m-prefacearea { display: flex; align-items: center; gap: 40px; }
-      .m-pro-demo-text { flex: 1; padding-right: 20px; }
-      .m-demo-qrcode-wrap { width: 400px; flex-shrink: 0; margin-top: 0; }
+      .m-pro-demo-section.m-prefacearea {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+      }
+
+      .m-pro-demo-text {
+        flex: 1;
+        padding-right: 20px;
+      }
+
+      .m-demo-qrcode-wrap {
+        width: 400px;
+        flex-shrink: 0;
+        margin-top: 0;
+      }
 
       /* 價格方塊強化 */
-      .m-standard-price-box { padding: 40px; margin: 40px 0; }
-      .m-standard-price-box .m-price-tag { font-size: 42px; }
+      .m-standard-price-box {
+        padding: 40px;
+        margin: 40px 0;
+      }
 
-      .m-footer { padding: 40px; border-radius: 0 0 12px 12px; }
+      .m-standard-price-box .m-price-tag {
+        font-size: 42px;
+      }
+
+      .m-footer {
+        padding: 40px;
+        border-radius: 0 0 12px 12px;
+      }
     }
   </style>
 </head>
@@ -493,9 +861,12 @@
     </div>
 
     <div class="m-meta-info">
-      <p style="padding: 0; margin: 0; display: flex; justify-content: space-between;"><span>版本：</span><span>v3.0</span></p>
-      <p style="padding: 0; margin: 0; display: flex; justify-content: space-between;"><span>日期：</span><span>2026-01-20</span></p>
-      <p style="padding: 0; margin: 0; display: flex; justify-content: space-between;"><span>官方 Line：</span><a href="https://lin.ee/tgv9YRh" style="color:var(--color-m-accent);">https://lin.ee/tgv9YRh</a></p>
+      <p style="padding: 0; margin: 0; display: flex; justify-content: space-between;"><span>版本：</span><span>v3.0</span>
+      </p>
+      <p style="padding: 0; margin: 0; display: flex; justify-content: space-between;">
+        <span>日期：</span><span>2026-01-20</span></p>
+      <p style="padding: 0; margin: 0; display: flex; justify-content: space-between;"><span>官方 Line：</span><a
+          href="https://lin.ee/tgv9YRh" style="color:var(--color-m-accent);">https://lin.ee/tgv9YRh</a></p>
     </div>
   </header>
 
@@ -507,7 +878,7 @@
       請業主依據活動性質與預算規模，參閱下方表格，確認本方案是否符合您的需求。
     </p>
     <p class="m-intro-text">若您的專案規模預計採用<strong>【劇場型方案】</strong>，因該方案涉及範疇較廣，歡迎來訊預約線上訪談，我們將於初步了解需求後提供對應之規格說明。</p>
-    
+
     <table class="m-pro-comparison-table">
       <thead>
         <tr>
@@ -526,29 +897,35 @@
       <tbody>
         <tr>
           <td><strong>開發期程</strong></td>
-          <td class="m-pro-current-plan"><strong>4 ~ 8 週</strong><br><span style="font-size: 12px; color: var(--color-m-muted);">(快速開發)</span></td>
-          <td><strong>2 ~ 3 個月</strong><br><span style="font-size: 12px; color: var(--color-m-muted);">(深度製作)</span></td>
+          <td class="m-pro-current-plan"><strong>4 ~ 8 週</strong><br><span
+              style="font-size: 12px; color: var(--color-m-muted);">(快速開發)</span></td>
+          <td><strong>2 ~ 3 個月</strong><br><span style="font-size: 12px; color: var(--color-m-muted);">(深度製作)</span>
+          </td>
         </tr>
         <tr>
           <td><strong>核心價值</strong></td>
           <td class="m-pro-current-plan">
             <strong>模組化 / 效率導向</strong><br />
-            <span style="font-size: 12px; color: var(--color-m-muted); display: block; margin-top: 4px;">保留核心解謎的互動機制，精簡劇情鋪陳與非必要之美術包裝，旨在以最低成本實現實境解謎互動。</span>
+            <span
+              style="font-size: 12px; color: var(--color-m-muted); display: block; margin-top: 4px;">保留核心解謎的互動機制，精簡劇情鋪陳與非必要之美術包裝，旨在以最低成本實現實境解謎互動。</span>
           </td>
           <td>
             <strong>沉浸感 / 敘事導向</strong><br />
-            <span style="font-size: 12px; color: var(--color-m-muted); display: block; margin-top: 4px;">著重強調世界觀建構、人物角色刻畫與劇情發展連貫性，謎題與故事深度結合，提供玩家沉浸般的遊玩體驗。</span>
+            <span
+              style="font-size: 12px; color: var(--color-m-muted); display: block; margin-top: 4px;">著重強調世界觀建構、人物角色刻畫與劇情發展連貫性，謎題與故事深度結合，提供玩家沉浸般的遊玩體驗。</span>
           </td>
         </tr>
         <tr>
           <td><strong>內容深度</strong></td>
           <td class="m-pro-current-plan">
             <strong>引導式短文</strong><br />
-            <span style="font-size: 12px; color: var(--color-m-muted); display: block; margin-top: 4px;">僅保留必要的關卡引導與過場文字，結構簡單直觀。</span>
+            <span
+              style="font-size: 12px; color: var(--color-m-muted); display: block; margin-top: 4px;">僅保留必要的關卡引導與過場文字，結構簡單直觀。</span>
           </td>
           <td>
             <strong>完整劇本</strong><br />
-            <span style="font-size: 12px; color: var(--color-m-muted); display: block; margin-top: 4px;">包含主線劇情起承轉合、角色對話與完整世界觀設定。</span>
+            <span
+              style="font-size: 12px; color: var(--color-m-muted); display: block; margin-top: 4px;">包含主線劇情起承轉合、角色對話與完整世界觀設定。</span>
           </td>
         </tr>
         <tr>
@@ -578,13 +955,15 @@
       <div class="m-demo-qrcode-wrap">
         <div class="m-demo-qrcode m-mark">
           <div class="m-pro-badge">★ 本規格書方案</div>
-          <a href="https://ksgnote.realeff.com" class="m-qrcode-placeholder" style="background-image: url(image/15.png)">
+          <a href="https://ksgnote.realeff.com" class="m-qrcode-placeholder"
+            style="background-image: url(image/15.png)">
           </a>
           <div class="m-demo-gameName">機能型：夏日記事</div>
           <div class="m-demo-experience-text">點擊/掃描QR開始體驗</div>
         </div>
         <div class="m-demo-qrcode">
-          <a href="https://noshrine.realeff.com" class="m-qrcode-placeholder" style="background-image: url(image/16.png)">
+          <a href="https://noshrine.realeff.com" class="m-qrcode-placeholder"
+            style="background-image: url(image/16.png)">
           </a>
           <div class="m-demo-gameName">劇場型：無社之神</div>
           <div class="m-demo-experience-text">點擊/掃描QR開始體驗</div>
@@ -596,20 +975,25 @@
   <!-- 一、核心系統配置 -->
   <section>
     <h2>一、基礎核心系統配置 (System Core)</h2>
-    <p style="font-size: 14px; margin-bottom: 15px; color: var(--color-m-muted);">專案採用模組化 Web 架構，無需下載 APP 即可執行，有效降低使用門檻並提升參與率。</p>
+    <p style="font-size: 14px; margin-bottom: 15px; color: var(--color-m-muted);">專案採用模組化 Web 架構，無需下載 APP
+      即可執行，有效降低使用門檻並提升參與率。</p>
 
     <div class="m-rwd-grid-3">
       <div class="m-data-card">
         <div class="m-data-row">
           <span class="m-data-label">模組名稱</span>
-          <strong class="m-data-value">狀態控管模組 <div style="font-size: 12px; color: var(--color-m-muted); font-weight: normal;">State Management Module</div></strong>
+          <strong class="m-data-value">狀態控管模組 <div
+              style="font-size: 12px; color: var(--color-m-muted); font-weight: normal;">State Management Module</div>
+            </strong>
         </div>
         <div class="m-data-row m-full">
           <span class="m-data-label">模組功能</span>
           <div class="m-data-value">
             <ul>
-              <li><strong>初始邏輯判別：</strong><span class="m-desc" style="display:inline;">系統自動偵測當前資料狀態，執行對應資源預載，確保遊玩體驗流暢。</span></li>
-              <li><strong>進度存取節點：</strong><span class="m-desc" style="display:inline;">採用瀏覽器端存儲技術，記錄當前進度與持有物件，防止重新整理後資料遺失。</span></li>
+              <li><strong>初始邏輯判別：</strong><span class="m-desc"
+                  style="display:inline;">系統自動偵測當前資料狀態，執行對應資源預載，確保遊玩體驗流暢。</span></li>
+              <li><strong>進度存取節點：</strong><span class="m-desc"
+                  style="display:inline;">採用瀏覽器端存儲技術，記錄當前進度與持有物件，防止重新整理後資料遺失。</span></li>
             </ul>
           </div>
         </div>
@@ -618,14 +1002,17 @@
       <div class="m-data-card">
         <div class="m-data-row">
           <span class="m-data-label">模組名稱</span>
-          <strong class="m-data-value">系統主控模組 <div style="font-size: 12px; color: var(--color-m-muted); font-weight: normal;">Dashboard Module</div></strong>
+          <strong class="m-data-value">系統主控模組 <div
+              style="font-size: 12px; color: var(--color-m-muted); font-weight: normal;">Dashboard Module</div></strong>
         </div>
         <div class="m-data-row m-full">
           <span class="m-data-label">模組功能</span>
           <div class="m-data-value">
             <ul>
-              <li><strong>環境運行檢測：</strong><span class="m-desc" style="display:inline;">自動判定裝置型號與瀏覽器版本，若環境不符將提示使用者，確保遊戲穩定運行。</span></li>
-              <li><strong>主功能控制列：</strong><span class="m-desc" style="display:inline;">包含「遊戲指南」、「文獻檔案」與「狀態設置」之控制介面。</span></li>
+              <li><strong>環境運行檢測：</strong><span class="m-desc"
+                  style="display:inline;">自動判定裝置型號與瀏覽器版本，若環境不符將提示使用者，確保遊戲穩定運行。</span></li>
+              <li><strong>主功能控制列：</strong><span class="m-desc"
+                  style="display:inline;">包含「遊戲指南」、「文獻檔案」與「狀態設置」之控制介面。</span></li>
             </ul>
           </div>
         </div>
@@ -634,14 +1021,17 @@
       <div class="m-data-card">
         <div class="m-data-row">
           <span class="m-data-label">模組名稱</span>
-          <strong class="m-data-value">互動解謎模組 <div style="font-size: 12px; color: var(--color-m-muted); font-weight: normal;">Puzzle Module</div></strong>
+          <strong class="m-data-value">互動解謎模組 <div
+              style="font-size: 12px; color: var(--color-m-muted); font-weight: normal;">Puzzle Module</div></strong>
         </div>
         <div class="m-data-row m-full">
           <span class="m-data-label">模組功能</span>
           <div class="m-data-value">
             <ul>
-              <li><strong>核心任務功能：</strong><span class="m-desc" style="display:inline;">進行互動操作與解謎行為的核心功能，如圖文線索、物件蒐集、答案比對運算等。</span></li>
-              <li><strong>即時反饋機制：</strong><span class="m-desc" style="display:inline;">包含驗證判定、錯誤反饋、卡關提示以及通關過場效果。</span></li>
+              <li><strong>核心任務功能：</strong><span class="m-desc"
+                  style="display:inline;">進行互動操作與解謎行為的核心功能，如圖文線索、物件蒐集、答案比對運算等。</span></li>
+              <li><strong>即時反饋機制：</strong><span class="m-desc" style="display:inline;">包含驗證判定、錯誤反饋、卡關提示以及通關過場效果。</span>
+              </li>
             </ul>
           </div>
         </div>
@@ -687,14 +1077,17 @@
       <div class="m-data-card">
         <div class="m-data-row">
           <span class="m-data-label">流程階段</span>
-          <strong class="m-data-value">序幕劇情展演 <div style="font-size: 12px; color: var(--color-m-muted); font-weight: normal;">Prologue</div></strong>
+          <strong class="m-data-value">序幕劇情展演 <div
+              style="font-size: 12px; color: var(--color-m-muted); font-weight: normal;">Prologue</div></strong>
         </div>
         <div class="m-data-row m-full">
           <span class="m-data-label">詳細說明</span>
           <div class="m-data-value">
             <ul>
-              <li><strong>呈現形式：</strong><span class="m-desc" style="display:inline;">採用「圖文對應」方式，一張情境圖搭配一段對應文案，引導玩家進入故事背景。</span></li>
-              <li><strong>規格標準：</strong><span class="m-desc" style="display:inline;">配置約 2~4 張情境圖，搭配共 500 字左右之腳本文案。</span></li>
+              <li><strong>呈現形式：</strong><span class="m-desc"
+                  style="display:inline;">採用「圖文對應」方式，一張情境圖搭配一段對應文案，引導玩家進入故事背景。</span></li>
+              <li><strong>規格標準：</strong><span class="m-desc" style="display:inline;">配置約 2~4 張情境圖，搭配共 500
+                  字左右之腳本文案。</span></li>
             </ul>
           </div>
         </div>
@@ -703,14 +1096,17 @@
       <div class="m-data-card">
         <div class="m-data-row">
           <span class="m-data-label">流程階段</span>
-          <strong class="m-data-value">章節關卡結構 <div style="font-size: 12px; color: var(--color-m-muted); font-weight: normal;">Level Design</div></strong>
+          <strong class="m-data-value">章節關卡結構 <div
+              style="font-size: 12px; color: var(--color-m-muted); font-weight: normal;">Level Design</div></strong>
         </div>
         <div class="m-data-row m-full">
           <span class="m-data-label">詳細說明</span>
           <div class="m-data-value">
             <ul>
-              <li><strong>標準關卡（5關）：</strong><span class="m-desc" style="display:inline;">採「開放式」流程，玩家可自由任選關卡進行挑戰，無強制解題順序限制。</span></li>
-              <li><strong>終局關卡（1關）：</strong><span class="m-desc" style="display:inline;">初始為「隱藏狀態」，當所有標準關卡皆通關後始自動解鎖出現，原則上會運用標準關卡獲得之資訊進行綜合解謎。</span></li>
+              <li><strong>標準關卡（5關）：</strong><span class="m-desc"
+                  style="display:inline;">採「開放式」流程，玩家可自由任選關卡進行挑戰，無強制解題順序限制。</span></li>
+              <li><strong>終局關卡（1關）：</strong><span class="m-desc"
+                  style="display:inline;">初始為「隱藏狀態」，當所有標準關卡皆通關後始自動解鎖出現，原則上會運用標準關卡獲得之資訊進行綜合解謎。</span></li>
             </ul>
           </div>
         </div>
@@ -719,14 +1115,17 @@
       <div class="m-data-card">
         <div class="m-data-row">
           <span class="m-data-label">流程階段</span>
-          <strong class="m-data-value">終幕劇情展演 <div style="font-size: 12px; color: var(--color-m-muted); font-weight: normal;">Epilogue</div></strong>
+          <strong class="m-data-value">終幕劇情展演 <div
+              style="font-size: 12px; color: var(--color-m-muted); font-weight: normal;">Epilogue</div></strong>
         </div>
         <div class="m-data-row m-full">
           <span class="m-data-label">詳細說明</span>
           <div class="m-data-value">
             <ul>
-              <li><strong>呈現形式：</strong><span class="m-desc" style="display:inline;">採用「長文配圖」方式，以一段完整故事文案為主體，搭配數張插圖呈現結局氛圍。</span></li>
-              <li><strong>規格標準：</strong><span class="m-desc" style="display:inline;">單頁長文呈現，搭配 2~3 張場景圖，文案長度約 500~600 字。</span></li>
+              <li><strong>呈現形式：</strong><span class="m-desc"
+                  style="display:inline;">採用「長文配圖」方式，以一段完整故事文案為主體，搭配數張插圖呈現結局氛圍。</span></li>
+              <li><strong>規格標準：</strong><span class="m-desc" style="display:inline;">單頁長文呈現，搭配 2~3 張場景圖，文案長度約 500~600
+                  字。</span></li>
             </ul>
           </div>
         </div>
@@ -735,7 +1134,8 @@
       <div class="m-data-card">
         <div class="m-data-row">
           <span class="m-data-label">流程階段</span>
-          <strong class="m-data-value">通關結算 <div style="font-size: 12px; color: var(--color-m-muted); font-weight: normal;">Result</div></strong>
+          <strong class="m-data-value">通關結算 <div
+              style="font-size: 12px; color: var(--color-m-muted); font-weight: normal;">Result</div></strong>
         </div>
         <div class="m-data-row m-full">
           <span class="m-data-label">詳細說明</span>
@@ -813,7 +1213,8 @@
       <div class="m-data-card">
         <div class="m-data-row">
           <span class="m-data-label">項目名稱</span>
-          <strong class="m-data-value">地標指示圖 <div style="font-size: 12px; color: var(--color-m-muted); font-weight: normal;">視情況配置</div></strong>
+          <strong class="m-data-value">地標指示圖 <div
+              style="font-size: 12px; color: var(--color-m-muted); font-weight: normal;">視情況配置</div></strong>
         </div>
         <div class="m-data-row">
           <span class="m-data-label">基本規格</span>
@@ -829,7 +1230,8 @@
       <div class="m-data-card">
         <div class="m-data-row">
           <span class="m-data-label">項目名稱</span>
-          <strong class="m-data-value">背景資訊文獻 <div style="font-size: 12px; color: var(--color-m-muted); font-weight: normal;">視情況配置</div></strong>
+          <strong class="m-data-value">背景資訊文獻 <div
+              style="font-size: 12px; color: var(--color-m-muted); font-weight: normal;">視情況配置</div></strong>
         </div>
         <div class="m-data-row">
           <span class="m-data-label">基本規格</span>
@@ -904,7 +1306,8 @@
       <div class="m-data-card">
         <div class="m-data-row">
           <span class="m-data-label">項目名稱</span>
-          <strong class="m-data-value">漸進式友善提示 <div style="font-size: 12px; color: var(--color-m-muted); font-weight: normal;">視情況配置</div></strong>
+          <strong class="m-data-value">漸進式友善提示 <div
+              style="font-size: 12px; color: var(--color-m-muted); font-weight: normal;">視情況配置</div></strong>
         </div>
         <div class="m-data-row">
           <span class="m-data-label">基本規格</span>
@@ -945,17 +1348,18 @@
     <h3>【 WEB 實境解謎（機能型）- 標準方案費用 】</h3>
     <span class="m-price-tag">NT$ 88,000 起</span>
     <span class="m-price-note">（含稅）/ 執行方為個人接案，報價皆為<strong>含稅總額</strong>，包含代扣 10% 所得稅及 2.11% 二代健保費。</span>
-    <span class="m-price-warning">※ <strong>I、II、III 大項</strong> 為標準版範圍，IV 進階加購與服務項目皆屬於選配，需另行計費。<br /> 若專案場域位於偏遠地區或特殊環境，可能會產生額外場地勘查費用，具體情況將於報價階段說明。
+    <span class="m-price-warning">※ <strong>I、II、III 大項</strong> 為標準版範圍，IV 進階加購與服務項目皆屬於選配，需另行計費。<br />
+      若專案場域位於偏遠地區或特殊環境，可能會產生額外場地勘查費用，具體情況將於報價階段說明。
     </span>
   </div>
 
   <!-- 四、進階加購與服務 -->
   <section>
     <h2>四、進階加購與專案服務 (Add-ons & Services)</h2>
-    
+
     <h3>1. 特殊線索模塊選配 (Optional Clue Add-ons)</h3>
     <p style="font-size: 13px; color: var(--color-m-muted); margin-bottom: 15px;">※ 若需增加線索呈現模式，可依需求加購下列模塊：</p>
-    
+
     <div class="m-rwd-grid-3">
       <div class="m-data-card">
         <div class="m-data-row">
@@ -968,7 +1372,10 @@
         </div>
         <div class="m-data-row m-full">
           <span class="m-data-label">模塊功能效果</span>
-          <div class="m-data-value">顯示事件發生地的所在位置。<ul class="m-sub-desc-scope"><li>不適合訊號不穩或無訊號之場域，加購前請務必先行確認。</li></ul></div>
+          <div class="m-data-value">顯示事件發生地的所在位置。<ul class="m-sub-desc-scope">
+              <li>不適合訊號不穩或無訊號之場域，加購前請務必先行確認。</li>
+            </ul>
+          </div>
         </div>
       </div>
 
@@ -1005,7 +1412,7 @@
 
     <h3>2. 特殊驗證模塊選配 (Optional Verification Add-ons)</h3>
     <p style="font-size: 13px; color: var(--color-m-muted); margin-bottom: 15px;">※ 若需增加驗證方式，可依需求加購下列模塊：</p>
-    
+
     <div class="m-rwd-grid-2">
       <div class="m-data-card">
         <div class="m-data-row">
@@ -1093,7 +1500,10 @@
         </div>
         <div class="m-data-row m-full">
           <span class="m-data-label">模塊功能效果</span>
-          <div class="m-data-value">以GPS定位驗證，玩家須位於指定範圍才能通過驗證。<ul class="m-sub-desc-scope"><li>不適合訊號不穩或無訊號之場域，加購前請務必先行確認。</li></ul></div>
+          <div class="m-data-value">以GPS定位驗證，玩家須位於指定範圍才能通過驗證。<ul class="m-sub-desc-scope">
+              <li>不適合訊號不穩或無訊號之場域，加購前請務必先行確認。</li>
+            </ul>
+          </div>
         </div>
       </div>
 
@@ -1168,7 +1578,8 @@
             採用<strong>數學演算法 (Algorithm)</strong> 進行本機驗證，可判斷玩家持有金鑰之有效性。
             <ul class="m-sub-desc-scope">
               <li><strong>交付專屬桌上型金鑰生產器</strong>，業主可自行於電腦上無限量產生成金鑰，並一鍵匯出 Excel 與 QR Code。</li>
-              <li>因採離線驗證機制，<span style="color: #d9534f; font-weight: bold">金鑰具可重複使用特性，若需嚴格限制「單一金鑰僅能使用一次」，請參考下方的雲端授權平台。</span></li>
+              <li>因採離線驗證機制，<span
+                  style="color: #d9534f; font-weight: bold">金鑰具可重複使用特性，若需嚴格限制「單一金鑰僅能使用一次」，請參考下方的雲端授權平台。</span></li>
               <li>業主亦可採用<strong>虛實整合</strong>的方式，將部分解謎道具實體化（如謎題包），即便金鑰被分享，玩家若無實體道具仍無法遊玩。</li>
               <li>本方案僅提供軟體端之驗證機制，實體道具之設計與製作需由業主自行規劃。</li>
             </ul>
@@ -1193,7 +1604,8 @@
               <li>後台設有帳號管理機制，以避免未授權人員存取與操作，遊戲端將加裝序號驗證模組即時連線驗證，序號使用後即刻失效，杜絕重複使用。</li>
               <li>本系統以既有標準功能架構交付，適用於單一專案之序號產生與管理需求，若需調整資料結構或擴充後台功能，將視需求另行評估與報價。</li>
               <li>
-                <strong>外部成本與部署責任：</strong>系統開發前，<span style="color: #d9534f; font-weight: bold">須請業主依指示，申請雲端資料庫以及部署空間（需綁定業主信用卡）</span>，後續每月產生之流量與伺服器費用亦由業主全額承擔。
+                <strong>外部成本與部署責任：</strong>系統開發前，<span
+                  style="color: #d9534f; font-weight: bold">須請業主依指示，申請雲端資料庫以及部署空間（需綁定業主信用卡）</span>，後續每月產生之流量與伺服器費用亦由業主全額承擔。
               </li>
               <li>限制：一旦啟用本驗證機制，遊戲將<strong>不支援離線遊玩</strong>功能，加購前請務必評估場域網路狀況。</li>
             </ul>
@@ -1639,4 +2051,5 @@
   </section>
   <div class="m-footer">&copy; 2026 實境效應事務所 | Specification Document</div>
 </body>
+
 </html>
