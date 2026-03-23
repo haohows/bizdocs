@@ -746,7 +746,6 @@ strong.m-highlight {
 }
 
 .m-custom-bonus-style strong {
-    /* display: block; */
     font-size: 16px;
     color: var(--color-m-primary);
     margin-bottom: 6px;
