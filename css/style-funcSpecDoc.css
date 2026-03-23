@@ -692,7 +692,7 @@ strong.m-highlight {
 }
 .m-list-desc {
     display: block;
-    font-size: 14px;
+    font-size: 15px;
     color: var(--color-m-text);
     line-height: 1.7;
 }
@@ -712,7 +712,7 @@ strong.m-highlight {
 }
 .m-list-sub li {
     margin-bottom: 8px;
-    font-size: 14px;
+    font-size: 15px;
     color: var(--color-m-text);
     line-height: 1.6;
 }
