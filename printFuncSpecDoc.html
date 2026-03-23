@@ -1,0 +1,1838 @@
+<!doctype html>
+
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>WEB 實境解謎 - 機能型方案規格說明書</title>
+
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --accent-color: #3498db;
+      --bg-color: #ffffff;
+      --section-bg: #f8f9fa;
+      --border-color: #e9ecef;
+      --text-color: #2c3e50;
+      --text-light: #6c757d;
+      --phone-bezel: #2c3e50;
+      --tech-tag-bg: #edf2f7;
+      --tech-tag-text: #4a5568;
+
+      --secondary-color: #555;
+
+      --box-bg: #f9f9f9;
+    }
+
+    @page {
+      size: A4;
+      margin: 6mm;
+    }
+
+    body {
+      /* 還原為系統預設字體，確保最穩定乾淨的顯示效果 */
+      font-family: "Helvetica Neue", Arial, "PingFang TC", "Heiti TC", "Microsoft JhengHei", sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background: var(--bg-color);
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      font-size: 16px;
+      /* 基礎字體放大 */
+    }
+
+    /* Header */
+
+    header {
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 20px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .title-block h1 {
+      font-size: 28px;
+      margin: 0;
+      color: var(--primary-color);
+      letter-spacing: 1px;
+      font-weight: bold;
+    }
+
+    .title-block .subtitle {
+      font-size: 16px;
+      color: var(--text-light);
+    }
+
+    .meta-info {
+      text-align: right;
+      font-size: 13px;
+      color: var(--text-light);
+    }
+
+    /* Sections */
+
+    section {
+      margin-bottom: 35px;
+    }
+
+    h2 {
+      font-size: 22px;
+      color: var(--primary-color);
+      border-left: 5px solid var(--accent-color);
+      padding-left: 12px;
+      margin-bottom: 20px;
+      background: linear-gradient(90deg, var(--section-bg) 0%, transparent 100%);
+      padding-top: 8px;
+      padding-bottom: 8px;
+      font-weight: bold;
+    }
+
+    h3 {
+      font-size: 18px;
+      color: var(--primary-color);
+      margin-bottom: 12px;
+      margin-top: 25px;
+      font-weight: 700;
+      border-bottom: 1px dashed #ddd;
+      padding-bottom: 5px;
+    }
+
+    h4 {
+      font-size: 16px;
+      color: var(--text-light);
+      margin-top: 15px;
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+
+    li:last-child {
+      margin-bottom: 0px;
+    }
+
+    li::before {
+      content: "•";
+      color: var(--accent-color);
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+
+    .desc {
+      font-size: 15px;
+      color: var(--text-light);
+      margin-left: 0;
+      display: block;
+    }
+
+    /* Tables */
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 16px;
+      margin-top: 10px;
+      margin-bottom: 15px;
+    }
+
+    th {
+      border: 1px solid var(--border-color);
+      padding: 12px;
+      text-align: center;
+    }
+
+    td {
+      border: 1px solid var(--border-color);
+      padding: 12px;
+      text-align: left;
+    }
+
+    th {
+      background-color: var(--section-bg);
+      color: var(--primary-color);
+      font-weight: 600;
+      width: 20%;
+    }
+
+    .price-col {
+      text-align: right;
+      width: 15%;
+      font-family: monospace;
+      font-weight: bold;
+    }
+
+    /* 置中欄位樣式 */
+
+    .center-col {
+      text-align: center;
+    }
+
+    .warn-text {
+      color: #d32f2f;
+      font-weight: bold;
+    }
+
+    /* 視覺參考區塊 */
+    .visual-reference {
+      margin: 25px 0 40px 0;
+      padding: 20px;
+      border-radius: 12px;
+      background: #fdfdfd;
+      border: 1px solid var(--border-color);
+    }
+
+    .reference-tag {
+      font-size: 11px;
+      font-weight: bold;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .reference-tag::before {
+      content: "INTERFACE PREVIEW";
+      background: #e9ecef;
+      color: #495057;
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-size: 9px;
+    }
+
+    .visual-grid {
+      display: flex;
+      gap: 25px;
+      justify-content: space-between;
+    }
+
+    .visual-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .screen-mock {
+      background: #f8f9fa;
+      width: 100%;
+      max-width: 220px;
+      /* aspect-ratio: 9 / 18.5; */
+      aspect-ratio: 195 / 370;
+      border: 6px solid var(--phone-bezel);
+      border-radius: 24px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #adb5bd;
+      font-size: 11px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      background-size: cover;
+      /* background-size: contain; */
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .screen-mock::before {
+      content: "";
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 35%;
+      height: 6px;
+      background: var(--phone-bezel);
+      border-radius: 10px;
+      z-index: 2;
+    }
+
+    .screen-mock::after {
+      content: "";
+      position: absolute;
+      bottom: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 30%;
+      height: 3px;
+      background: #dee2e6;
+      border-radius: 10px;
+      z-index: 2;
+    }
+
+    .visual-label {
+      font-size: 13px;
+      color: var(--text-color);
+      font-weight: bold;
+      margin-bottom: 4px;
+      text-align: center;
+    }
+
+    .visual-desc {
+      font-size: 11px;
+      color: var(--text-light);
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    /* Flow Chart Visual */
+
+    .flow-container {
+      display: flex;
+      justify-content: space-between;
+      background: var(--section-bg);
+      padding: 20px;
+      border-radius: 4px;
+      margin-bottom: 15px;
+      border: 1px solid var(--border-color);
+      font-size: 15px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .flow-step {
+      flex: 1;
+      text-align: center;
+      position: relative;
+      font-size: 17px;
+      min-width: 80px;
+    }
+
+    .flow-step:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      right: -10px;
+      top: 0;
+      color: var(--text-light);
+      display: none;
+    }
+
+    /* Standard Price Box */
+
+    .standard-price-box {
+      background: #fff;
+      border: 3px solid var(--primary-color);
+      border-radius: 8px;
+      padding: 25px;
+      text-align: center;
+      margin: 40px 0;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .standard-price-box h3 {
+      margin: 0 0 10px 0;
+      color: var(--text-light);
+      font-size: 16px;
+      font-weight: normal;
+      border: none;
+      letter-spacing: 1px;
+    }
+
+    .standard-price-box .price-tag {
+      font-size: 36px;
+      color: var(--primary-color);
+      font-weight: bold;
+      font-family: monospace;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .standard-price-box .price-note {
+      font-size: 13px;
+      color: #888;
+      display: block;
+      line-height: 1.5;
+    }
+
+    .standard-price-box .price-warning {
+      font-size: 13px;
+      color: #d32f2f;
+      display: block;
+      margin-top: 8px;
+      font-weight: bold;
+    }
+
+    @media print {
+      .flow-step:not(:last-child)::after {
+        display: block;
+      }
+
+      body {
+        -webkit-print-color-adjust: exact;
+      }
+
+      .standard-price-box {
+        page-break-inside: avoid;
+      }
+    }
+
+    @media screen and (min-width: 600px) {
+      .flow-step:not(:last-child)::after {
+        display: block;
+      }
+    }
+
+    /* Disclaimer Box */
+
+    .disclaimer {
+      background-color: #fff8e1;
+      border: 1px solid #ffe0b2;
+      padding: 18px;
+      font-size: 14px;
+      color: #8d6e63;
+      margin-top: 10px;
+      border-radius: 4px;
+    }
+
+    /* 特殊區塊修正樣式 - 統一使用第五項的顏色 */
+
+    .custom-bonus-style {
+      border: 1px solid var(--border-color);
+      padding: 20px;
+      border-radius: 4px;
+    }
+
+    .sub-desc-scope {
+      margin: 5px 15px 5px 15px;
+    }
+
+    .sub-desc-scope li {
+      font-size: 14px;
+      margin: 0;
+      color: var(--text-light);
+    }
+
+    .footer {
+      margin-top: 50px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-color);
+      font-size: 13px;
+      color: var(--text-light);
+      text-align: center;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 3px 8px;
+      background: #e3f2fd;
+      color: #1565c0;
+      border-radius: 4px;
+      font-size: 13px;
+      margin-right: 5px;
+    }
+
+    .prefacearea {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      /* 關鍵：不要 stretch */
+    }
+
+    .demo-qrcode-wrap {
+      width: 45%;
+      display: grid;
+      gap: 10px;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* QR Code 永遠是文件主體 */
+    .demo-qrcode {
+      background: white;
+      display: block;
+      padding: 15px 0px 8px 0px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      border: 3px solid #f3f3f3;
+    }
+
+    .demo-qrcode.mark {
+      position: relative;
+      border: 3px solid #2980b9;
+    }
+
+    .qrcode-placeholder {
+      background: white;
+      width: 120px;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #777;
+      font-size: 14px;
+      border-radius: 6px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .demo-gameName {
+      margin-top: 6px;
+      font-size: 16px;
+    }
+
+    .demo-experience-text {
+      color: #929292;
+      font-size: 12px;
+    }
+
+    /* 按鈕：預設不顯示（文件第一） */
+    .demo-btn {
+      display: none;
+      margin-top: 12px;
+      padding: 12px;
+      background: #333;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+
+    /* 手機瀏覽 */
+    @media screen and (max-width: 768px) {
+      .prefacearea {
+        flex-direction: column;
+        gap: 0px;
+      }
+
+      .demo-qrcode-wrap {
+        margin-top: 20px;
+        width: 100%;
+      }
+
+      .demo-gameName {
+        font-size: 15px;
+      }
+    }
+
+    /* 列印 / PDF：強制文件模式 */
+    @media print {
+      .core-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .flow-step:not(:last-child)::after {
+        display: block;
+      }
+
+      body {
+        -webkit-print-color-adjust: exact;
+      }
+
+      .standard-price-box,
+      .visual-reference,
+      .tech-module-card {
+        page-break-inside: avoid;
+      }
+
+      .pro-comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+        /* 邊框合併模式 */
+        font-size: 16px;
+        margin-bottom: 15px;
+        margin-top: 25px;
+      }
+
+      .pro-comparison-table th,
+      .pro-comparison-table td {
+        border: 1px solid #ddd;
+        padding: 12px 15px;
+        text-align: left;
+      }
+
+      .pro-comparison-table th {
+        background-color: #f4f4f4;
+        font-weight: bold;
+        color: #000;
+        width: 18%;
+      }
+    }
+
+    /* 標題區塊 */
+    .header-section {
+      border-bottom: 2px solid #000;
+      padding-bottom: 15px;
+      margin-bottom: 35px;
+    }
+
+    h2.section-title {
+      font-size: 22px;
+      font-weight: bold;
+      margin: 0 0 8px 0;
+    }
+
+    .section-intro {
+      font-size: 14px;
+      color: #666;
+      margin: 0;
+    }
+
+    /* 流程列表容器 */
+    .workflow-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      border-left: 3px solid #eee;
+      margin-left: 18px;
+    }
+
+    .workflow-item {
+      position: relative;
+      padding-left: 45px;
+      margin-bottom: 45px;
+    }
+
+    .workflow-item::before {
+      content: "";
+      position: absolute;
+      left: -11px;
+      top: 4px;
+      width: 13px;
+      height: 13px;
+      background: #fff;
+      border: 3px solid #555;
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    /* 步驟標頭 */
+    .step-header {
+      font-size: 17px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #000;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    /* 步驟描述 */
+    .step-desc {
+      font-size: 15px;
+      color: #444;
+      margin-bottom: 15px;
+      text-align: justify;
+    }
+
+    /* 重點說明方塊 (SOP Box) */
+    .sop-box {
+      background: #f8f9fa;
+      border-left: 4px solid #888;
+      padding: 12px 20px;
+      font-size: 14px;
+      color: #666;
+      border-radius: 0 4px 4px 0;
+    }
+
+    /* 關鍵節點強調色 */
+    .sop-box.critical {
+      background: #fffcf0;
+      border-left-color: #f1c40f;
+    }
+
+    .sop-title {
+      color: #222;
+      font-weight: bold;
+      display: block;
+      margin-bottom: 6px;
+      font-size: 13px;
+    }
+
+    /* 強調文字 */
+    strong.highlight {
+      color: #c0392b;
+      font-weight: bold;
+    }
+
+    /* 比較表樣式 */
+    .pro-comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      /* 邊框合併模式 */
+      font-size: 16px;
+      margin-bottom: 15px;
+      margin-top: 25px;
+    }
+
+    .pro-comparison-table th,
+    .pro-comparison-table td {
+      border: 1px solid #ddd;
+      padding: 12px 15px;
+      text-align: left;
+    }
+
+    .pro-comparison-table th {
+      background-color: #f4f4f4;
+      font-weight: bold;
+      color: #000;
+      width: 18%;
+    }
+
+    /* 強調機能型方案 - 標題 */
+    .pro-current-plan-header {
+      background-color: #f4f4f4;
+      /* 背景色與一般標題一致 */
+      border-top: 3px solid #2980b9 !important;
+      border-left: 3px solid #2980b9 !important;
+      border-right: 3px solid #2980b9 !important;
+      border-bottom: 1px solid #ddd;
+      position: relative;
+      z-index: 1;
+      /* 確保邊框覆蓋 */
+    }
+
+    /* 強調機能型方案 - 內容儲存格 */
+    .pro-current-plan {
+      background-color: #fff;
+      /* 背景色改回白色 */
+      border-left: 3px solid #2980b9 !important;
+      border-right: 3px solid #2980b9 !important;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* 表格最後一列的機能型儲存格，加上底部粗框 */
+    .pro-comparison-table tr:last-child .pro-current-plan {
+      border-bottom: 3px solid #2980b9 !important;
+    }
+
+    /* 標籤 */
+    .pro-badge {
+      position: absolute;
+      top: -12px;
+      right: 10px;
+      background: #2980b9;
+      color: #fff;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    .pro-plan-title {
+      font-size: 18px;
+      font-weight: bold;
+      display: block;
+    }
+
+    .pro-plan-price {
+      color: #666;
+      font-size: 14px;
+      display: block;
+    }
+
+    /* Demo 區塊 */
+    .pro-demo-section {
+      display: flex;
+      background: #fcfcfc;
+      border: 1px solid #e6e6e6;
+      padding: 20px;
+      border-radius: 4px;
+      align-items: center;
+    }
+
+    .pro-demo-text {
+      flex: 1;
+      padding-right: 30px;
+    }
+
+    .pro-demo-title {
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 10px;
+      display: block;
+      color: #000;
+    }
+
+    .pro-demo-desc {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .pro-disclaimer {
+      font-size: 13px;
+      color: #999;
+      margin-top: 6px;
+    }
+
+    .pro-demo-ans {
+      font-size: 13px;
+      color: rgb(228, 102, 102);
+      margin-top: 6px;
+    }
+
+    .pro-demo-line {
+      font-size: 13px;
+      color: rgb(228, 102, 102);
+      /* margin-left: 15px; */
+    }
+
+    .deadline {
+      /* padding: 1px 6px;
+        margin: 0px 2px;
+        background-color: #b1b1b1;
+        border-radius: 3px;
+        color: white; */
+      background-color: #e2e2e2;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 0.9em;
+      margin: 0 2px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="title-block">
+      <h1>WEB 實境解謎 - 機能型方案規格說明書</h1>
+      <div class="subtitle">Web-Based Reality Puzzle Service Specification</div>
+    </div>
+
+    <div class="meta-info">
+      <p style="padding: 0; margin: 0">版本：v3.0</p>
+      <p style="padding: 0; margin: 0">日期：2026-01-20</p>
+      <p style="padding: 0; margin: 0">官方 Line：https://lin.ee/tgv9YRh</p>
+    </div>
+  </header>
+
+  <!-- 序、方案定位與 Demo 參考說明 (Service Positioning) -->
+  <section>
+    <h2>序、方案定位與 Demo 參考說明 (Service Positioning)</h2>
+    <p class="intro-text">
+      為滿足不同專案規模與預算需求，本服務提供「機能型」與「劇場型」兩種專案方案。本規格說明書之內容專屬於<strong>【機能型方案】</strong>，旨在提供高效率、標準化之實境解謎導入服務，
+      請業主依據活動性質與預算規模，參閱下方表格，確認本方案是否符合您的需求。
+    </p>
+    <p class="intro-text">若您的專案規模預計採用<strong>【劇場型方案】</strong>，因該方案涉及範疇較廣，歡迎來訊預約線上訪談，我們將於初步了解需求後提供對應之規格說明。</p>
+    <table class="pro-comparison-table">
+      <thead>
+        <tr>
+          <th>比較項目</th>
+          <th class="pro-current-plan-header" style="width: 41%">
+            <div class="pro-badge">★ 本規格書方案</div>
+            <span class="pro-plan-title">機能型</span>
+            <span class="pro-plan-price">預算區間：NT$ 88,000 起</span>
+          </th>
+          <th style="width: 41%">
+            <span class="pro-plan-title">劇場型</span>
+            <span class="pro-plan-price">預算區間：NT$ 250,000 起</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>開發期程</strong></td>
+          <td class="pro-current-plan"><strong>4 ~ 8 週</strong> (快速開發)</td>
+          <td><strong>2 ~ 3 個月</strong> (深度製作)</td>
+        </tr>
+        <tr>
+          <td><strong>核心價值</strong></td>
+          <td class="pro-current-plan">
+            <strong>模組化 / 效率導向</strong><br />
+            保留核心解謎的互動機制，精簡劇情鋪陳與非必要之美術包裝，旨在以最低成本實現實境解謎互動。
+          </td>
+          <td>
+            <strong>沉浸感 / 敘事導向</strong><br />
+            著重強調世界觀建構、人物角色刻畫與劇情發展連貫性，謎題與故事深度結合，提供玩家沉浸般的遊玩體驗。
+          </td>
+        </tr>
+        <tr>
+          <td><strong>內容深度</strong></td>
+          <td class="pro-current-plan">
+            <strong>引導式短文</strong><br />
+            僅保留必要的關卡引導與過場文字，結構簡單直觀。
+          </td>
+          <td>
+            <strong>完整劇本</strong><br />
+            包含主線劇情起承轉合、角色對話與完整世界觀設定。
+          </td>
+        </tr>
+        <tr>
+          <td><strong>適用範疇</strong></td>
+          <td class="pro-current-plan">
+            • 短期活動 / 節慶市集<br />
+            • 預算有限 / 需快速上線之活動<br />
+          </td>
+          <td>
+            • 觀光景點常設展<br />
+            • 收費制實境遊戲產品
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="pro-demo-section prefacearea">
+      <div class="pro-demo-text">
+        <span class="pro-demo-title"> Demo 體驗</span>
+        <p class="pro-demo-content">
+          為方便理解具體的呈現樣貌，本區塊附上 <strong style="margin: 0 2px">機能型</strong>與 <strong style="margin: 0 2px">劇場型</strong>的
+          Demo 比較，歡迎掃描以進行體驗。
+        </p>
+        <p class="pro-disclaimer">本 Demo 僅用於說明「系統操作概念與介面形式」，實際內容以「正式報價單」與「專案合約」載明為準。</p>
+        <div class="pro-demo-ans">※ 若需要 Demo 解答者，歡迎來訊索取。</div>
+        <!-- <div class="pro-demo-line">※ 官方 Line：https://lin.ee/tgv9YRh</div> -->
+      </div>
+      <div class="demo-qrcode-wrap">
+        <div class="demo-qrcode mark">
+          <div class="pro-badge">★ 本規格書方案</div>
+          <a href="https://ksgnote.realeff.com" class="qrcode-placeholder" style="background-image: url(image/15.png)">
+          </a>
+          <div class="demo-gameName">機能型：夏日記事</div>
+          <div class="demo-experience-text">點擊/掃描QR開始體驗</div>
+        </div>
+        <div class="demo-qrcode">
+          <a href="https://noshrine.realeff.com" class="qrcode-placeholder" style="background-image: url(image/16.png)">
+          </a>
+          <div class="demo-gameName">劇場型：無社之神</div>
+          <div class="demo-experience-text">點擊/掃描QR開始體驗</div>
+        </div>
+      </div>
+      <!-- 僅給手機用 -->
+      <!-- <a href="https://ksgnote.realeff.com" class="demo-btn" target="_blank"> 前往體驗「機能型：夏日記事」</a>
+
+      <a href="https://noshrine.realeff.com" class="demo-btn" target="_blank"> 前往體驗「劇場型：無社之神」 </a> -->
+    </div>
+
+    <!-- Demo 區塊 -->
+  </section>
+
+  <!-- 一、核心系統配置 -->
+
+  <section>
+    <h2>一、基礎核心系統配置 (System Core)</h2>
+
+    <p style="font-size: 16px; margin-bottom: 5px; color: #666">專案採用模組化 Web 架構，無需下載 APP 即可執行，有效降低使用門檻並提升參與率。</p>
+
+    <table>
+      <tr>
+        <th align="center">
+          狀態控管模組
+          <div style="font-size: 14px; color: #666">State Management Module</div>
+        </th>
+        <td>
+          <ul>
+            <li><strong>初始邏輯判別：</strong><span class="desc">系統自動偵測當前資料狀態，執行對應資源預載，確保遊玩體驗流暢。</span></li>
+            <li><strong>進度存取節點：</strong><span class="desc">採用瀏覽器端存儲技術，記錄當前進度與持有物件，防止重新整理後資料遺失。</span></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <th align="center">
+          系統主控模組
+          <div style="font-size: 14px; color: #666">Dashboard Module</div>
+        </th>
+        <td>
+          <ul>
+            <li><strong>環境運行檢測：</strong><span class="desc">自動判定裝置型號與瀏覽器版本，若環境不符將提示使用者，確保遊戲穩定運行。</span></li>
+            <li><strong>主功能控制列：</strong><span class="desc">包含「遊戲指南」、「文獻檔案」與「狀態設置」之控制介面。</span></li>
+            <!-- <li><strong>社群分享整合：</strong><span class="desc">內建一鍵分享功能，提供快速分享遊戲至社群平台的操作介面。</span></li> -->
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <th align="center">
+          互動解謎模組
+          <div style="font-size: 14px; color: #666">Puzzle Module</div>
+        </th>
+        <td>
+          <ul>
+            <li><strong>核心任務功能：</strong><span class="desc">進行互動操作與解謎行為的核心功能，如圖文線索、物件蒐集、答案比對運算等。</span></li>
+            <li><strong>即時反饋機制：</strong><span class="desc">包含驗證判定、錯誤反饋、卡關提示以及通關過場效果。</span></li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+
+    <!-- 核心系統配置  -->
+    <div class="visual-reference">
+      <div class="reference-tag">核心系統配置示意</div>
+      <div class="visual-grid">
+        <div class="visual-item">
+          <div class="screen-mock" style="background-image: url(image/12.png)"></div>
+          <span class="visual-label">狀態控管-初始載入</span>
+        </div>
+        <div class="visual-item">
+          <div class="screen-mock" style="background-image: url(image/08.png)"></div>
+          <span class="visual-label">系統主控-主畫面</span>
+        </div>
+        <div class="visual-item">
+          <div class="screen-mock" style="background-image: url(image/14.png)"></div>
+          <span class="visual-label">系統主控-文獻檔案</span>
+        </div>
+        <div class="visual-item">
+          <div class="screen-mock" style="background-image: url(image/13.png)"></div>
+          <span class="visual-label">互動解謎-任務序列</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 二、遊戲流程與內容 -->
+
+  <section>
+    <h2>二、遊戲流程與內容規格 (Flow & Content)</h2>
+
+    <div class="flow-container">
+      <div class="flow-step"><strong>序幕劇情</strong><br /><span style="font-size: 14px">任務前導</span></div>
+
+      <div class="flow-step"><strong>章節關卡</strong><br /><span style="font-size: 14px">5道標準謎題</span></div>
+
+      <div class="flow-step"><strong>最終試煉</strong><br /><span style="font-size: 14px">1道綜合謎題</span></div>
+
+      <div class="flow-step"><strong>終幕劇情</strong><br /><span style="font-size: 14px">結局收束</span></div>
+
+      <div class="flow-step"><strong>通關結算</strong><br /><span style="font-size: 14px">數據統計</span></div>
+    </div>
+
+    <table>
+      <tr>
+        <th align="center">
+          序幕劇情展演
+          <div style="font-size: 14px; color: #666">Prologue</div>
+        </th>
+
+        <td>
+          <ul>
+            <li>
+              <strong>呈現形式：</strong>
+              <span class="desc">採用「圖文對應」方式，一張情境圖搭配一段對應文案，引導玩家進入故事背景。</span>
+            </li>
+
+            <li>
+              <strong>規格標準：</strong>
+              <span class="desc">配置約 2~4 張情境圖，搭配共 500 字左右之腳本文案。</span>
+            </li>
+          </ul>
+        </td>
+      </tr>
+
+      <tr>
+        <th>
+          章節關卡結構
+          <div style="font-size: 14px; color: #666">Level Design</div>
+        </th>
+
+        <td>
+          <ul>
+            <li>
+              <strong>標準關卡（5關）：</strong>
+              <span class="desc">採「開放式」流程，玩家可自由任選關卡進行挑戰，無強制解題順序限制。</span>
+            </li>
+
+            <li>
+              <strong>終局關卡（1關）：</strong>
+              <span class="desc">初始為「隱藏狀態」，當所有標準關卡皆通關後始自動解鎖出現，原則上會運用標準關卡獲得之資訊進行綜合解謎。</span>
+            </li>
+          </ul>
+        </td>
+      </tr>
+
+      <tr>
+        <th>
+          終幕劇情展演
+          <div style="font-size: 14px; color: #666">Epilogue</div>
+        </th>
+
+        <td>
+          <ul>
+            <li>
+              <strong>呈現形式：</strong>
+              <span class="desc">採用「長文配圖」方式，以一段完整故事文案為主體，搭配數張插圖呈現結局氛圍。</span>
+            </li>
+
+            <li>
+              <strong>規格標準：</strong>
+              <span class="desc">單頁長文呈現，搭配 2~3 張場景圖，文案長度約 500~600 字。</span>
+            </li>
+          </ul>
+        </td>
+      </tr>
+
+      <tr>
+        <th>
+          通關結算
+          <div style="font-size: 14px; color: #666">Result</div>
+        </th>
+
+        <td>
+          <ul>
+            <li>顯示挑戰成功訊息、遊玩耗時及總結算資訊。</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- 關卡流程表現 -->
+  <div class="visual-reference">
+    <div class="reference-tag">關卡流程示意</div>
+    <div class="visual-grid">
+      <div class="visual-item">
+        <div class="screen-mock" style="background-image: url(image/01.png)"></div>
+        <span class="visual-label">序幕劇情</span>
+      </div>
+      <div class="visual-item">
+        <div class="screen-mock" style="background-image: url(image/02.png)"></div>
+        <span class="visual-label">章節關卡</span>
+      </div>
+      <div class="visual-item">
+        <div class="screen-mock" style="background-image: url(image/03.png)"></div>
+        <span class="visual-label">終幕劇情</span>
+      </div>
+      <div class="visual-item">
+        <div class="screen-mock" style="background-image: url(image/04.png)"></div>
+        <span class="visual-label">通關結算</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 三、單一關卡標準配置 -->
+
+  <section>
+    <h2>三、單一關卡標準配置 (Level Standard)</h2>
+    <p style="font-size: 14px; color: #666; margin-top: 5px">※ 每一道關卡預設包含以下標準配置，超出此範圍需視為客製化項目：</p>
+
+    <table>
+      <thead>
+        <tr style="background: #e8ecef">
+          <th style="width: 25%">項目名稱</th>
+
+          <th style="width: 60%">內容說明</th>
+
+          <th class="center-col" style="width: 15%">基本規格</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td><strong>關卡情境底圖</strong></td>
+
+          <td>呈現實際遊玩場域之情境，或是該關卡主題的視覺圖像。</td>
+
+          <td class="center-col">1 張</td>
+        </tr>
+
+        <tr>
+          <td><strong>劇情引導文案</strong></td>
+
+          <td>用於場景描述、動線說明與行動指引的文字內容。</td>
+
+          <td class="center-col">約 150 字</td>
+        </tr>
+
+        <tr>
+          <td>
+            <strong>地標指示圖</strong>
+            <div style="font-size: 13px; color: #a5a4a4">視情況配置</div>
+
+            <!-- <span style="font-size: 12px; color: #666">(視情況配置)</span> -->
+          </td>
+
+          <td>提示玩家關卡位置附近的醒目地標物 (若為現地解謎需求)。</td>
+
+          <td class="center-col">1~3 張</td>
+        </tr>
+
+        <tr>
+          <td>
+            <strong>背景資訊文獻</strong>
+            <div style="font-size: 13px; color: #a5a4a4">視情況配置</div>
+          </td>
+
+          <td>以圖文方式呈現，用於補充事件背景與相關資料的說明內容。</td>
+
+          <td class="center-col">1 篇</td>
+        </tr>
+
+        <tr>
+          <td><strong>關卡與謎題設計</strong></td>
+
+          <td>
+            關卡中供玩家進行互動的謎題、線索與行動指引等內容。
+            <ul class="sub-desc-scope">
+              <li>若需其他線索呈現模式（如：AR擴增圖檔、鏡像貼圖等），請加購對應之線索模塊。</li>
+            </ul>
+          </td>
+
+          <td class="center-col">1 組</td>
+        </tr>
+
+        <tr>
+          <td><strong>判定與驗證機制</strong></td>
+
+          <td>
+            檢核是否符合通關條件的判斷機制。
+            <ul class="sub-desc-scope">
+              <li>基本配置僅含單組文字驗證模式，意即將回答內容與1組答案進行比對，需100% 吻合（包含英文大小寫）才能通過檢驗。</li>
+              <li>若需其他驗證機制（如：圖像辨識），請加購對應之驗證模塊。</li>
+            </ul>
+          </td>
+
+          <td class="center-col">--</td>
+        </tr>
+
+        <tr>
+          <td><strong>錯誤回饋視覺</strong></td>
+
+          <td>當回答不正確時，將予以錯誤訊息 (Error Msg) 的視覺回應。</td>
+
+          <td class="center-col">--</td>
+        </tr>
+
+        <tr>
+          <td>
+            <strong>漸進式友善提示 </strong>
+            <div style="font-size: 13px; color: #a5a4a4">視情況配置</div>
+          </td>
+
+          <td>顯示提示資訊 (Hint) 協助理解謎題，當回答錯誤次數過多時，予以顯示解答機制，供玩家自行決定是否查看。</td>
+
+          <td class="center-col">1 組</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- 單一關卡介面要素 -->
+    <div class="visual-reference">
+      <div class="reference-tag">單一關卡介面要素示意</div>
+      <div class="visual-grid">
+        <div class="visual-item">
+          <div class="screen-mock" style="background-image: url(image/17.png)"></div>
+          <span class="visual-label">關卡資訊</span>
+        </div>
+        <div class="visual-item">
+          <div class="screen-mock" style="background-image: url(image/05.png)"></div>
+          <span class="visual-label">情境底圖、劇情引導</span>
+        </div>
+        <div class="visual-item">
+          <div class="screen-mock" style="background-image: url(image/06.png)"></div>
+          <span class="visual-label">地標指示</span>
+        </div>
+        <div class="visual-item">
+          <div class="screen-mock" style="background-image: url(image/07.png)"></div>
+          <span class="visual-label">關卡與謎題</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ★ 標準方案價格宣告區塊 ★ -->
+
+  <div class="standard-price-box">
+    <h3>【 WEB 實境解謎（機能型）- 標準方案費用 】</h3>
+
+    <span class="price-tag">NT$ 88,000 起</span>
+
+    <span class="price-note">（含稅）/ 執行方為個人接案，報價皆為<strong>含稅總額</strong>，包含代扣 10% 所得稅及 2.11% 二代健保費。</span>
+
+    <span class="price-warning">※ <strong>I、II、III 大項</strong> 為標準版範圍，IV 進階加購與服務項目皆屬於選配，需另行計費。<br />
+      若專案場域位於偏遠地區或特殊環境，可能會產生額外場地勘查費用，具體情況將於報價階段說明。
+    </span>
+  </div>
+
+  <!-- 四、進階加購與服務 -->
+
+  <section>
+    <h2>四、進階加購與專案服務 (Add-ons & Services)</h2>
+    <h3>1. 特殊線索模塊選配 (Optional Clue Add-ons)</h3>
+    <p style="font-size: 14px; color: #666; margin-top: 5px">※ 若需增加線索呈現模式，可依需求加購下列模塊：</p>
+    <table>
+      <thead>
+        <tr style="background: #e3f2fd">
+          <th style="width: 25%">模塊名稱</th>
+
+          <th style="width: 55%">模塊功能效果</th>
+
+          <th class="price-col">參考單價</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td><strong>事件地圖</strong></td>
+          <td>
+            顯示事件發生地的所在位置。
+            <ul class="sub-desc-scope">
+              <li>不適合訊號不穩或無訊號之場域，加購前請務必先行確認。</li>
+            </ul>
+          </td>
+          <td class="price-col">NT$ 1,600</td>
+        </tr>
+        <tr>
+          <td><strong>鏡像貼圖</strong></td>
+          <td>將圖像素材套用在相機模式下顯示的線索內容。</td>
+          <td class="price-col">NT$ 1,600</td>
+        </tr>
+        <tr>
+          <td><strong>AR擴增圖檔</strong></td>
+          <td>玩家掃描指定標記物後，才會顯示隱藏的線索內容。</td>
+          <td class="price-col">NT$ 2,400</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>2. 特殊驗證模塊選配 (Optional Verification Add-ons)</h3>
+    <p style="font-size: 14px; color: #666; margin-top: 5px">※ 若需增加驗證方式，可依需求加購下列模塊：</p>
+    <table>
+      <thead>
+        <tr style="background: #e3f2fd">
+          <th style="width: 25%">模塊名稱</th>
+
+          <th style="width: 55%">模塊功能效果</th>
+
+          <th class="price-col">參考單價</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td><strong>無視英文大小寫</strong></td>
+          <td>進行答案驗證時，將無視玩家輸入的大小寫差異。</td>
+          <td class="price-col">NT$ 1,600</td>
+        </tr>
+        <tr>
+          <td><strong>多組文字驗證</strong></td>
+          <td>同一個關卡可以有不同的答案。</td>
+          <td class="price-col">NT$ 1,600</td>
+        </tr>
+        <tr>
+          <td><strong>語序拼板</strong></td>
+          <td>需要在限定的字詞中，拼出正確的語序才能通過驗證。</td>
+          <td class="price-col">NT$ 1,600</td>
+        </tr>
+        <tr>
+          <td><strong>項目選擇</strong></td>
+          <td>提供多個選項選擇，適合用來做分支劇情或多重結局之設定。</td>
+          <td class="price-col">NT$ 1,600</td>
+        </tr>
+        <tr>
+          <td><strong>QR 掃描</strong></td>
+          <td>在遊戲中開啟鏡頭掃描指定的QR Code來通過驗證。</td>
+          <td class="price-col">NT$ 1,600</td>
+        </tr>
+        <tr>
+          <td><strong>GPS驗證</strong></td>
+          <td>
+            以GPS定位驗證，玩家須位於指定範圍才能通過驗證。
+            <ul class="sub-desc-scope">
+              <li>不適合訊號不穩或無訊號之場域，加購前請務必先行確認。</li>
+            </ul>
+          </td>
+          <td class="price-col">NT$ 2,400</td>
+        </tr>
+        <tr>
+          <td><strong>單圖像識別</strong></td>
+          <td>設置一組圖像識別物，作為驗證的依據。</td>
+          <td class="price-col">NT$ 2,400</td>
+        </tr>
+        <tr>
+          <td><strong>多圖像識別</strong></td>
+          <td>同時提供多組識別物，並設置不同的後續設定，適合用來做隱藏型分支劇情或多重結局。</td>
+          <td class="price-col">NT$ 3,200</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>3. 系統功能升級加購 (System Function Upgrades)</h3>
+
+    <table>
+      <thead>
+        <tr style="background: #f1f3f5">
+          <th style="width: 25%">項目類別</th>
+
+          <th style="width: 55%">功能說明</th>
+
+          <th class="price-col">參考單價</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td><strong>離線遊玩模組</strong></td>
+          <td>
+            支援在無網路環境下持續進行遊戲。
+            <ul class="sub-desc-scope">
+              <li>初次載入時，需要在有網路的環境下進行。</li>
+              <li>適合山區、地下室等訊號不穩或無訊號之場域。</li>
+              <li>部分驗證 / 線索模組不支援離線遊玩（如：GPS驗證），加購前請務必先行確認。</li>
+            </ul>
+          </td>
+          <td class="price-col">NT$ 18,000</td>
+        </tr>
+        <tr>
+          <td><strong>金鑰發行與驗證模組</strong></td>
+          <td>
+            採用<strong>數學演算法 (Algorithm)</strong> 進行本機驗證，可判斷玩家持有金鑰之有效性。
+            <ul class="sub-desc-scope">
+              <li><strong>交付專屬桌上型金鑰生產器</strong>，業主可自行於電腦上無限量產生成金鑰，並一鍵匯出 Excel 與 QR Code。</li>
+              <li>因採離線驗證機制，<span
+                  style="color: #d9534f; font-weight: bold">金鑰具可重複使用特性，若需嚴格限制「單一金鑰僅能使用一次」，請參考下方的雲端授權平台。</span></li>
+              <li>業主亦可採用<strong>虛實整合</strong>的方式，將部分解謎道具實體化（如謎題包），即便金鑰被分享，玩家若無實體道具仍無法遊玩。</li>
+              <li>本方案僅提供軟體端之驗證機制，實體道具之設計與製作需由業主自行規劃。</li>
+            </ul>
+          </td>
+          <td class="price-col">NT$ 18,000</td>
+        </tr>
+        <tr>
+          <td><strong>雲端序號授權管理平台</strong></td>
+          <td>
+            提供一套<strong>標準化資料庫結構</strong>與<strong>公版序號管理後台</strong>，用於產生新序號、管理既有遊戲序號，以及後台本身的基本權限控管。
+            <ul class="sub-desc-scope">
+              <li>後台設有帳號管理機制，以避免未授權人員存取與操作，遊戲端將加裝序號驗證模組即時連線驗證，序號使用後即刻失效，杜絕重複使用。</li>
+              <li>本系統以既有標準功能架構交付，適用於單一專案之序號產生與管理需求，若需調整資料結構或擴充後台功能，將視需求另行評估與報價。</li>
+              <li>
+                <strong>外部成本與部署責任：</strong>系統開發前，<span
+                  style="color: #d9534f; font-weight: bold">須請業主依指示，申請雲端資料庫以及部署空間（需綁定業主信用卡）</span>，後續每月產生之流量與伺服器費用亦由業主全額承擔。
+              </li>
+              <li>限制：一旦啟用本驗證機制，遊戲將<strong>不支援離線遊玩</strong>功能，加購前請務必評估場域網路狀況。</li>
+            </ul>
+          </td>
+          <td class="price-col">NT$ 98,000</td>
+        </tr>
+        <tr>
+          <td><strong>關卡流程修改</strong></td>
+
+          <td>如劇情分支路線或多重結局等複雜流程機制。</td>
+
+          <td class="price-col">另行報價</td>
+        </tr>
+
+        <tr>
+          <td><strong>客製化驗證開發</strong></td>
+
+          <td>依需求開發特殊解謎機制，如：邏輯排序、拖曳解謎、小遊戲通關挑戰等非標準模組。</td>
+
+          <td class="price-col">另行報價</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>4. 專案服務與加購 (Service & Design Upgrades)</h3>
+
+    <table>
+      <thead>
+        <tr style="background: #fff3e0">
+          <th style="width: 25%">項目類別</th>
+
+          <th style="width: 55%">功能說明</th>
+
+          <th class="price-col" style="width: 20%">參考單價</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td><strong>標準關卡數量擴充</strong></td>
+
+          <td>於標準配置之 5 關外，額外追加製作關卡數量。</td>
+
+          <td class="price-col">NT$ 3,600 / 關</td>
+        </tr>
+        <!-- <tr>
+            <td><strong>主機託管與網域服務</strong></td>
+            <td>
+              <div>提供 3 個月靜態網站託管、網域串接設定及 SSL 安全憑證部署，實際提供內容與續約方式，依正式合約約定為準。</div>
+              <ul class="sub-desc-scope">
+                <li>若業主已有自有網域，將協助設定 DNS 並完成部署。</li>
+                <li>若未提供網域，執行方得提供自有網域 realeff.com 之子網域，作為託管期間之存取位址。</li>
+              </ul>
+            </td>
+            <td class="price-col">NT$ 1,200</td>
+          </tr> -->
+        <tr>
+          <td><strong>可移轉部署備份包</strong></td>
+          <td>
+            <div>提供本專案經編譯打包後之靜態檔案與必要設定檔，可據此保留完整的專案成品版本，亦可於未來需要時，重新部署至其他靜態網站主機或伺服器環境使用。</div>
+          </td>
+          <td class="price-col">NT$ 6,800</td>
+        </tr>
+        <tr>
+          <td>
+            <strong>風格化樣式客製</strong>
+          </td>
+          <td>
+            針對標準版型內之「指定區塊」進行風格替換，不包含版面結構調整、流程變更或功能增減。以下為常見調整區域示意，實際調整範圍依專案需求確認：
+            <ul class="sub-desc-scope">
+              <li>初始頁：進度顯示器。</li>
+              <li>控制頁：主題區、啟動器、狀態顯示、功能控制列等。</li>
+              <li>互動頁：任務序列、終幕等。</li>
+            </ul>
+          </td>
+          <td class="price-col">NT$ 58,000 起</td>
+        </tr>
+
+        <tr>
+          <td><strong>真人繪師美術</strong></td>
+          <td>適合需特定畫風或物件、場景等細節精修之需求。</td>
+
+          <td class="price-col">另行報價</td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <!-- 風格化樣式客製 -->
+    <div class="visual-reference">
+      <div class="reference-tag">風格化樣式客製示意（控制主頁）</div>
+      <div class="visual-grid">
+        <div class="visual-item">
+          <div class="screen-mock" style="background-image: url(image/08.png)"></div>
+          <span class="visual-label">標準預設型</span>
+        </div>
+        <div class="visual-item">
+          <div class="screen-mock" style="background-image: url(image/09.png)"></div>
+          <span class="visual-label">蒸氣龐克風</span>
+        </div>
+        <div class="visual-item">
+          <div class="screen-mock" style="background-image: url(image/10.png)"></div>
+          <span class="visual-label">劍道主題風</span>
+        </div>
+        <div class="visual-item">
+          <div class="screen-mock" style="background-image: url(image/11.png)"></div>
+          <span class="visual-label">賽博龐克風</span>
+        </div>
+      </div>
+    </div>
+
+    <h3>5. 專案加贈服務 (Bonus)</h3>
+    <ul>
+      <li>
+        <strong>遊玩數據監測器：</strong>
+        <span class="desc">
+          提供遊玩人次基礎統計功能，係使用第三方公開或免費網路資源實作，<strong>不包含詳細行為分析、資料留存保證或長期可用性承諾</strong>，因第三方服務終止、政策調整或技術異動所導致之資料遺失、功能中斷，不構成執行方之保固或賠償責任。
+        </span>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>五、專案服務流程說明 (Project Workflow)</h2>
+    <div class="header-section">
+      <p class="section-intro">
+        本項目旨在說明本專案之執行流程與各階段作業內容，以協助業主理解專案進行方式與節點安排。<br />
+        實際權利義務、責任歸屬與相關限制，皆以正式合約條款為準。
+      </p>
+    </div>
+
+    <div class="workflow-list">
+      <!-- STEP 1 -->
+      <div class="workflow-item">
+        <div class="step-header">01. 初步接洽與需求了解</div>
+        <div class="step-desc">
+          專案開始前，將進行初步接洽與溝通，了解業主的專案目的、使用情境、預期規模與時程需求；並依據經驗說明可行之開發方式、整體流程、預估時程與方案方向，協助業主建立對專案全貌的理解。
+        </div>
+        <div class="sop-box">
+          <span class="sop-title">階段目的</span>
+          釐清方向與共識，作為後續評估與規劃之基礎。
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="workflow-item">
+        <div class="step-header">02. 需求評估與場域預查</div>
+        <div class="step-desc">依據業主提供之場域相關資料（如照片、空間說明、網路環境概況、預期動線等），執行方將進行初步可行性評估，判斷是否適合進行實境解謎專案之設計與配置。</div>
+        <div class="sop-box">
+          <span class="sop-title">作業性質</span>
+          此階段屬於<strong>前期書面評估</strong>，實際執行細節仍將於後續實地探勘時進一步確認。
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="workflow-item">
+        <div class="step-header">03. 報價及合約簽訂</div>
+        <div class="step-desc">
+          於需求方向確認後，將提供對應項目之正式報價單與專案合約書，說明所包含之功能範圍、服務項目、整體費用結構以及雙方之權利義務與約定事項，作為雙方後續合作與執行之依據。
+        </div>
+      </div>
+
+      <!-- STEP 4 -->
+      <div class="workflow-item">
+        <div class="step-header">04. 合約簽署與專案啟動</div>
+        <div class="step-desc">業主確認報價內容與規格無誤後，簽署正式專案合約，並支付報價的 <strong>50%</strong> 作為訂金。</div>
+        <div class="sop-box">
+          <span class="sop-title">啟動規範</span>
+          訂金將用於前期開發使用，待款項入帳確認後，執行方於 <span class="deadline">3 個工作天內</span> 啟動專案，並依流程展開後續執行。
+        </div>
+      </div>
+
+      <!-- STEP 5 -->
+      <div class="workflow-item">
+        <div class="step-header">05. 實地探勘與環境評估</div>
+        <div class="step-desc">專案啟動後，執行方將視約定安排實地探勘，確認實際場域條件、動線配置與設計可行性，並蒐集關卡設計與系統配置所需之環境資訊。</div>
+        <div class="sop-box critical">
+          <span class="sop-title">風險控管機制</span>
+          如實地情況與前期資料存在重大落差，雙方將就後續執行方式進行溝通與調整或終止項目。<br />
+          訂金視為專案啟動與前期規劃之<strong>勞務對價</strong>。若協議終止，訂金優先抵扣已履行之勞務成本，<strong>不予退還</strong>；剩餘款項（如有）再依已完成工作比例協議結算。
+        </div>
+      </div>
+
+      <!-- STEP 6 -->
+      <div class="workflow-item">
+        <div class="step-header">06. 素材設計與階段確認</div>
+        <div class="step-desc">設計與製作關卡配置、文案與圖像等素材。此階段完成後，將提供設計稿（含文案、圖像、謎題邏輯說明）請業主進行校稿。</div>
+        <div class="sop-box">
+          <span class="sop-title">校對規範</span>
+          提供包含 2 次 階段性校稿修訂。業主需於收到校稿文件後
+          <span class="deadline">5 個工作天內</span> 回覆確認或提出修改建議，若業主於期限內有突發狀況，可以書面告知執行方，經雙方協議後得延長校稿期程。<br />
+          回覆時，將請業主於同一批文件中提出針對欲調整項目之修訂意見，此將視為一次校稿回合。<br />
+          原則上，<strong>逾期未回覆將視同確認無誤</strong>，逕行進入程式開發階段。
+        </div>
+      </div>
+
+      <!-- STEP 7 -->
+      <div class="workflow-item">
+        <div class="step-header">07. 系統開發與功能實作</div>
+        <div class="step-desc">依據報價單上的規格項目以及校稿確認後的文件，進行系統開發與功能實作，包含關卡框架建構、加購模組及服務導入等工程整合。</div>
+        <div class="sop-box">
+          <span class="sop-title">變更聲明</span>
+          本階段原則上僅以「已確認之設計稿」為實作基準。如需於此階段變更已確認之素材或邏輯，可能影響交付時程並需視變更程度<strong>另行評估成本</strong>。
+        </div>
+      </div>
+
+      <!-- STEP 8 -->
+      <div class="workflow-item">
+        <div class="step-header">08. 測試反饋與專案驗收</div>
+        <div class="step-desc">完成系統實作後，執行方將提供完整可執行版本，供業主進行測試與驗收，確認是否符合正式報價項目與專案合約之約定內容。</div>
+        <div class="sop-box">
+          <span class="sop-title">驗收範圍與期限</span>
+          業主需於收到測試版本後 <span class="deadline">5 個工作天內</span> 完成驗收測試。若於期限內未提出具體修正需求，即<strong>視為驗收通過</strong>。<br />
+          驗收僅以確認「各關卡觸發邏輯正常、功能按鈕運作無誤、符合雙方確認之校稿定稿內容（文字、圖片、題目與提示設定）」為範圍，不涉及素材內容修改。
+        </div>
+      </div>
+
+      <!-- STEP 9 -->
+      <div class="workflow-item">
+        <div class="step-header">09. 尾款結清與成果交付</div>
+        <div class="step-desc">驗收確認後，業主支付尾款，待確認尾款入帳後，執行方依據合約內容交付約定事項（如：網域設定權限移轉、加購之編譯後靜態檔或金鑰產生器等，實際項目以合約為準）。</div>
+      </div>
+
+      <!-- STEP 10 -->
+      <div class="workflow-item">
+        <div class="step-header">10. 專案結案與有限保固</div>
+        <div class="step-desc">成果交付完成並確認可正常運作後，專案即告結案。為確保交付品質，本專案提供結案後 <strong>2 週</strong> 之瑕疵擔保期。</div>
+        <div class="sop-box">
+          <span class="sop-title">結案聲明</span>
+          <strong>保固範圍：</strong>僅限於「交付當下已存在之程式瑕疵」修正，不包含第三方平台變動、主機環境問題或新增需求。<br />
+          <strong>專案停滯：</strong>如因業主因素導致專案停滯超過 <span class="deadline">30 日曆天</span>，執行方得宣告專案「行政結案」並結算費用。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>六、系統環境與限制 (System & Environment)</h2>
+
+    <div class="custom-bonus-style">
+      <ul>
+        <li>
+          <strong>裝置限制：</strong><br />
+
+          <span class="desc">本專案不支援電腦、平板及 iPhone X、iPhone 8 系列及更舊機種。</span>
+        </li>
+        <li>
+          <strong>建議配備：</strong><br />
+          <span class="desc">建議使用 iPhone 11 (或 2021 年後 Android 機型) ，且螢幕尺寸大於 5.5 吋以上之手機遊玩。</span>
+        </li>
+        <li>
+          <strong>軟體環境：</strong><br />
+
+          <span class="desc">為確保遊戲體驗，建議將作業系統與瀏覽器更新至最新版本，並使用「系統預設瀏覽器」(Safari/Chrome) 開啟，若於 LINE/FB 等 App
+            內建瀏覽器或使用無痕模式遊玩，可能導致進度保存失敗或畫面異常，此非本專案瑕疵。</span>
+        </li>
+        <li>
+          <strong>畫面呈現：</strong><br />
+          <span class="desc">本專案為 Web 形式之互動遊戲，實際畫面呈現將依不同手機型號、螢幕比例與瀏覽器環境有所差異，屬正常顯示情形。</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>七、交付與製作工期 (Delivery & Timeline)</h2>
+
+    <div class="custom-bonus-style">
+      <ul>
+        <li>
+          <strong>交付形式：</strong>
+          <div class="desc">
+            本專案之最終交付方式為將網站成品部署於業主名下之 Cloudflare 帳號並完成可公開存取之網站專案，若業主尚未持有 Cloudflare 帳號，可協助業主完成帳號申請。<br />
+            交付內容為部署於 Cloudflare pages
+            服務上之靜態網站，不包含任何開發階段原始碼、建置設定、框架原始專案、共用模組或可逆向還原之完整系統結構，如需取得可移轉部署之靜態編譯檔案（ZIP），得另行加購「可移轉部署備份包」服務。<br />
+            網站部署完成後，預設使用 Cloudflare 所提供之網站網址，若有其他需求，亦可依下列方式進行網址設定：<br />
+            <ul class="sub-desc-scope">
+              <li><strong>業主自有網域：</strong>可協助於業主 Cloudflare 帳號中完成網域綁定與相關設定（需事前評估與測試）。</li>
+              <li><strong>協助購買網域：</strong>若業主未持有網域，可協助於業主 Cloudflare 帳號中購買（需綁定業主信用卡）並完成設定。
+              </li>
+            </ul>
+            當網域綁定成功，且能透過瀏覽器以 HTTPS 正常連線時，即視為交付結案，後續若因網域未續約、自行更改相關設定導致無法連線，需由業主自行排解。
+        </li>
+
+        <li>
+          <strong>製作工期：</strong>
+          <div class="desc">
+            標準版專案製作週期約為
+            <strong>4 ~ 8 週</strong>。此時程係指「合約簽署」且「訂金款項確認到帳」後起算。<br />
+            若因業主端延遲提供必要之文件、素材或需求確認（如背景資訊、內容定稿等），交付日期將視實際狀況順延。
+          </div>
+        </li>
+
+        <li>
+          <strong>校稿與修訂：</strong>
+          <div class="desc">
+            本專案於素材設計階段含有<strong> 2 次 </strong>階段性校稿修訂機會，將提供設計稿（含文案、圖像、謎題邏輯說明）請業主進行校稿。<br />
+            回覆時，將請業主於同一批文件中提出針對欲調整項目之修訂意見，此將視為一次校稿回合，自第 3
+            次起，或於內容確認定案後提出之修改，若涉及功能調整、流程變更或結構異動，將視為追加項目，另行評估並報價。<br />
+            原則上業主需於收到校稿文件後<span class="deadline">5 個工作天內</span>
+            回覆確認，若業主於期限內有突發狀況，可以書面告知執行方，經雙方協議後得延長校稿期程；逾期未回覆將視同確認無誤，執行方得逕行進入下一階段，工期不予順延。
+          </div>
+        </li>
+        <li>
+          <strong>驗收環境基準：</strong><br />
+          <span class="desc">
+            本專案之驗收測試，概以本規格書建議之裝置（iPhone 11以上 / Android 2021年後機型）及標準瀏覽器（Chrome / Safari）為功能運作之判定基準。非標準環境（如 Line/FB
+            內建瀏覽器、舊版機型）之顯示差異，不列入驗收瑕疵範圍。
+          </span>
+        </li>
+        <li>
+          <strong>素材聲明：</strong>
+          <div class="desc">專案之圖像素材得採 AI 輔助製作並經後期編修完成，若對細節有嚴格指定需求，建議加購「真人繪師」服務。</div>
+        </li>
+
+        <li>
+          <strong>結案與有限保固：</strong>
+          <ul class="sub-desc-scope">
+            <li><strong>結案聲明：</strong>專案成果完成交付並經業主確認可正常運作後，即視為結案。</li>
+            <li><strong>驗收期限：</strong>業主需於收到最終測試版後 5 個工作天內 完成驗收，逾期未回報視同驗收通過。</li>
+            <li><strong>有限保固：</strong>本專案提供結案後 2 週 之瑕疵擔保期，僅針對「交付當下已存在之程式邏輯錯誤」進行修正。</li>
+            <li><strong>除外責任：</strong>任何因第三方服務、瀏覽器更新、主機環境或外部系統變動所產生之影響，均不包含於本專案服務範圍內。</li>
+          </ul>
+        </li>
+        <li>
+          <strong>開發凍結原則：</strong>
+          <div class="desc">
+            系統開發將嚴格依據<strong>校稿確認後之設計稿進行實作</strong>。進入程式開發階段後，若需變更已確認之素材（文案、圖片）或邏輯，將視為規格變更，需另行評估費用與工期影響。
+          </div>
+        </li>
+        <li>
+          <strong>補充說明：</strong>
+          <div class="desc">
+            本條所述之交付形式、製作流程、修訂次數與結案說明，僅用於說明專案執行與交付方式，<strong>不涉及智慧財產權之移轉、授權範圍或所有權歸屬之認定</strong>；相關權利義務，悉依本規格書第八條及正式簽署之專案合約為準。
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>八、商務規範與支付條款 (Commercial & Payment)</h2>
+
+    <div class="custom-bonus-style">
+      <ul>
+        <li>
+          <strong>付款與終止條件：</strong>
+          <span class="desc">
+            本專案採<strong>「先收訂金後開工」</strong>原則，訂金到帳後始進行專案啟動與製作；尾款結清後，始進行正式環境部署與相關權限移交作業。<br />
+            訂金視為專案啟動、前期顧問諮詢、實地場勘與架構規劃之實質勞務對價，一經收取即視為已履行前期服務，不予退還。<br />
+            如專案因業主因素（包含但不限於：計畫中止、延期、取消等），已收取之訂金概不退還；若已產生超出訂金金額之製作成本，執行方得另行結算請求支付。<br />
+            若因場勘評估後因場域條件限制無法執行，訂金優先抵扣已履行之勞務成本，剩餘款項（如有）再依已完成工作比例協議結算。
+          </span>
+        </li>
+        <li>
+          <strong>專案服務範圍與遠程出勤規範：</strong>
+          <ul class="sub-desc-scope">
+            <li>本專案標準報價適用於<strong>「北北桃都會區」</strong>（台北市、新北市、桃園市之市區及捷運/機捷沿線）。在此範圍內進行場勘與採集，費用已包含於標準報價內。</li>
+            <li>
+              若執行場域位於<strong>上述以外縣市</strong>，或雖位於北北桃但屬<strong>偏遠山區、濱海</strong>（如：烏來、平溪、貢寮、復興區等），業主需額外支付<strong>「遠程出勤費」</strong>
+              ，費用涵蓋：往返交通實支、人員長途移動與探勘之工時成本。
+            </li>
+            <li>上述費用採「定額報價」制，並併入「專案啟動款（訂金）中全額收取，且費用涉及行程預定與時段保留，一經確認即不予退還。</li>
+          </ul>
+        </li>
+
+        <li>
+          <strong>稅務單據：</strong>
+          <span class="desc">
+            執行方為個人身分接案，不開立統一發票，請款時將提供<strong>「勞務報酬單（申報類別：執行業務所得 9B）」</strong>，報價金額為含稅總額，已包含
+            <strong>10% 預扣所得稅及 2.11% 二代健保補充保費</strong>，相關扣繳事宜依現行法令辦理。
+          </span>
+        </li>
+
+        <li>
+          <strong>價格依據：</strong>
+          <span class="desc">
+            本文件所列價格為「標準方案參考基準」，最終費用可能因場地條件、客製需求或工期急迫性而有所調整，請以雙方確認簽署之<strong>「正式報價單」</strong>為準。<br />
+            凡未列於本規格書或正式報價單內之需求，均視為追加項目，須另行評估、報價並經雙方書面確認後方可執行。
+          </span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>九、智慧財產權與授權 (Intellectual Property)</h2>
+    <div class="custom-bonus-style">
+      <p style="font-size: 16px; color: #666; margin-top: -3px">※ 本專案之智慧財產權與授權原則，採模組化系統授權：</p>
+      <ul>
+        <li>
+          <strong>核心系統：</strong>
+          <span class="desc">
+            本專案所使用之核心系統，包括但不限於： 程式原始碼（Source Code）、核心邏輯、系統架構、模組設計與共用元件，其著作權與所有權均歸屬執行方所有。<br />
+            業主僅取得本專案成果之使用授權，不因專案完成或付款而取得核心系統之任何所有權。
+          </span>
+        </li>
+
+        <li>
+          <strong>授權範圍：</strong>
+          <span class="desc">業主就本專案最終成果，<strong>「永久、非專屬、不可轉讓之使用權」</strong>，得用於自身之營運、展示及宣傳用途。</span>
+          <div class="desc">除非事前取得執行方之書面授權，業主不得將本系統或其任何部分：</div>
+          <ul class="sub-desc-scope">
+            <li>轉售、再授權、出租或提供第三方使用</li>
+            <li>複製、拆解、重製或改作核心程式碼</li>
+            <li>用於其他未經授權之商業專案</li>
+            <li>提供第三方進行改作、維護、模組拆分或再利用</li>
+          </ul>
+        </li>
+
+        <li>
+          <strong>內容歸屬：</strong>
+          <span class="desc">由業主提供或委託製作之客製化文案、圖片與素材，其著作權歸屬業主所有；執行方得於不涉及競業之情況下，作為作品集或案例展示用途使用。</span>
+        </li>
+
+        <li>
+          <strong>最終依據：</strong>
+          <span class="desc">上述條款為本服務之授權原則說明，詳細權利義務，以雙方正式簽署之<strong>「專案合約書」</strong>為最終依據。</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <div class="footer">&copy; 2026 實境效應事務所 | Specification Document</div>
+</body>
+
+</html>
