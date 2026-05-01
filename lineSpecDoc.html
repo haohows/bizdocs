@@ -1,698 +1,819 @@
 <!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-<head lang="zh-TW">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <!-- 字體 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet" />
 
-  <!-- 字體 -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;700&display=swap"
-    rel="stylesheet" />
+    <!-- SEO -->
+    <meta name="description" content="將真實場域轉化為可互動的解謎體驗，適用觀光、活動與品牌體驗。" />
 
-  <!-- SEO -->
-  <meta name="description" content="將真實場域轉化為可互動的解謎體驗，適用觀光、活動與品牌體驗。" />
+    <!-- favicon -->
+    <link rel="icon" href="https://haohows.com/bizdocs/image/mylogo.webp" />
 
-  <!-- favicon -->
-  <link rel="icon" href="https://haohows.com/bizdocs/image/mylogo.webp" />
+    <!-- Open Graph (FB / LINE / 通用分享) -->
+    <meta property="og:title" content="WEB 實境解謎｜機能型方案" />
+    <meta property="og:description" content="將真實場域轉化為可互動的解謎體驗，手機即開即玩，適用觀光、活動與品牌體驗。" />
+    <meta property="og:image" content="https://haohows.com/bizdocs/image/mylogo.webp" />
+    <meta property="og:url" content="https://haohows.com/bizdocs/funcSpecDoc" />
+    <meta property="og:type" content="website" />
 
-  <!-- Open Graph (FB / LINE / 通用分享) -->
-  <meta property="og:title" content="WEB 實境解謎｜機能型方案" />
-  <meta property="og:description" content="將真實場域轉化為可互動的解謎體驗，手機即開即玩，適用觀光、活動與品牌體驗。" />
-  <meta property="og:image" content="https://haohows.com/bizdocs/image/mylogo.webp" />
-  <meta property="og:url" content="https://haohows.com/bizdocs/funcSpecDoc" />
-  <meta property="og:type" content="website" />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="WEB 實境解謎｜機能型方案" />
+    <meta name="twitter:description" content="將真實場域轉化為可互動的解謎體驗，手機即開即玩。" />
+    <meta name="twitter:image" content="https://haohows.com/bizdocs/image/mylogo.webp" />
 
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="WEB 實境解謎｜機能型方案" />
-  <meta name="twitter:description" content="將真實場域轉化為可互動的解謎體驗，手機即開即玩。" />
-  <meta name="twitter:image" content="https://haohows.com/bizdocs/image/mylogo.webp" />
+    <link rel="stylesheet" href="css/style-lineSpecDoc.css" />
+    <title>WEB in LINE 實境解謎方案規格說明書</title>
+  </head>
 
-  <link rel="stylesheet" href="css/style-lineSpecDoc.css" />
-  <title>WEB in LINE 實境解謎方案規格說明書</title>
-</head>
+  <body>
+    <header>
+      <div class="m-title-block">
+        <h1>WEB in LINE 實境解謎方案規格說明書</h1>
+        <div class="m-subtitle">Web in Line Reality Puzzle Service Specification</div>
+      </div>
 
-<body>
-  <header>
-    <div class="m-title-block">
-      <h1>WEB in LINE 實境解謎方案規格說明書</h1>
-      <div class="m-subtitle">Web in Line Reality Puzzle Service Specification</div>
-    </div>
-
-    <div class="m-meta-info">
-      <p style="padding: 0; margin: 0; display: flex; justify-content: space-between"><span>版本：</span><span>v2.0</span>
-      </p>
-      <p style="padding: 0; margin: 0; display: flex; justify-content: space-between">
-        <span>日期：</span><span>2026-04-20</span>
-      </p>
-      <p style="padding: 0; margin: 0; display: flex; justify-content: space-between">
-        <span>官方 Line：</span><a href="https://lin.ee/tgv9YRh"
-          style="color: var(--color-m-accent)">https://lin.ee/tgv9YRh</a>
-      </p>
-    </div>
-  </header>
-
-  <!-- 序、方案定位與 Demo 參考說明 -->
-  <section>
-    <h2>序、方案與 Demo 參考說明</h2>
-
-
-    <div class="m-pro-demo-section m-prefacearea">
-      <div class="m-pro-demo-text">
-        <p class="m-intro-text">
-          本方案提供可整合於 LINE 流程中的 WEB 互動系統，作為既有遊戲內容的「數位互動層」。透過 WEB 介面承接任務操作、畫面互動與流程判定，補足 LINE 聊天介面作為遊戲框架的侷限，呈現更具沉浸感的互動體驗。
+      <div class="m-meta-info">
+        <p style="padding: 0; margin: 0; display: flex; justify-content: space-between"><span>版本：</span><span>v2.0</span></p>
+        <p style="padding: 0; margin: 0; display: flex; justify-content: space-between"><span>日期：</span><span>2026-04-20</span></p>
+        <p style="padding: 0; margin: 0; display: flex; justify-content: space-between">
+          <span>官方 Line：</span><a href="https://lin.ee/tgv9YRh" style="color: var(--color-m-accent)">https://lin.ee/tgv9YRh</a>
         </p>
-
-        <p class="m-intro-text">
-          玩家可直接從 LINE 開啟活動頁面，業主亦可延續 LINE 官方帳號作為活動入口，降低玩家使用門檻，並保留後續觸及、導流與互動延伸的可能性。
-        </p>
-        <p class="m-pro-disclaimer">為方便理解具體的呈現樣貌，歡迎掃描 / 點擊 QR code 進行體驗。</p>
       </div>
-      <div class="m-demo-qrcode">
-        <a href="https://lin.ee/Sd3480R" class="m-qrcode-placeholder" style="background-image: url(image/linedemo.png)">
-        </a>
+    </header>
 
-      </div>
+    <!-- 序、方案定位與 Demo 參考說明 -->
+    <section>
+      <h2>序、方案與 Demo 參考說明</h2>
 
-    </div>
-
-    <table class="m-pro-comparison-table">
-      <thead>
-        <tr>
-          <th style="width: 22%" class="m-pro-current-plan-subTitle">合作方常見需求</th>
-
-          <th class="m-pro-current-plan-header">
-            <div class="m-pro-badge">★ 本方案可協助</div>
-            <span class="m-pro-plan-title">LINE／LIFF WEB 互動層建置</span>
-          </th>
-
-          <th style="width: 28%">
-            <span class="m-pro-plan-title" style="margin-top: 22px">可增加的效果</span>
-          </th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr>
-          <td class="m-pro-current-plan-subTitle">
-            <strong>想把活動流程做成手機互動</strong>
-          </td>
-
-          <td class="m-pro-current-plan">
-            <strong style="font-size: 14px">建置可於 LINE 中開啟的 WEB 闖關系統</strong><br />
-            <span style="font-size: 14px; color: var(--color-m-muted); display: block; margin-top: 4px">
-              將合作方既有的活動流程、任務設計或闖關規則，轉換為玩家可直接在手機上操作的互動頁面。
-            </span>
-          </td>
-
-          <td style="font-size: 14px; color: var(--color-m-muted)">
-            • 任務頁面<br />
-            • 答題驗證<br />
-            • 關卡解鎖<br />
-            • 進度保存
-          </td>
-        </tr>
-
-        <tr>
-          <td class="m-pro-current-plan-subTitle">
-            <strong>希望保留 LINE 作為入口</strong>
-          </td>
-
-          <td class="m-pro-current-plan">
-            <strong style="font-size: 14px">整合 LINE／LIFF 入口</strong><br />
-            <span style="font-size: 14px; color: var(--color-m-muted); display: block; margin-top: 4px">
-              玩家可從 LINE 官方帳號、圖文選單、訊息連結或 LIFF URL 進入活動頁面，不需另外安裝 App。
-            </span>
-          </td>
-
-          <td style="font-size: 14px; color: var(--color-m-muted)">
-            • LINE 導流<br />
-            • LIFF 開啟判斷<br />
-            • 玩家身份資料取得<br />
-            • 非 LINE 環境提示
-          </td>
-        </tr>
-
-        <tr>
-          <td class="m-pro-current-plan-subTitle">
-            <strong>想增加紙本或 LINE 難以呈現的互動</strong>
-          </td>
-
-          <td class="m-pro-current-plan">
-            <strong style="font-size: 14px">加入 WEB 互動模組</strong><br />
-            <span style="font-size: 14px; color: var(--color-m-muted); display: block; margin-top: 4px">
-              透過 WEB 畫面呈現點擊、排序、拖曳、狀態變化、計時、背包或小遊戲等互動效果。
-            </span>
-          </td>
-
-          <td style="font-size: 14px; color: var(--color-m-muted)">
-            • 點擊互動<br />
-            • 拖曳排序<br />
-            • 狀態切換<br />
-            • 小遊戲模組
-          </td>
-        </tr>
-
-        <tr>
-          <td class="m-pro-current-plan-subTitle">
-            <strong>需要控管玩家資格</strong>
-          </td>
-
-          <td class="m-pro-current-plan">
-            <strong style="font-size: 14px">可加購序號與基本後台管理</strong><br />
-            <span style="font-size: 14px; color: var(--color-m-muted); display: block; margin-top: 4px">
-              可依需求加入序號啟用、玩家身份綁定、啟用狀態查詢與基本後台管理功能。
-            </span>
-          </td>
-
-          <td style="font-size: 14px; color: var(--color-m-muted)">
-            • 序號管理<br />
-            • 玩家資格控管<br />
-            • 啟用紀錄查詢<br />
-            • 後台管理
-          </td>
-        </tr>
-
-        <tr>
-          <td class="m-pro-current-plan-subTitle">
-            <strong>需要更多 LINE 活動功能</strong>
-          </td>
-
-          <td class="m-pro-current-plan">
-            <strong style="font-size: 14px">可另行評估 LINE 客製功能</strong><br />
-            <span style="font-size: 14px; color: var(--color-m-muted); display: block; margin-top: 4px">
-              若專案需要集點、優惠券、會員綁定、推播、Webhook 或 LINE API 串接，可依實際需求另行報價。
-            </span>
-          </td>
-
-          <td style="font-size: 14px; color: var(--color-m-muted)">
-            • 集點卡<br />
-            • 優惠券<br />
-            • 會員綁定<br />
-            • Messaging API
-          </td>
-        </tr>
-
-        <tr>
-          <td class="m-pro-current-plan-subTitle">
-            <strong>合作分工</strong>
-          </td>
-
-          <td class="m-pro-current-plan" style="font-size: 14px; color: var(--color-m-muted)">
-            <strong style="color: var(--color-m-text)">我方主要提供</strong><br />
-            • WEB 互動系統建置<br />
-            • LINE／LIFF 技術整合<br />
-            • 任務流程與答題驗證功能<br />
-            • 本機進度保存<br />
-            • 依需求加購後台或客製模組
-          </td>
-
-          <td style="font-size: 14px; color: var(--color-m-muted)">
-            <strong style="color: var(--color-m-text)">不包含於本方案</strong><br />
-            • 紙本道具製作<br />
-            • LINE OA 內容建置<br />
-            • 活動企劃主導<br />
-            • 現場執行<br />
-            • 客戶營運代管
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-  </section>
-
-  <!-- 一、核心系統配置 -->
-  <section>
-    <h2>一、基礎核心系統配置</h2>
-    <p style="font-size: 15px; margin-bottom: 15px; color: var(--color-m-muted)">採用模組化 Web 架構設計，適用於各類型專案架構並加快開發速度。</p>
-
-    <div class="m-rwd-grid-3">
-      <div class="m-data-card">
-        <div class="m-data-row">
-          <span class="m-data-label">模組名稱</span>
-          <strong class="m-data-value">狀態控管模組 </strong>
+      <div class="m-pro-demo-section m-prefacearea">
+        <div class="m-pro-demo-text">
+          <p class="m-intro-text">
+            本方案提供可整合於 LINE 流程中的 WEB 互動系統，作為既有遊戲內容的「數位互動層」。透過 WEB 介面承接任務操作、畫面互動與流程判定，補足 LINE
+            聊天介面作為遊戲框架的侷限，呈現更具沉浸感的互動體驗。
+          </p>
+          <p class="m-intro-text">玩家可直接從 LINE 開啟活動頁面，業主亦可延續 LINE 官方帳號作為活動入口，降低玩家使用門檻，並保留後續觸及、導流與互動延伸的可能性。</p>
+          <p class="m-pro-disclaimer">為方便理解具體的呈現樣貌，歡迎掃描 / 點擊 QR code 進行體驗。</p>
         </div>
-        <div class="m-data-row m-full">
-          <div class="m-data-value">
-            <ul>
-              <li><strong>環境運行檢測：</strong><span class="m-desc">自動判定裝置與運行環境，若環境不符將予以提示，確保穩定運行。</span></li>
-              <li><strong>初始邏輯判別：</strong><span class="m-desc">系統自動偵測當前資料狀態，執行對應資源預載，確保遊玩體驗流暢。</span></li>
-
-            </ul>
-          </div>
+        <div class="m-demo-qrcode">
+          <a href="https://lin.ee/Sd3480R" class="m-qrcode-placeholder" style="background-image: url(image/linedemo.png)"> </a>
         </div>
       </div>
 
-      <div class="m-data-card">
-        <div class="m-data-row">
-          <span class="m-data-label">模組名稱</span>
-          <strong class="m-data-value">系統主控模組 </strong>
+      <div class="m-pro-service-section">
+        <div class="m-pro-service-header">
+          <span class="m-pro-service-kicker">LINE／LIFF WEB 互動層建置</span>
+          <h3 class="m-pro-service-heading">本方案可協助的內容</h3>
+          <p class="m-pro-service-lead">將合作方既有的活動流程、任務設計或 LINE 導流方式，延伸為可在手機上操作的 WEB 互動體驗。</p>
         </div>
-        <div class="m-data-row m-full">
-          <div class="m-data-value">
-            <ul>
-              <li><strong>進度存取節點：</strong><span class="m-desc">採用瀏覽器端存儲，記錄進度與持有物件，防止重新整理後資料遺失。</span></li>
-              <li><strong>主功能控制列：</strong><span class="m-desc">包含「遊戲指南」、「文獻檔案」與「狀態設置」之控制介面。</span></li>
-            </ul>
-          </div>
+
+        <div class="m-pro-service-list">
+          <article class="m-pro-service-card">
+            <div class="m-pro-card-main">
+              <span class="m-pro-card-label">合作方常見需求</span>
+              <h4 class="m-pro-card-title">想把活動流程做成手機互動</h4>
+
+              <div class="m-pro-card-content">
+                <strong>建置可於 LINE 中開啟的 WEB 闖關系統</strong>
+                <p>將合作方既有的活動流程、任務設計或闖關規則，轉換為玩家可直接在手機上操作的互動頁面。</p>
+              </div>
+            </div>
+
+            <div class="m-pro-effect-area">
+              <span class="m-pro-effect-title">可增加的效果</span>
+              <div class="m-pro-effect-tags">
+                <span>任務頁面</span>
+                <span>答題驗證</span>
+                <span>關卡解鎖</span>
+                <span>進度保存</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="m-pro-service-card">
+            <div class="m-pro-card-main">
+              <span class="m-pro-card-label">合作方常見需求</span>
+              <h4 class="m-pro-card-title">希望保留 LINE 作為入口</h4>
+
+              <div class="m-pro-card-content">
+                <strong>整合 LINE／LIFF 入口</strong>
+                <p>玩家可從 LINE 官方帳號、圖文選單、訊息連結或 LIFF URL 進入活動頁面，不需另外安裝 App。</p>
+              </div>
+            </div>
+
+            <div class="m-pro-effect-area">
+              <span class="m-pro-effect-title">可增加的效果</span>
+              <div class="m-pro-effect-tags">
+                <span>LINE 導流</span>
+                <span>LIFF 開啟判斷</span>
+                <span>玩家身份資料取得</span>
+                <span>非 LINE 環境提示</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="m-pro-service-card">
+            <div class="m-pro-card-main">
+              <span class="m-pro-card-label">合作方常見需求</span>
+              <h4 class="m-pro-card-title">想增加紙本或 LINE 難以呈現的互動</h4>
+
+              <div class="m-pro-card-content">
+                <strong>加入 WEB 互動模組</strong>
+                <p>透過 WEB 畫面呈現點擊、排序、拖曳、狀態變化、計時、背包或小遊戲等互動效果。</p>
+              </div>
+            </div>
+
+            <div class="m-pro-effect-area">
+              <span class="m-pro-effect-title">可增加的效果</span>
+              <div class="m-pro-effect-tags">
+                <span>點擊互動</span>
+                <span>拖曳排序</span>
+                <span>狀態切換</span>
+                <span>小遊戲模組</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="m-pro-service-card">
+            <div class="m-pro-card-main">
+              <span class="m-pro-card-label">合作方常見需求</span>
+              <h4 class="m-pro-card-title">需要控管玩家資格</h4>
+
+              <div class="m-pro-card-content">
+                <strong>可加購序號與基本後台管理</strong>
+                <p>可依需求加入序號啟用、玩家身份綁定、啟用狀態查詢與基本後台管理功能。</p>
+              </div>
+            </div>
+
+            <div class="m-pro-effect-area">
+              <span class="m-pro-effect-title">可增加的效果</span>
+              <div class="m-pro-effect-tags">
+                <span>序號管理</span>
+                <span>玩家資格控管</span>
+                <span>啟用紀錄查詢</span>
+                <span>後台管理</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="m-pro-service-card">
+            <div class="m-pro-card-main">
+              <span class="m-pro-card-label">合作方常見需求</span>
+              <h4 class="m-pro-card-title">需要更多 LINE 活動功能</h4>
+
+              <div class="m-pro-card-content">
+                <strong>可另行評估 LINE 客製功能</strong>
+                <p>若專案需要集點、優惠券、會員綁定、推播、Webhook 或 LINE API 串接，可依實際需求另行報價。</p>
+              </div>
+            </div>
+
+            <div class="m-pro-effect-area">
+              <span class="m-pro-effect-title">可增加的效果</span>
+              <div class="m-pro-effect-tags">
+                <span>集點卡</span>
+                <span>優惠券</span>
+                <span>會員綁定</span>
+                <span>Messaging API</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="m-pro-service-card m-pro-service-card-full">
+            <div class="m-pro-card-main">
+              <span class="m-pro-card-label">合作分工</span>
+              <h4 class="m-pro-card-title">本方案主要負責 WEB 互動層與 LINE／LIFF 技術整合</h4>
+            </div>
+
+            <div class="m-pro-scope-grid">
+              <div class="m-pro-scope-box">
+                <strong>我方主要提供</strong>
+                <ul>
+                  <li>WEB 互動系統建置</li>
+                  <li>LINE／LIFF 技術整合</li>
+                  <li>任務流程與答題驗證功能</li>
+                  <li>本機進度保存</li>
+                  <li>依需求加購後台或客製模組</li>
+                </ul>
+              </div>
+
+              <div class="m-pro-scope-box">
+                <strong>不包含於本方案</strong>
+                <ul>
+                  <li>紙本道具製作</li>
+                  <li>LINE OA 內容建置</li>
+                  <li>活動企劃主導</li>
+                  <li>現場執行</li>
+                  <li>客戶營運代管</li>
+                </ul>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
 
-      <div class="m-data-card">
-        <div class="m-data-row">
-          <span class="m-data-label">模組名稱</span>
-          <strong class="m-data-value">互動解謎模組 </strong>
-        </div>
-        <div class="m-data-row m-full">
-          <div class="m-data-value">
-            <ul>
-              <li><strong>核心任務功能：</strong><span class="m-desc">進行互動與解謎的核心功能，如圖文線索、物件蒐集、答案比對運算等。</span></li>
-              <li><strong>即時反饋機制：</strong><span class="m-desc">包含驗證判定、錯誤反饋、卡關提示以及通關過場效果。</span></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="m-visual-reference">
-      <div class="m-reference-tag">核心系統配置示意</div>
-      <div class="m-visual-grid">
-        <div class="m-visual-item">
-          <div class="m-screen-mock" style="background-image: url(image/19.png)"></div>
-          <span class="m-visual-label">狀態控管-環境檢測</span>
-        </div>
-        <div class="m-visual-item">
-          <div class="m-screen-mock" style="background-image: url(image/12.png)"></div>
-          <span class="m-visual-label">狀態控管-初始載入</span>
-        </div>
-        <div class="m-visual-item">
-          <div class="m-screen-mock" style="background-image: url(image/08.png)"></div>
-          <span class="m-visual-label">系統主控-主畫面</span>
-        </div>
-        <div class="m-visual-item">
-          <div class="m-screen-mock" style="background-image: url(image/13.png)"></div>
-          <span class="m-visual-label">互動解謎-任務序列</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 二、遊戲流程與內容 -->
-  <section>
-    <h2>二、遊戲流程與內容規格</h2>
-
-    <div class="m-flow-container">
-      <div class="m-flow-step"><strong>序幕劇情</strong><span style="font-size: 14px">任務前導</span></div>
-      <div class="m-flow-step"><strong>章節關卡</strong><span style="font-size: 14px">互動操作</span></div>
-      <!-- <div class="m-flow-step"><strong>最終試煉</strong><span style="font-size: 14px">1道綜合謎題</span></div> -->
-      <div class="m-flow-step"><strong>終幕劇情</strong><span style="font-size: 14px">結局收束</span></div>
-      <div class="m-flow-step"><strong>通關結算</strong><span style="font-size: 14px">數據統計</span></div>
-    </div>
-
-    <div class="m-rwd-grid-2">
-      <div class="m-data-card">
-        <div class="m-data-row">
-          <span class="m-data-label">流程階段-1</span>
-          <strong class="m-data-value">序幕劇情展演 </strong>
-        </div>
-        <div class="m-data-row m-full">
-          <div class="m-data-value">
-            <ul>
-              <li><strong>呈現形式：</strong><span class="m-desc">採用「圖文對應」方式，一張情境圖搭配一段對應文案，引導玩家進入故事背景。</span></li>
-              <!-- <li><strong>規格標準：</strong><span class="m-desc">配置約 2~4 張情境圖，搭配共 500 字左右之腳本文案。</span></li> -->
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="m-data-card">
-        <div class="m-data-row">
-          <span class="m-data-label">流程階段-2</span>
-          <strong class="m-data-value">章節關卡模式 </strong>
-        </div>
-        <div class="m-data-row m-full">
-          <div class="m-data-value">
-            <ul>
-              <li><strong>開放式流程：</strong><span class="m-desc">玩家可自由任選關卡進行挑戰，無強制解題順序限制。</span></li>
-              <li><strong>章節式流程：</strong><span class="m-desc">玩家將遵循預設的劇情脈絡前進，感受完整起承轉合。</span></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="m-data-card">
-        <div class="m-data-row">
-          <span class="m-data-label">流程階段-3</span>
-          <strong class="m-data-value">終幕劇情展演 </strong>
-        </div>
-        <div class="m-data-row m-full">
-          <div class="m-data-value">
-            <ul>
-              <li><strong>呈現形式：</strong><span class="m-desc">採用「長文配圖」方式，以一段完整故事為主體，搭配數張插圖呈現結局氛圍。</span></li>
-              <!-- <li><strong>規格標準：</strong><span class="m-desc">單頁長文呈現，搭配 2~3 張場景圖，文案長度約 500字。</span></li> -->
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="m-data-card">
-        <div class="m-data-row">
-          <span class="m-data-label">流程階段-4</span>
-          <strong class="m-data-value">通關結算 </strong>
-        </div>
-        <div class="m-data-row m-full">
-          <div class="m-data-value">
-            <ul>
-              <li><strong>呈現內容：</strong><span class="m-desc">顯示挑戰訊息、遊玩耗時及總結算資訊。</span></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="m-visual-reference">
-      <div class="m-reference-tag">關卡流程示意</div>
-      <div class="m-visual-grid">
-        <div class="m-visual-item">
-          <div class="m-screen-mock" style="background-image: url(image/01.png)"></div>
-          <span class="m-visual-label">序幕劇情</span>
-        </div>
-        <div class="m-visual-item">
-          <div class="m-screen-mock" style="background-image: url(image/02.png)"></div>
-          <span class="m-visual-label">章節關卡</span>
-        </div>
-        <div class="m-visual-item">
-          <div class="m-screen-mock" style="background-image: url(image/03.png)"></div>
-          <span class="m-visual-label">終幕劇情</span>
-        </div>
-        <div class="m-visual-item">
-          <div class="m-screen-mock" style="background-image: url(image/04.png)"></div>
-          <span class="m-visual-label">通關結算</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 三、單一關卡標準配置 -->
-  <section>
-    <h2>三、單一關卡標準配置</h2>
-    <p style="font-size: 15px; color: var(--color-m-muted); margin-bottom: 15px">※ 每一道關卡預設包含以下模組配置，超出此範圍視為客製化項目：</p>
-
-    <div class="m-rwd-grid-2">
-      <!-- Row 1 -->
-      <div class="m-data-card">
-        <div class="m-data-row">
-          <span class="m-data-label">項目名稱</span>
-          <strong class="m-data-value">關卡資訊</strong>
-        </div>
-        <div class="m-data-row m-full">
-          <span class="m-data-value">關卡內容概要呈現、實際遊玩場域情境營造，或是視覺主題呈現等。</span>
-        </div>
-      </div>
-
-      <!-- Row 2 -->
-      <div class="m-data-card">
-        <div class="m-data-row">
-          <span class="m-data-label">項目名稱</span>
-          <strong class="m-data-value">劇情引導</strong>
-        </div>
-        <div class="m-data-row m-full">
-          <span class="m-data-value">用於場景描述、動線說明與行動指引的內容。</span>
-        </div>
-      </div>
-
-      <!-- Row 3 -->
-      <div class="m-data-card">
-        <div class="m-data-row">
-          <span class="m-data-label">項目名稱</span>
-          <strong class="m-data-value">資訊文獻
-            <!-- <div style="font-size: 12px; color: var(--color-m-muted); font-weight: normal">視情況配置</div> -->
-          </strong>
-        </div>
-
-        <div class="m-data-row m-full">
-          <span class="m-data-value">以圖文方式呈現，用於補充事件背景與相關資料的說明內容。</span>
-        </div>
-      </div>
-
-      <!-- Row 4 -->
-      <div class="m-data-card">
-        <div class="m-data-row">
-          <span class="m-data-label">項目名稱</span>
-          <strong class="m-data-value">關卡與謎題</strong>
-        </div>
-
-        <div class="m-data-row m-full">
-          <div class="m-data-value">
-            <p>關卡中供玩家進行互動的謎題、線索與行動指引等內容。</p>
-            <p>若需其他線索呈現模式（如：AR擴增圖、鏡像貼圖等），可加購進階配置包。</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Row 5 -->
-      <div class="m-data-card">
-        <div class="m-data-row">
-          <span class="m-data-label">項目名稱</span>
-          <strong class="m-data-value">判定與驗證</strong>
-        </div>
-
-        <div class="m-data-row m-full">
-          <div class="m-data-value">
-            檢核是否符合通關條件的判斷機制，基本配置為單組文字驗證(嚴謹模式)，需輸入完全相符的答案，包含大小寫、全半形與標點符號等。
-          </div>
-          <span class="m-data-value">若需其他驗證機制（如：圖像辨識），可加購進階配置包。</span>
-        </div>
-      </div>
-
-      <!-- Row 6 -->
-      <div class="m-data-card">
-        <div class="m-data-row">
-          <span class="m-data-label">項目名稱</span>
-          <strong class="m-data-value">Line Bot 串接提示</strong>
-        </div>
-        <div class="m-data-row m-full">
-          <span class="m-data-value">
-            <p>當回答錯誤時予以視覺回應，並顯示提示 (Hint) 按鈕，供玩家自行決定是否查看。</p>
-            <p>若點擊提示按鈕，將串接 Line Bot 進行進一步的互動。</p>
-          </span>
-        </div>
-      </div>
-    </div>
-
-    <div class="m-visual-reference">
-      <div class="m-reference-tag">單一關卡介面要素示意</div>
-      <div class="m-visual-grid">
-        <div class="m-visual-item">
-          <div class="m-screen-mock" style="background-image: url(image/17.png)"></div>
-          <span class="m-visual-label">關卡資訊</span>
-        </div>
-        <div class="m-visual-item">
-          <div class="m-screen-mock" style="background-image: url(image/05.png)"></div>
-          <span class="m-visual-label">劇情引導</span>
-        </div>
-        <div class="m-visual-item">
-          <div class="m-screen-mock" style="background-image: url(image/06.png)"></div>
-          <span class="m-visual-label">劇情引導</span>
-        </div>
-        <div class="m-visual-item">
-          <div class="m-screen-mock" style="background-image: url(image/07.png)"></div>
-          <span class="m-visual-label">關卡與謎題</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ★ 標準方案價格宣告區塊 ★ -->
-  <section>
-    <div class="m-standard-price-box">
-      <h3>【 WEB in LINE 實境解謎方案費用 】</h3>
-      <span class="m-price-tag">NT$ 58,000 起</span>
-      <span class="m-price-note">（含稅）/ 執行方為個人接案，報價皆為<strong>含稅總額</strong>，包含代扣 10% 所得稅及 2.11% 二代健保費。</span>
-      <span class="m-price-warning">※ 第四項之內容皆屬於選配，需另行計費。
-      </span>
-    </div>
-  </section>
-
-  <!-- 四、進階加購與服務 -->
-  <section>
-    <h2>四、進階加購與專案服務</h2>
-    <h3>1. 進階配置包</h3>
-    <p class="m-module-note">※ 若需增加線索呈現與驗證方式，可依需求加購此配置包。</p>
-
-    <div class="m-module-table-wrap">
-      <table class="m-module-table">
+      <table class="m-pro-comparison-table">
         <thead>
           <tr>
-            <th>模塊名稱</th>
-            <th>類型</th>
-            <th>說明</th>
+            <th style="width: 22%" class="m-pro-current-plan-subTitle">合作方常見需求</th>
+
+            <th class="m-pro-current-plan-header">
+              <div class="m-pro-badge">★ 本方案可協助</div>
+              <span class="m-pro-plan-title">LINE／LIFF WEB 互動層建置</span>
+            </th>
+
+            <th style="width: 28%">
+              <span class="m-pro-plan-title" style="margin-top: 22px">可增加的效果</span>
+            </th>
           </tr>
         </thead>
 
         <tbody>
           <tr>
-            <td data-label="模塊名稱">
-              <strong class="m-module-name">圖像線索</strong>
+            <td class="m-pro-current-plan-subTitle">
+              <strong>想把活動流程做成手機互動</strong>
             </td>
-            <td data-label="類型">
-              <span class="m-module-type m-module-type-clue">線索呈現</span>
-            </td>
-            <td data-label="說明">以圖片顯示額外的線索資訊。</td>
-          </tr>
 
-          <tr>
-            <td data-label="模塊名稱">
-              <strong class="m-module-name">外部網頁</strong>
+            <td class="m-pro-current-plan">
+              <strong style="font-size: 14px">建置可於 LINE 中開啟的 WEB 闖關系統</strong><br />
+              <span style="font-size: 14px; color: var(--color-m-muted); display: block; margin-top: 4px"> 將合作方既有的活動流程、任務設計或闖關規則，轉換為玩家可直接在手機上操作的互動頁面。 </span>
             </td>
-            <td data-label="類型">
-              <span class="m-module-type m-module-type-clue">線索呈現</span>
-            </td>
-            <td data-label="說明">
-              內嵌一個外部網頁，顯示額外的線索資訊，須留意該網頁是否允許被嵌入。
+
+            <td style="font-size: 14px; color: var(--color-m-muted)">
+              • 任務頁面<br />
+              • 答題驗證<br />
+              • 關卡解鎖<br />
+              • 進度保存
             </td>
           </tr>
 
           <tr>
-            <td data-label="模塊名稱">
-              <strong class="m-module-name">全景視圖</strong>
+            <td class="m-pro-current-plan-subTitle">
+              <strong>希望保留 LINE 作為入口</strong>
             </td>
-            <td data-label="類型">
-              <span class="m-module-type m-module-type-clue">線索呈現</span>
+
+            <td class="m-pro-current-plan">
+              <strong style="font-size: 14px">整合 LINE／LIFF 入口</strong><br />
+              <span style="font-size: 14px; color: var(--color-m-muted); display: block; margin-top: 4px">
+                玩家可從 LINE 官方帳號、圖文選單、訊息連結或 LIFF URL 進入活動頁面，不需另外安裝 App。
+              </span>
             </td>
-            <td data-label="說明">
-              以 360 度全景圖的方式呈現線索資訊（需提供全景圖素材）。
+
+            <td style="font-size: 14px; color: var(--color-m-muted)">
+              • LINE 導流<br />
+              • LIFF 開啟判斷<br />
+              • 玩家身份資料取得<br />
+              • 非 LINE 環境提示
             </td>
           </tr>
 
           <tr>
-            <td data-label="模塊名稱">
-              <strong class="m-module-name">事件地圖</strong>
+            <td class="m-pro-current-plan-subTitle">
+              <strong>想增加紙本或 LINE 難以呈現的互動</strong>
             </td>
-            <td data-label="類型">
-              <span class="m-module-type m-module-type-clue">線索呈現</span>
-            </td>
-            <td data-label="說明">顯示事件發生地的所在位置。</td>
-          </tr>
 
-          <tr>
-            <td data-label="模塊名稱">
-              <strong class="m-module-name">鏡像貼圖</strong>
+            <td class="m-pro-current-plan">
+              <strong style="font-size: 14px">加入 WEB 互動模組</strong><br />
+              <span style="font-size: 14px; color: var(--color-m-muted); display: block; margin-top: 4px"> 透過 WEB 畫面呈現點擊、排序、拖曳、狀態變化、計時、背包或小遊戲等互動效果。 </span>
             </td>
-            <td data-label="類型">
-              <span class="m-module-type m-module-type-clue">線索呈現</span>
-            </td>
-            <td data-label="說明">將圖像素材套用在相機模式下顯示的線索內容。</td>
-          </tr>
 
-          <tr>
-            <td data-label="模塊名稱">
-              <strong class="m-module-name">AR 擴增圖檔</strong>
-            </td>
-            <td data-label="類型">
-              <span class="m-module-type m-module-type-clue">線索呈現</span>
-            </td>
-            <td data-label="說明">玩家掃描指定標記物後，才會顯示隱藏的線索內容。</td>
-          </tr>
-
-          <tr>
-            <td data-label="模塊名稱">
-              <strong class="m-module-name">無視英文大小寫</strong>
-            </td>
-            <td data-label="類型">
-              <span class="m-module-type m-module-type-verify">驗證模式</span>
-            </td>
-            <td data-label="說明">進行答案驗證時，將無視玩家輸入的大小寫差異。</td>
-          </tr>
-
-          <tr>
-            <td data-label="模塊名稱">
-              <strong class="m-module-name">多組文字驗證</strong>
-            </td>
-            <td data-label="類型">
-              <span class="m-module-type m-module-type-verify">驗證模式</span>
-            </td>
-            <td data-label="說明">同一個關卡可以有不同的答案。</td>
-          </tr>
-
-          <tr>
-            <td data-label="模塊名稱">
-              <strong class="m-module-name">語序拼板</strong>
-            </td>
-            <td data-label="類型">
-              <span class="m-module-type m-module-type-verify">驗證模式</span>
-            </td>
-            <td data-label="說明">需要在限定的字詞中，拼出正確的語序才能通過驗證。</td>
-          </tr>
-
-          <tr>
-            <td data-label="模塊名稱">
-              <strong class="m-module-name">執行確認</strong>
-            </td>
-            <td data-label="類型">
-              <span class="m-module-type m-module-type-verify">驗證模式</span>
-            </td>
-            <td data-label="說明">
-              點選按鈕即可通過驗證的形式，可用於請玩家確認事項、轉場、訊息告知。
+            <td style="font-size: 14px; color: var(--color-m-muted)">
+              • 點擊互動<br />
+              • 拖曳排序<br />
+              • 狀態切換<br />
+              • 小遊戲模組
             </td>
           </tr>
 
           <tr>
-            <td data-label="模塊名稱">
-              <strong class="m-module-name">項目選擇</strong>
+            <td class="m-pro-current-plan-subTitle">
+              <strong>需要控管玩家資格</strong>
             </td>
-            <td data-label="類型">
-              <span class="m-module-type m-module-type-verify">驗證模式</span>
-            </td>
-            <td data-label="說明">提供多個選項選擇，適合用來做分支劇情或多重結局之設定。</td>
-          </tr>
 
-          <tr>
-            <td data-label="模塊名稱">
-              <strong class="m-module-name">QR 掃描</strong>
+            <td class="m-pro-current-plan">
+              <strong style="font-size: 14px">可加購序號與基本後台管理</strong><br />
+              <span style="font-size: 14px; color: var(--color-m-muted); display: block; margin-top: 4px"> 可依需求加入序號啟用、玩家身份綁定、啟用狀態查詢與基本後台管理功能。 </span>
             </td>
-            <td data-label="類型">
-              <span class="m-module-type m-module-type-verify">驗證模式</span>
-            </td>
-            <td data-label="說明">在遊戲中開啟鏡頭掃描指定的 QR Code 來通過驗證。</td>
-          </tr>
 
-          <tr>
-            <td data-label="模塊名稱">
-              <strong class="m-module-name">GPS 驗證</strong>
-            </td>
-            <td data-label="類型">
-              <span class="m-module-type m-module-type-verify">驗證模式</span>
-            </td>
-            <td data-label="說明">
-              以 GPS 定位驗證，玩家須位於指定範圍才能通過驗證。
+            <td style="font-size: 14px; color: var(--color-m-muted)">
+              • 序號管理<br />
+              • 玩家資格控管<br />
+              • 啟用紀錄查詢<br />
+              • 後台管理
             </td>
           </tr>
 
           <tr>
-            <td data-label="模塊名稱">
-              <strong class="m-module-name">圖像識別</strong>
+            <td class="m-pro-current-plan-subTitle">
+              <strong>需要更多 LINE 活動功能</strong>
             </td>
-            <td data-label="類型">
-              <span class="m-module-type m-module-type-verify">驗證模式</span>
+
+            <td class="m-pro-current-plan">
+              <strong style="font-size: 14px">可另行評估 LINE 客製功能</strong><br />
+              <span style="font-size: 14px; color: var(--color-m-muted); display: block; margin-top: 4px">
+                若專案需要集點、優惠券、會員綁定、推播、Webhook 或 LINE API 串接，可依實際需求另行報價。
+              </span>
             </td>
-            <td data-label="說明">設置一組圖像識別物，作為驗證的依據。</td>
+
+            <td style="font-size: 14px; color: var(--color-m-muted)">
+              • 集點卡<br />
+              • 優惠券<br />
+              • 會員綁定<br />
+              • Messaging API
+            </td>
+          </tr>
+
+          <tr>
+            <td class="m-pro-current-plan-subTitle">
+              <strong>合作分工</strong>
+            </td>
+
+            <td class="m-pro-current-plan" style="font-size: 14px; color: var(--color-m-muted)">
+              <strong style="color: var(--color-m-text)">我方主要提供</strong><br />
+              • WEB 互動系統建置<br />
+              • LINE／LIFF 技術整合<br />
+              • 任務流程與答題驗證功能<br />
+              • 本機進度保存<br />
+              • 依需求加購後台或客製模組
+            </td>
+
+            <td style="font-size: 14px; color: var(--color-m-muted)">
+              <strong style="color: var(--color-m-text)">不包含於本方案</strong><br />
+              • 紙本道具製作<br />
+              • LINE OA 內容建置<br />
+              • 活動企劃主導<br />
+              • 現場執行<br />
+              • 客戶營運代管
+            </td>
           </tr>
         </tbody>
-
-        <tfoot>
-          <tr class="m-module-total-row">
-            <td colspan="2" class="m-module-total-label">進階配置包總價：</td>
-            <td class="m-module-total-price">NT$ 18,000</td>
-          </tr>
-        </tfoot>
       </table>
-    </div>
-    
-    <h3>2. 系統功能升級</h3>
+    </section>
 
-    <div class="m-rwd-grid-1">
-      <!-- <div class="m-data-card">
+    <!-- 一、核心系統配置 -->
+    <section>
+      <h2>一、基礎核心系統配置</h2>
+      <p style="font-size: 15px; margin-bottom: 15px; color: var(--color-m-muted)">採用模組化 Web 架構設計，適用於各類型專案架構並加快開發速度。</p>
+
+      <div class="m-rwd-grid-3">
+        <div class="m-data-card">
+          <div class="m-data-row">
+            <span class="m-data-label">模組名稱</span>
+            <strong class="m-data-value">狀態控管模組 </strong>
+          </div>
+          <div class="m-data-row m-full">
+            <div class="m-data-value">
+              <ul>
+                <li><strong>環境運行檢測：</strong><span class="m-desc">自動判定裝置與運行環境，若環境不符將予以提示，確保穩定運行。</span></li>
+                <li><strong>初始邏輯判別：</strong><span class="m-desc">系統自動偵測當前資料狀態，執行對應資源預載，確保遊玩體驗流暢。</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="m-data-card">
+          <div class="m-data-row">
+            <span class="m-data-label">模組名稱</span>
+            <strong class="m-data-value">系統主控模組 </strong>
+          </div>
+          <div class="m-data-row m-full">
+            <div class="m-data-value">
+              <ul>
+                <li><strong>進度存取節點：</strong><span class="m-desc">採用瀏覽器端存儲，記錄進度與持有物件，防止重新整理後資料遺失。</span></li>
+                <li><strong>主功能控制列：</strong><span class="m-desc">包含「遊戲指南」、「文獻檔案」與「狀態設置」之控制介面。</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="m-data-card">
+          <div class="m-data-row">
+            <span class="m-data-label">模組名稱</span>
+            <strong class="m-data-value">互動解謎模組 </strong>
+          </div>
+          <div class="m-data-row m-full">
+            <div class="m-data-value">
+              <ul>
+                <li><strong>核心任務功能：</strong><span class="m-desc">進行互動與解謎的核心功能，如圖文線索、物件蒐集、答案比對運算等。</span></li>
+                <li><strong>即時反饋機制：</strong><span class="m-desc">包含驗證判定、錯誤反饋、卡關提示以及通關過場效果。</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="m-visual-reference">
+        <div class="m-reference-tag">核心系統配置示意</div>
+        <div class="m-visual-grid">
+          <div class="m-visual-item">
+            <div class="m-screen-mock" style="background-image: url(image/19.png)"></div>
+            <span class="m-visual-label">狀態控管-環境檢測</span>
+          </div>
+          <div class="m-visual-item">
+            <div class="m-screen-mock" style="background-image: url(image/12.png)"></div>
+            <span class="m-visual-label">狀態控管-初始載入</span>
+          </div>
+          <div class="m-visual-item">
+            <div class="m-screen-mock" style="background-image: url(image/08.png)"></div>
+            <span class="m-visual-label">系統主控-主畫面</span>
+          </div>
+          <div class="m-visual-item">
+            <div class="m-screen-mock" style="background-image: url(image/13.png)"></div>
+            <span class="m-visual-label">互動解謎-任務序列</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 二、遊戲流程與內容 -->
+    <section>
+      <h2>二、遊戲流程與內容規格</h2>
+
+      <div class="m-flow-container">
+        <div class="m-flow-step"><strong>序幕劇情</strong><span style="font-size: 14px">任務前導</span></div>
+        <div class="m-flow-step"><strong>章節關卡</strong><span style="font-size: 14px">互動操作</span></div>
+        <!-- <div class="m-flow-step"><strong>最終試煉</strong><span style="font-size: 14px">1道綜合謎題</span></div> -->
+        <div class="m-flow-step"><strong>終幕劇情</strong><span style="font-size: 14px">結局收束</span></div>
+        <div class="m-flow-step"><strong>通關結算</strong><span style="font-size: 14px">數據統計</span></div>
+      </div>
+
+      <div class="m-rwd-grid-2">
+        <div class="m-data-card">
+          <div class="m-data-row">
+            <span class="m-data-label">流程階段-1</span>
+            <strong class="m-data-value">序幕劇情展演 </strong>
+          </div>
+          <div class="m-data-row m-full">
+            <div class="m-data-value">
+              <ul>
+                <li><strong>呈現形式：</strong><span class="m-desc">採用「圖文對應」方式，一張情境圖搭配一段對應文案，引導玩家進入故事背景。</span></li>
+                <!-- <li><strong>規格標準：</strong><span class="m-desc">配置約 2~4 張情境圖，搭配共 500 字左右之腳本文案。</span></li> -->
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="m-data-card">
+          <div class="m-data-row">
+            <span class="m-data-label">流程階段-2</span>
+            <strong class="m-data-value">章節關卡模式 </strong>
+          </div>
+          <div class="m-data-row m-full">
+            <div class="m-data-value">
+              <ul>
+                <li><strong>開放式流程：</strong><span class="m-desc">玩家可自由任選關卡進行挑戰，無強制解題順序限制。</span></li>
+                <li><strong>章節式流程：</strong><span class="m-desc">玩家將遵循預設的劇情脈絡前進，感受完整起承轉合。</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="m-data-card">
+          <div class="m-data-row">
+            <span class="m-data-label">流程階段-3</span>
+            <strong class="m-data-value">終幕劇情展演 </strong>
+          </div>
+          <div class="m-data-row m-full">
+            <div class="m-data-value">
+              <ul>
+                <li><strong>呈現形式：</strong><span class="m-desc">採用「長文配圖」方式，以一段完整故事為主體，搭配數張插圖呈現結局氛圍。</span></li>
+                <!-- <li><strong>規格標準：</strong><span class="m-desc">單頁長文呈現，搭配 2~3 張場景圖，文案長度約 500字。</span></li> -->
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="m-data-card">
+          <div class="m-data-row">
+            <span class="m-data-label">流程階段-4</span>
+            <strong class="m-data-value">通關結算 </strong>
+          </div>
+          <div class="m-data-row m-full">
+            <div class="m-data-value">
+              <ul>
+                <li><strong>呈現內容：</strong><span class="m-desc">顯示挑戰訊息、遊玩耗時及總結算資訊。</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="m-visual-reference">
+        <div class="m-reference-tag">關卡流程示意</div>
+        <div class="m-visual-grid">
+          <div class="m-visual-item">
+            <div class="m-screen-mock" style="background-image: url(image/01.png)"></div>
+            <span class="m-visual-label">序幕劇情</span>
+          </div>
+          <div class="m-visual-item">
+            <div class="m-screen-mock" style="background-image: url(image/02.png)"></div>
+            <span class="m-visual-label">章節關卡</span>
+          </div>
+          <div class="m-visual-item">
+            <div class="m-screen-mock" style="background-image: url(image/03.png)"></div>
+            <span class="m-visual-label">終幕劇情</span>
+          </div>
+          <div class="m-visual-item">
+            <div class="m-screen-mock" style="background-image: url(image/04.png)"></div>
+            <span class="m-visual-label">通關結算</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 三、單一關卡標準配置 -->
+    <section>
+      <h2>三、單一關卡標準配置</h2>
+      <p style="font-size: 15px; color: var(--color-m-muted); margin-bottom: 15px">※ 每一道關卡預設包含以下模組配置，超出此範圍視為客製化項目：</p>
+
+      <div class="m-rwd-grid-2">
+        <!-- Row 1 -->
+        <div class="m-data-card">
+          <div class="m-data-row">
+            <span class="m-data-label">項目名稱</span>
+            <strong class="m-data-value">關卡資訊</strong>
+          </div>
+          <div class="m-data-row m-full">
+            <span class="m-data-value">關卡內容概要呈現、實際遊玩場域情境營造，或是視覺主題呈現等。</span>
+          </div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="m-data-card">
+          <div class="m-data-row">
+            <span class="m-data-label">項目名稱</span>
+            <strong class="m-data-value">劇情引導</strong>
+          </div>
+          <div class="m-data-row m-full">
+            <span class="m-data-value">用於場景描述、動線說明與行動指引的內容。</span>
+          </div>
+        </div>
+
+        <!-- Row 3 -->
+        <div class="m-data-card">
+          <div class="m-data-row">
+            <span class="m-data-label">項目名稱</span>
+            <strong class="m-data-value"
+              >資訊文獻
+              <!-- <div style="font-size: 12px; color: var(--color-m-muted); font-weight: normal">視情況配置</div> -->
+            </strong>
+          </div>
+
+          <div class="m-data-row m-full">
+            <span class="m-data-value">以圖文方式呈現，用於補充事件背景與相關資料的說明內容。</span>
+          </div>
+        </div>
+
+        <!-- Row 4 -->
+        <div class="m-data-card">
+          <div class="m-data-row">
+            <span class="m-data-label">項目名稱</span>
+            <strong class="m-data-value">關卡與謎題</strong>
+          </div>
+
+          <div class="m-data-row m-full">
+            <div class="m-data-value">
+              <p>關卡中供玩家進行互動的謎題、線索與行動指引等內容。</p>
+              <p>若需其他線索呈現模式（如：AR擴增圖、鏡像貼圖等），可加購進階配置包。</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 5 -->
+        <div class="m-data-card">
+          <div class="m-data-row">
+            <span class="m-data-label">項目名稱</span>
+            <strong class="m-data-value">判定與驗證</strong>
+          </div>
+
+          <div class="m-data-row m-full">
+            <div class="m-data-value">檢核是否符合通關條件的判斷機制，基本配置為單組文字驗證(嚴謹模式)，需輸入完全相符的答案，包含大小寫、全半形與標點符號等。</div>
+            <span class="m-data-value">若需其他驗證機制（如：圖像辨識），可加購進階配置包。</span>
+          </div>
+        </div>
+
+        <!-- Row 6 -->
+        <div class="m-data-card">
+          <div class="m-data-row">
+            <span class="m-data-label">項目名稱</span>
+            <strong class="m-data-value">Line Bot 串接提示</strong>
+          </div>
+          <div class="m-data-row m-full">
+            <span class="m-data-value">
+              <p>當回答錯誤時予以視覺回應，並顯示提示 (Hint) 按鈕，供玩家自行決定是否查看。</p>
+              <p>若點擊提示按鈕，將串接 Line Bot 進行進一步的互動。</p>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="m-visual-reference">
+        <div class="m-reference-tag">單一關卡介面要素示意</div>
+        <div class="m-visual-grid">
+          <div class="m-visual-item">
+            <div class="m-screen-mock" style="background-image: url(image/17.png)"></div>
+            <span class="m-visual-label">關卡資訊</span>
+          </div>
+          <div class="m-visual-item">
+            <div class="m-screen-mock" style="background-image: url(image/05.png)"></div>
+            <span class="m-visual-label">劇情引導</span>
+          </div>
+          <div class="m-visual-item">
+            <div class="m-screen-mock" style="background-image: url(image/06.png)"></div>
+            <span class="m-visual-label">劇情引導</span>
+          </div>
+          <div class="m-visual-item">
+            <div class="m-screen-mock" style="background-image: url(image/07.png)"></div>
+            <span class="m-visual-label">關卡與謎題</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ★ 標準方案價格宣告區塊 ★ -->
+    <section>
+      <div class="m-standard-price-box">
+        <h3>【 WEB in LINE 實境解謎方案費用 】</h3>
+        <span class="m-price-tag">NT$ 58,000 起</span>
+        <span class="m-price-note">（含稅）/ 執行方為個人接案，報價皆為<strong>含稅總額</strong>，包含代扣 10% 所得稅及 2.11% 二代健保費。</span>
+        <span class="m-price-warning">※ 第四項之內容皆屬於選配，需另行計費。 </span>
+      </div>
+    </section>
+
+    <!-- 四、進階加購與服務 -->
+    <section>
+      <h2>四、進階加購與專案服務</h2>
+      <h3>1. 進階配置包</h3>
+      <p class="m-module-note">※ 若需增加線索呈現與驗證方式，可依需求加購此配置包。</p>
+
+      <div class="m-module-table-wrap">
+        <table class="m-module-table">
+          <thead>
+            <tr>
+              <th>模塊名稱</th>
+              <th>類型</th>
+              <th>說明</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td data-label="模塊名稱">
+                <strong class="m-module-name">圖像線索</strong>
+              </td>
+              <td data-label="類型">
+                <span class="m-module-type m-module-type-clue">線索呈現</span>
+              </td>
+              <td data-label="說明">以圖片顯示額外的線索資訊。</td>
+            </tr>
+
+            <tr>
+              <td data-label="模塊名稱">
+                <strong class="m-module-name">外部網頁</strong>
+              </td>
+              <td data-label="類型">
+                <span class="m-module-type m-module-type-clue">線索呈現</span>
+              </td>
+              <td data-label="說明">內嵌一個外部網頁，顯示額外的線索資訊，須留意該網頁是否允許被嵌入。</td>
+            </tr>
+
+            <tr>
+              <td data-label="模塊名稱">
+                <strong class="m-module-name">全景視圖</strong>
+              </td>
+              <td data-label="類型">
+                <span class="m-module-type m-module-type-clue">線索呈現</span>
+              </td>
+              <td data-label="說明">以 360 度全景圖的方式呈現線索資訊（需提供全景圖素材）。</td>
+            </tr>
+
+            <tr>
+              <td data-label="模塊名稱">
+                <strong class="m-module-name">事件地圖</strong>
+              </td>
+              <td data-label="類型">
+                <span class="m-module-type m-module-type-clue">線索呈現</span>
+              </td>
+              <td data-label="說明">顯示事件發生地的所在位置。</td>
+            </tr>
+
+            <tr>
+              <td data-label="模塊名稱">
+                <strong class="m-module-name">鏡像貼圖</strong>
+              </td>
+              <td data-label="類型">
+                <span class="m-module-type m-module-type-clue">線索呈現</span>
+              </td>
+              <td data-label="說明">將圖像素材套用在相機模式下顯示的線索內容。</td>
+            </tr>
+
+            <tr>
+              <td data-label="模塊名稱">
+                <strong class="m-module-name">AR 擴增圖檔</strong>
+              </td>
+              <td data-label="類型">
+                <span class="m-module-type m-module-type-clue">線索呈現</span>
+              </td>
+              <td data-label="說明">玩家掃描指定標記物後，才會顯示隱藏的線索內容。</td>
+            </tr>
+
+            <tr>
+              <td data-label="模塊名稱">
+                <strong class="m-module-name">無視英文大小寫</strong>
+              </td>
+              <td data-label="類型">
+                <span class="m-module-type m-module-type-verify">驗證模式</span>
+              </td>
+              <td data-label="說明">進行答案驗證時，將無視玩家輸入的大小寫差異。</td>
+            </tr>
+
+            <tr>
+              <td data-label="模塊名稱">
+                <strong class="m-module-name">多組文字驗證</strong>
+              </td>
+              <td data-label="類型">
+                <span class="m-module-type m-module-type-verify">驗證模式</span>
+              </td>
+              <td data-label="說明">同一個關卡可以有不同的答案。</td>
+            </tr>
+
+            <tr>
+              <td data-label="模塊名稱">
+                <strong class="m-module-name">語序拼板</strong>
+              </td>
+              <td data-label="類型">
+                <span class="m-module-type m-module-type-verify">驗證模式</span>
+              </td>
+              <td data-label="說明">需要在限定的字詞中，拼出正確的語序才能通過驗證。</td>
+            </tr>
+
+            <tr>
+              <td data-label="模塊名稱">
+                <strong class="m-module-name">執行確認</strong>
+              </td>
+              <td data-label="類型">
+                <span class="m-module-type m-module-type-verify">驗證模式</span>
+              </td>
+              <td data-label="說明">點選按鈕即可通過驗證的形式，可用於請玩家確認事項、轉場、訊息告知。</td>
+            </tr>
+
+            <tr>
+              <td data-label="模塊名稱">
+                <strong class="m-module-name">項目選擇</strong>
+              </td>
+              <td data-label="類型">
+                <span class="m-module-type m-module-type-verify">驗證模式</span>
+              </td>
+              <td data-label="說明">提供多個選項選擇，適合用來做分支劇情或多重結局之設定。</td>
+            </tr>
+
+            <tr>
+              <td data-label="模塊名稱">
+                <strong class="m-module-name">QR 掃描</strong>
+              </td>
+              <td data-label="類型">
+                <span class="m-module-type m-module-type-verify">驗證模式</span>
+              </td>
+              <td data-label="說明">在遊戲中開啟鏡頭掃描指定的 QR Code 來通過驗證。</td>
+            </tr>
+
+            <tr>
+              <td data-label="模塊名稱">
+                <strong class="m-module-name">GPS 驗證</strong>
+              </td>
+              <td data-label="類型">
+                <span class="m-module-type m-module-type-verify">驗證模式</span>
+              </td>
+              <td data-label="說明">以 GPS 定位驗證，玩家須位於指定範圍才能通過驗證。</td>
+            </tr>
+
+            <tr>
+              <td data-label="模塊名稱">
+                <strong class="m-module-name">圖像識別</strong>
+              </td>
+              <td data-label="類型">
+                <span class="m-module-type m-module-type-verify">驗證模式</span>
+              </td>
+              <td data-label="說明">設置一組圖像識別物，作為驗證的依據。</td>
+            </tr>
+          </tbody>
+
+          <tfoot>
+            <tr class="m-module-total-row">
+              <td colspan="2" class="m-module-total-label">進階配置包總價：</td>
+              <td class="m-module-total-price">NT$ 18,000</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <h3>2. 系統功能升級</h3>
+
+      <div class="m-rwd-grid-1">
+        <!-- <div class="m-data-card">
         <div class="m-data-row">
           <span class="m-data-label">項目類別</span>
           <strong class="m-data-value">關卡流程修改</strong>
@@ -706,20 +827,20 @@
         </div>
       </div> -->
 
-      <div class="m-data-card">
-        <div class="m-data-row">
-          <span class="m-data-label">項目類別</span>
-          <strong class="m-data-value">客製化驗證開發</strong>
+        <div class="m-data-card">
+          <div class="m-data-row">
+            <span class="m-data-label">項目類別</span>
+            <strong class="m-data-value">客製化驗證開發</strong>
+          </div>
+          <div class="m-data-row">
+            <span class="m-data-label">參考單價</span>
+            <span class="m-price-col">另行報價</span>
+          </div>
+          <div class="m-data-row m-full">
+            <span class="m-data-value">依需求開發特殊解謎機制，如：邏輯排序、拖曳解謎、小遊戲通關挑戰等非標準模組。</span>
+          </div>
         </div>
-        <div class="m-data-row">
-          <span class="m-data-label">參考單價</span>
-          <span class="m-price-col">另行報價</span>
-        </div>
-        <div class="m-data-row m-full">
-          <span class="m-data-value">依需求開發特殊解謎機制，如：邏輯排序、拖曳解謎、小遊戲通關挑戰等非標準模組。</span>
-        </div>
-      </div>
-      <!-- <div class="m-data-card">
+        <!-- <div class="m-data-card">
         <div class="m-data-row">
           <span class="m-data-label">項目類別</span>
           <strong class="m-data-value">離線遊玩模組</strong>
@@ -740,63 +861,62 @@
         </div>
       </div> -->
 
-      <div class="m-data-card">
-        <div class="m-data-row">
-          <span class="m-data-label">項目類別</span>
-          <strong class="m-data-value">金鑰發行與驗證模組</strong>
+        <div class="m-data-card">
+          <div class="m-data-row">
+            <span class="m-data-label">項目類別</span>
+            <strong class="m-data-value">金鑰發行與驗證模組</strong>
+          </div>
+          <div class="m-data-row">
+            <span class="m-data-label">參考單價</span>
+            <span class="m-price-col">另行報價</span>
+          </div>
+          <div class="m-data-row m-full">
+            <div class="m-data-value">
+              採用<strong>數學演算法 (Algorithm)</strong> 進行本機驗證，可判斷玩家持有金鑰之有效性。
+              <ul class="m-sub-desc-scope">
+                <li>
+                  <!-- <strong>交付專屬桌上型金鑰生產器</strong>， -->
+                  業主可自行於電腦上無限量產生成金鑰。
+                  <!-- ，並一鍵匯出 Excel 與 QR Code。 -->
+                </li>
+                <li>因採離線驗證機制，<span style="color: #d9534f; font-weight: bold">金鑰具可重複使用特性，若需嚴格限制「單一金鑰僅能使用一次」，請參考下方的雲端授權平台。</span></li>
+                <li>業主亦可採用<strong>虛實整合</strong>的方式，將部分解謎道具實體化（如謎題包），即便金鑰被分享，玩家若無實體道具仍無法遊玩。</li>
+                <li>本方案僅提供軟體端之驗證機制，實體道具之設計與製作需由業主自行規劃。</li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <div class="m-data-row">
-          <span class="m-data-label">參考單價</span>
-          <span class="m-price-col">另行報價</span>
-        </div>
-        <div class="m-data-row m-full">
-          <div class="m-data-value">
-            採用<strong>數學演算法 (Algorithm)</strong> 進行本機驗證，可判斷玩家持有金鑰之有效性。
-            <ul class="m-sub-desc-scope">
-              <li>
-                <!-- <strong>交付專屬桌上型金鑰生產器</strong>， -->
-                業主可自行於電腦上無限量產生成金鑰。
-                <!-- ，並一鍵匯出 Excel 與 QR Code。 -->
-              </li>
-              <li>因採離線驗證機制，<span
-                  style="color: #d9534f; font-weight: bold">金鑰具可重複使用特性，若需嚴格限制「單一金鑰僅能使用一次」，請參考下方的雲端授權平台。</span></li>
-              <li>業主亦可採用<strong>虛實整合</strong>的方式，將部分解謎道具實體化（如謎題包），即便金鑰被分享，玩家若無實體道具仍無法遊玩。</li>
-              <li>本方案僅提供軟體端之驗證機制，實體道具之設計與製作需由業主自行規劃。</li>
-            </ul>
+
+        <div class="m-data-card">
+          <div class="m-data-row">
+            <span class="m-data-label">項目類別</span>
+            <strong class="m-data-value">雲端序號授權管理平台</strong>
+          </div>
+          <div class="m-data-row">
+            <span class="m-data-label">參考單價</span>
+            <span class="m-price-col">另行報價</span>
+          </div>
+          <div class="m-data-row m-full">
+            <div class="m-data-value">
+              提供一套<strong>標準化資料庫結構</strong>與<strong>公版序號管理後台</strong>，用於產生新序號、管理既有遊戲序號，以及後台本身的基本權限控管。
+              <ul class="m-sub-desc-scope">
+                <li>後台設有帳號管理機制，以避免未授權人員存取與操作，遊戲端將加裝序號驗證機制，序號使用後即刻失效，杜絕重複使用。</li>
+                <li>本系統以既有標準功能架構交付，適用於單一專案之序號產生與管理需求，若需調整資料結構或擴充後台功能，將視需求另行評估與報價。</li>
+                <li>
+                  <strong>外部成本與部署責任：</strong>系統交付時，<span style="color: #d9534f; font-weight: bold">須請業主依指示，申請雲端資料庫以及部署空間（需綁定業主信用卡）</span
+                  >，後續每月產生之流量與伺服器費用亦由業主全額承擔。
+                </li>
+                <!-- <li>限制：一旦啟用本驗證機制，遊戲將<strong>不支援離線遊玩</strong>功能，加購前請務必評估場域網路狀況。</li> -->
+              </ul>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="m-data-card">
-        <div class="m-data-row">
-          <span class="m-data-label">項目類別</span>
-          <strong class="m-data-value">雲端序號授權管理平台</strong>
-        </div>
-        <div class="m-data-row">
-          <span class="m-data-label">參考單價</span>
-          <span class="m-price-col">另行報價</span>
-        </div>
-        <div class="m-data-row m-full">
-          <div class="m-data-value">
-            提供一套<strong>標準化資料庫結構</strong>與<strong>公版序號管理後台</strong>，用於產生新序號、管理既有遊戲序號，以及後台本身的基本權限控管。
-            <ul class="m-sub-desc-scope">
-              <li>後台設有帳號管理機制，以避免未授權人員存取與操作，遊戲端將加裝序號驗證機制，序號使用後即刻失效，杜絕重複使用。</li>
-              <li>本系統以既有標準功能架構交付，適用於單一專案之序號產生與管理需求，若需調整資料結構或擴充後台功能，將視需求另行評估與報價。</li>
-              <li>
-                <strong>外部成本與部署責任：</strong>系統交付時，<span
-                  style="color: #d9534f; font-weight: bold">須請業主依指示，申請雲端資料庫以及部署空間（需綁定業主信用卡）</span>，後續每月產生之流量與伺服器費用亦由業主全額承擔。
-              </li>
-              <!-- <li>限制：一旦啟用本驗證機制，遊戲將<strong>不支援離線遊玩</strong>功能，加購前請務必評估場域網路狀況。</li> -->
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
+      <h3>3. 專案其他服務</h3>
 
-    <h3>3. 專案其他服務</h3>
-
-    <div class="m-rwd-grid-1">
-      <!-- <div class="m-data-card">
+      <div class="m-rwd-grid-1">
+        <!-- <div class="m-data-card">
         <div class="m-data-row">
           <span class="m-data-label">項目類別</span>
           <strong class="m-data-value">標準關卡數量擴充</strong>
@@ -810,43 +930,43 @@
         </div>
       </div> -->
 
-      <div class="m-data-card">
-        <div class="m-data-row">
-          <span class="m-data-label">項目類別</span>
-          <strong class="m-data-value">可移轉部署備份包</strong>
-        </div>
-        <div class="m-data-row">
-          <span class="m-data-label">參考單價</span>
-          <span class="m-price-col">NT$ 6,800</span>
-        </div>
-        <div class="m-data-row m-full">
-          <div class="m-data-value">提供本專案經編譯打包後之靜態檔案與必要設定檔，可據此保留完整的專案成品版本，亦可於未來需要時，重新部署至其他靜態網站主機或伺服器環境使用。</div>
-        </div>
-      </div>
-
-      <div class="m-data-card">
-        <div class="m-data-row">
-          <span class="m-data-label">項目類別</span>
-          <strong class="m-data-value">風格化樣式客製</strong>
-        </div>
-        <div class="m-data-row">
-          <span class="m-data-label">參考單價</span>
-          <span class="m-price-col">另行報價</span>
-        </div>
-        <div class="m-data-row m-full">
-          <div class="m-data-value">
-            針對標準版型內之「指定區塊」進行風格替換，不包含版面結構調整、流程變更或功能增減，以下為常見調整區域示意：
-            <ul class="m-sub-desc-scope">
-              <li>初始頁：進度顯示器。</li>
-              <li>控制頁：主題區、啟動器、狀態顯示、功能控制列等。</li>
-              <li>互動頁：任務序列、終幕等。</li>
-            </ul>
-            實際調整範圍依專案需求確認，報價將依調整內容的複雜程度與工作量進行評估。
+        <div class="m-data-card">
+          <div class="m-data-row">
+            <span class="m-data-label">項目類別</span>
+            <strong class="m-data-value">可移轉部署備份包</strong>
+          </div>
+          <div class="m-data-row">
+            <span class="m-data-label">參考單價</span>
+            <span class="m-price-col">NT$ 6,800</span>
+          </div>
+          <div class="m-data-row m-full">
+            <div class="m-data-value">提供本專案經編譯打包後之靜態檔案與必要設定檔，可據此保留完整的專案成品版本，亦可於未來需要時，重新部署至其他靜態網站主機或伺服器環境使用。</div>
           </div>
         </div>
-      </div>
 
-      <!-- <div class="m-data-card">
+        <div class="m-data-card">
+          <div class="m-data-row">
+            <span class="m-data-label">項目類別</span>
+            <strong class="m-data-value">風格化樣式客製</strong>
+          </div>
+          <div class="m-data-row">
+            <span class="m-data-label">參考單價</span>
+            <span class="m-price-col">另行報價</span>
+          </div>
+          <div class="m-data-row m-full">
+            <div class="m-data-value">
+              針對標準版型內之「指定區塊」進行風格替換，不包含版面結構調整、流程變更或功能增減，以下為常見調整區域示意：
+              <ul class="m-sub-desc-scope">
+                <li>初始頁：進度顯示器。</li>
+                <li>控制頁：主題區、啟動器、狀態顯示、功能控制列等。</li>
+                <li>互動頁：任務序列、終幕等。</li>
+              </ul>
+              實際調整範圍依專案需求確認，報價將依調整內容的複雜程度與工作量進行評估。
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="m-data-card">
         <div class="m-data-row">
           <span class="m-data-label">項目類別</span>
           <strong class="m-data-value">真人繪師美術</strong>
@@ -859,31 +979,31 @@
           <span class="m-data-value">適合需特定畫風或物件、場景等細節精修之需求。</span>
         </div>
       </div> -->
-    </div>
+      </div>
 
-    <div class="m-visual-reference">
-      <div class="m-reference-tag">風格化客製（EX：控制主頁）</div>
-      <div class="m-visual-grid">
-        <div class="m-visual-item">
-          <div class="m-screen-mock" style="background-image: url(image/08.png)"></div>
-          <span class="m-visual-label">標準預設型</span>
-        </div>
-        <div class="m-visual-item">
-          <div class="m-screen-mock" style="background-image: url(image/09.png)"></div>
-          <span class="m-visual-label">蒸氣龐克風</span>
-        </div>
-        <div class="m-visual-item">
-          <div class="m-screen-mock" style="background-image: url(image/10.png)"></div>
-          <span class="m-visual-label">劍道主題風</span>
-        </div>
-        <div class="m-visual-item">
-          <div class="m-screen-mock" style="background-image: url(image/11.png)"></div>
-          <span class="m-visual-label">賽博科幻風</span>
+      <div class="m-visual-reference">
+        <div class="m-reference-tag">風格化客製（EX：控制主頁）</div>
+        <div class="m-visual-grid">
+          <div class="m-visual-item">
+            <div class="m-screen-mock" style="background-image: url(image/08.png)"></div>
+            <span class="m-visual-label">標準預設型</span>
+          </div>
+          <div class="m-visual-item">
+            <div class="m-screen-mock" style="background-image: url(image/09.png)"></div>
+            <span class="m-visual-label">蒸氣龐克風</span>
+          </div>
+          <div class="m-visual-item">
+            <div class="m-screen-mock" style="background-image: url(image/10.png)"></div>
+            <span class="m-visual-label">劍道主題風</span>
+          </div>
+          <div class="m-visual-item">
+            <div class="m-screen-mock" style="background-image: url(image/11.png)"></div>
+            <span class="m-visual-label">賽博科幻風</span>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- <h3>5. 專案加贈服務</h3>
+      <!-- <h3>5. 專案加贈服務</h3>
     <div class="m-custom-bonus-style">
       <ul>
         <li>
@@ -895,43 +1015,43 @@
       </ul>
     </div> -->
 
-    <h3>4. 專案加贈服務</h3>
-    <div class="m-list-card">
-      <ul class="m-list-group">
-        <li>
-          <strong class="m-list-title">遊玩數據監測器：</strong>
-          <div class="m-list-desc">
-            提供遊玩人次基礎統計功能，係使用第三方公開或免費網路資源實作，<strong>不包含詳細行為分析、資料留存保證或長期可用性承諾</strong>，因第三方服務終止、政策調整或技術異動所導致之資料遺失、功能中斷，不構成執行方之保固或賠償責任。
-          </div>
-        </li>
-      </ul>
-    </div>
-  </section>
+      <h3>4. 專案加贈服務</h3>
+      <div class="m-list-card">
+        <ul class="m-list-group">
+          <li>
+            <strong class="m-list-title">遊玩數據監測器：</strong>
+            <div class="m-list-desc">
+              提供遊玩人次基礎統計功能，係使用第三方公開或免費網路資源實作，<strong>不包含詳細行為分析、資料留存保證或長期可用性承諾</strong>，因第三方服務終止、政策調整或技術異動所導致之資料遺失、功能中斷，不構成執行方之保固或賠償責任。
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
 
-  <section>
-    <h2>五、專案服務流程說明</h2>
-    <div class="m-header-section">
-      <p class="m-section-intro">
-        本項目旨在說明本專案之執行流程與各階段作業內容，以協助業主理解專案進行方式與節點安排。<br />
-        實際權利義務、責任歸屬與相關限制，皆以正式合約條款為準。
-      </p>
-    </div>
-
-    <div class="m-workflow-list">
-      <!-- STEP 1 -->
-      <div class="m-workflow-item">
-        <div class="m-step-header">01. 初步接洽與方案說明</div>
-        <div class="m-step-desc">
-          專案開始前，將進行初步接洽與溝通，了解業主的專案目的、使用情境、預期規模與時程需求；並依據經驗說明可行之開發方式、整體流程、預估時程與方案方向，協助業主建立對專案全貌的理解。
-        </div>
-        <div class="m-sop-box">
-          <span class="m-sop-title">階段目的</span>
-          釐清方向與共識，作為後續評估與規劃之基礎。
-        </div>
+    <section>
+      <h2>五、專案服務流程說明</h2>
+      <div class="m-header-section">
+        <p class="m-section-intro">
+          本項目旨在說明本專案之執行流程與各階段作業內容，以協助業主理解專案進行方式與節點安排。<br />
+          實際權利義務、責任歸屬與相關限制，皆以正式合約條款為準。
+        </p>
       </div>
 
-      <!-- STEP 2 -->
-      <!-- <div class="m-workflow-item">
+      <div class="m-workflow-list">
+        <!-- STEP 1 -->
+        <div class="m-workflow-item">
+          <div class="m-step-header">01. 初步接洽與方案說明</div>
+          <div class="m-step-desc">
+            專案開始前，將進行初步接洽與溝通，了解業主的專案目的、使用情境、預期規模與時程需求；並依據經驗說明可行之開發方式、整體流程、預估時程與方案方向，協助業主建立對專案全貌的理解。
+          </div>
+          <div class="m-sop-box">
+            <span class="m-sop-title">階段目的</span>
+            釐清方向與共識，作為後續評估與規劃之基礎。
+          </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <!-- <div class="m-workflow-item">
         <div class="m-step-header">02. 需求評估與場域預查</div>
         <div class="m-step-desc">依據業主提供之場域相關資料（如照片、空間說明、網路環境概況、預期動線等），執行方將進行初步可行性評估，判斷是否適合進行實境解謎專案之設計與配置。</div>
         <div class="m-sop-box">
@@ -940,269 +1060,266 @@
         </div>
       </div> -->
 
-      <!-- STEP 2 -->
-      <div class="m-workflow-item">
-        <div class="m-step-header">02. 報價及合約簽訂</div>
-        <div class="m-step-desc">
-          於需求方向確認後，將提供對應項目之正式報價單與專案合約書，說明所包含之功能範圍、服務項目、整體費用結構以及雙方之權利義務與約定事項，作為雙方後續合作與執行之依據。
+        <!-- STEP 2 -->
+        <div class="m-workflow-item">
+          <div class="m-step-header">02. 報價及合約簽訂</div>
+          <div class="m-step-desc">
+            於需求方向確認後，將提供對應項目之正式報價單與專案合約書，說明所包含之功能範圍、服務項目、整體費用結構以及雙方之權利義務與約定事項，作為雙方後續合作與執行之依據。
+          </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="m-workflow-item">
+          <div class="m-step-header">03. 合約簽署與專案啟動</div>
+          <div class="m-step-desc">業主確認報價內容與規格無誤後，簽署正式專案合約，並支付報價的 <strong>50%</strong> 作為訂金。</div>
+          <div class="m-sop-box">
+            <span class="m-sop-title">啟動規範</span>
+            訂金將用於前期開發使用，待款項入帳確認後，執行方於 <span class="m-deadline">3 個工作天內</span> 啟動專案，並依流程展開後續執行。
+          </div>
+        </div>
+
+        <!-- STEP 5 -->
+        <div class="m-workflow-item">
+          <div class="m-step-header">05. 實地探勘與環境評估</div>
+          <div class="m-step-desc">專案啟動後，執行方將視約定安排實地探勘，確認實際場域條件、動線配置與設計可行性，並蒐集關卡設計與系統配置所需之環境資訊。</div>
+          <div class="m-sop-box m-critical">
+            <span class="m-sop-title">風險控管機制</span>
+            如實地情況與前期資料存在重大落差，雙方將就後續執行方式進行溝通與調整或終止項目。<br />
+            訂金視為專案啟動與前期規劃之<strong>勞務對價</strong>。若協議終止，訂金優先抵扣已履行之勞務成本，<strong>不予退還</strong>；剩餘款項（如有）再依已完成工作比例協議結算。
+          </div>
+        </div>
+
+        <!-- STEP 6 -->
+        <div class="m-workflow-item">
+          <div class="m-step-header">06. 素材設計與階段確認</div>
+          <div class="m-step-desc">設計與製作關卡配置、文案與圖像等素材。此階段完成後，將提供設計稿（含文案、圖像、謎題邏輯說明）請業主進行校稿。</div>
+          <div class="m-sop-box">
+            <span class="m-sop-title">校對規範</span>
+            提供包含 2 次 階段性校稿修訂。業主需於收到校稿文件後
+            <span class="m-deadline">5 個工作天內</span> 回覆確認或提出修改建議，若業主於期限內有突發狀況，可以書面告知執行方，經雙方協議後得延長校稿期程。<br />
+            回覆時，將請業主於同一批文件中提出針對欲調整項目之修訂意見，此將視為一次校稿回合。<br />
+            原則上，<strong>逾期未回覆將視同確認無誤</strong>，逕行進入程式開發階段。
+          </div>
+        </div>
+
+        <!-- STEP 7 -->
+        <div class="m-workflow-item">
+          <div class="m-step-header">07. 系統開發與功能實作</div>
+          <div class="m-step-desc">依據報價單上的規格項目以及校稿確認後的文件，進行系統開發與功能實作，包含關卡框架建構、加購模組及服務導入等工程整合。</div>
+          <div class="m-sop-box">
+            <span class="m-sop-title">變更聲明</span>
+            本階段原則上僅以「已確認之設計稿」為實作基準。如需於此階段變更已確認之素材或邏輯，可能影響交付時程並需視變更程度<strong>另行評估成本</strong>。
+          </div>
+        </div>
+
+        <!-- STEP 8 -->
+        <div class="m-workflow-item">
+          <div class="m-step-header">08. 測試反饋與專案驗收</div>
+          <div class="m-step-desc">完成系統實作後，執行方將提供完整可執行版本，供業主進行測試與驗收，確認是否符合正式報價項目與專案合約之約定內容。</div>
+          <div class="m-sop-box">
+            <span class="m-sop-title">驗收範圍與期限</span>
+            業主需於收到測試版本後 <span class="m-deadline">5 個工作天內</span> 完成驗收測試。若於期限內未提出具體修正需求，即<strong>視為驗收通過</strong>。<br />
+            驗收僅以確認「各關卡觸發邏輯正常、功能按鈕運作無誤、符合雙方確認之校稿定稿內容（文字、圖片、題目與提示設定）」為範圍，不涉及素材內容修改。
+          </div>
+        </div>
+
+        <!-- STEP 9 -->
+        <div class="m-workflow-item">
+          <div class="m-step-header">09. 尾款結清與成果交付</div>
+          <div class="m-step-desc">驗收確認後，業主支付尾款，待確認尾款入帳後，執行方依據合約內容交付約定事項（如：網域設定權限移轉、加購之編譯後靜態檔或金鑰產生器等，實際項目以合約為準）。</div>
+        </div>
+
+        <!-- STEP 10 -->
+        <div class="m-workflow-item">
+          <div class="m-step-header">10. 專案結案與有限保固</div>
+          <div class="m-step-desc">成果交付完成並確認可正常運作後，專案即告結案。為確保交付品質，本專案提供結案後 <strong>2 週</strong> 之瑕疵擔保期。</div>
+          <div class="m-sop-box">
+            <span class="m-sop-title">結案聲明</span>
+            <strong>保固範圍：</strong>僅限於「交付當下已存在之程式瑕疵」修正，不包含第三方平台變動、主機環境問題或新增需求。<br />
+            <strong>專案停滯：</strong>如因業主因素導致專案停滯超過 <span class="m-deadline">30 日曆天</span>，執行方得宣告專案「行政結案」並結算費用。
+          </div>
         </div>
       </div>
+    </section>
 
-      <!-- STEP 3 -->
-      <div class="m-workflow-item">
-        <div class="m-step-header">03. 合約簽署與專案啟動</div>
-        <div class="m-step-desc">業主確認報價內容與規格無誤後，簽署正式專案合約，並支付報價的 <strong>50%</strong> 作為訂金。</div>
-        <div class="m-sop-box">
-          <span class="m-sop-title">啟動規範</span>
-          訂金將用於前期開發使用，待款項入帳確認後，執行方於 <span class="m-deadline">3 個工作天內</span> 啟動專案，並依流程展開後續執行。
-        </div>
+    <section>
+      <h2>六、系統環境與限制</h2>
+      <div class="m-list-card">
+        <ul class="m-list-group">
+          <li>
+            <strong class="m-list-title">裝置限制：</strong>
+            <div class="m-list-desc">本專案不支援電腦、平板及 iPhone X、iPhone 8 系列及更舊機種。</div>
+          </li>
+          <li>
+            <strong class="m-list-title">建議配備：</strong>
+            <div class="m-list-desc">建議使用 iPhone 11 (或 2021 年後 Android 機型) ，且螢幕尺寸大於 5.5 吋以上之手機遊玩。</div>
+          </li>
+          <li>
+            <strong class="m-list-title">軟體環境：</strong>
+            <div class="m-list-desc">為確保遊戲體驗，建議將作業系統與瀏覽器更新至最新版本，並限定使用 LINE 應用程式開啟 。</div>
+          </li>
+          <li>
+            <strong class="m-list-title">畫面呈現：</strong>
+            <div class="m-list-desc">本專案為 Web 形式之互動遊戲，實際畫面呈現將依不同手機型號、螢幕比例與瀏覽器環境有所差異，屬正常顯示情形。</div>
+          </li>
+        </ul>
       </div>
+    </section>
 
-      <!-- STEP 5 -->
-      <div class="m-workflow-item">
-        <div class="m-step-header">05. 實地探勘與環境評估</div>
-        <div class="m-step-desc">專案啟動後，執行方將視約定安排實地探勘，確認實際場域條件、動線配置與設計可行性，並蒐集關卡設計與系統配置所需之環境資訊。</div>
-        <div class="m-sop-box m-critical">
-          <span class="m-sop-title">風險控管機制</span>
-          如實地情況與前期資料存在重大落差，雙方將就後續執行方式進行溝通與調整或終止項目。<br />
-          訂金視為專案啟動與前期規劃之<strong>勞務對價</strong>。若協議終止，訂金優先抵扣已履行之勞務成本，<strong>不予退還</strong>；剩餘款項（如有）再依已完成工作比例協議結算。
-        </div>
+    <section>
+      <h2>七、交付與製作工期</h2>
+      <div class="m-list-card">
+        <ul class="m-list-group">
+          <li>
+            <strong class="m-list-title">交付形式：</strong>
+            <div class="m-list-desc">
+              本專案之最終交付方式為將網站成品部署於業主名下之 Cloudflare 帳號並完成可公開存取之網站專案，若業主尚未持有 Cloudflare 帳號，可協助業主完成帳號申請。<br />
+              交付內容為部署於 Cloudflare pages
+              服務上之靜態網站，不包含任何開發階段原始碼、建置設定、框架原始專案、共用模組或可逆向還原之完整系統結構，如需取得可移轉部署之靜態編譯檔案（ZIP），得另行加購「可移轉部署備份包」服務。<br />
+              網站部署完成後，預設使用 Cloudflare 所提供之網站網址，若有其他需求，亦可依下列方式進行網址設定：
+              <ul class="m-list-sub">
+                <li><strong>業主自有網域：</strong>可協助於業主 Cloudflare 帳號中完成網域綁定與相關設定（需事前評估與測試）。</li>
+                <li><strong>協助購買網域：</strong>若業主未持有網域，可協助於業主 Cloudflare 帳號中購買（需綁定業主信用卡）並完成設定。</li>
+              </ul>
+              當網域綁定成功，且能透過瀏覽器以 HTTPS 正常連線時，即視為交付結案，後續若因網域未續約、自行更改相關設定導致無法連線，需由業主自行排解。
+            </div>
+          </li>
+          <li>
+            <strong class="m-list-title">製作工期：</strong>
+            <div class="m-list-desc">
+              標準版專案製作週期約為 <strong>4 ~ 8 週</strong>。此時程係指「合約簽署」且「訂金款項確認到帳」後起算。<br />
+              若因業主端延遲提供必要之文件、素材或需求確認（如背景資訊、內容定稿等），交付日期將視實際狀況順延。
+            </div>
+          </li>
+          <li>
+            <strong class="m-list-title">校稿與修訂：</strong>
+            <div class="m-list-desc">
+              本專案於素材設計階段含有<strong> 2 次 </strong>階段性校稿修訂機會，將提供設計稿（含文案、圖像、謎題邏輯說明）請業主進行校稿。<br />
+              回覆時，將請業主於同一批文件中提出針對欲調整項目之修訂意見，此將視為一次校稿回合，自第 3
+              次起，或於內容確認定案後提出之修改，若涉及功能調整、流程變更或結構異動，將視為追加項目，另行評估並報價。<br />
+              原則上業主需於收到校稿文件後<span class="m-deadline">5 個工作天內</span>
+              回覆確認，若業主於期限內有突發狀況，可以書面告知執行方，經雙方協議後得延長校稿期程；逾期未回覆將視同確認無誤，執行方得逕行進入下一階段，工期不予順延。
+            </div>
+          </li>
+          <li>
+            <strong class="m-list-title">驗收環境基準：</strong>
+            <div class="m-list-desc">
+              本專案之驗收測試，概以本規格書建議之裝置（iPhone 11以上 / Android 2021年後機型）及標準瀏覽器（Chrome / Safari）為功能運作之判定基準。非標準環境（如 Line/FB
+              內建瀏覽器、舊版機型）之顯示差異，不列入驗收瑕疵範圍。
+            </div>
+          </li>
+          <li>
+            <strong class="m-list-title">素材聲明：</strong>
+            <div class="m-list-desc">專案之圖像素材得採 AI 輔助製作並經後期編修完成，若對細節有嚴格指定需求，建議加購「真人繪師」服務。</div>
+          </li>
+          <li>
+            <strong class="m-list-title">結案與有限保固：</strong>
+            <div class="m-list-desc">
+              <ul class="m-list-sub" style="margin-top: 0">
+                <li><strong>結案聲明：</strong>專案成果完成交付並經業主確認可正常運作後，即視為結案。</li>
+                <li><strong>驗收期限：</strong>業主需於收到最終測試版後 5 個工作天內 完成驗收，逾期未回報視同驗收通過。</li>
+                <li><strong>有限保固：</strong>本專案提供結案後 2 週 之瑕疵擔保期，僅針對「交付當下已存在之程式邏輯錯誤」進行修正。</li>
+                <li><strong>除外責任：</strong>任何因第三方服務、瀏覽器更新、主機環境或外部系統變動所產生之影響，均不包含於本專案服務範圍內。</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <strong class="m-list-title">開發凍結原則：</strong>
+            <div class="m-list-desc">
+              系統開發將嚴格依據<strong>校稿確認後之設計稿進行實作</strong>。進入程式開發階段後，若需變更已確認之素材（文案、圖片）或邏輯，將視為規格變更，需另行評估費用與工期影響。
+            </div>
+          </li>
+          <li>
+            <strong class="m-list-title">補充說明：</strong>
+            <div class="m-list-desc">
+              本條所述之交付形式、製作流程、修訂次數與結案說明，僅用於說明專案執行與交付方式，<strong>不涉及智慧財產權之移轉、授權範圍或所有權歸屬之認定</strong>；相關權利義務，悉依本規格書第八條及正式簽署之專案合約為準。
+            </div>
+          </li>
+        </ul>
       </div>
+    </section>
 
-      <!-- STEP 6 -->
-      <div class="m-workflow-item">
-        <div class="m-step-header">06. 素材設計與階段確認</div>
-        <div class="m-step-desc">設計與製作關卡配置、文案與圖像等素材。此階段完成後，將提供設計稿（含文案、圖像、謎題邏輯說明）請業主進行校稿。</div>
-        <div class="m-sop-box">
-          <span class="m-sop-title">校對規範</span>
-          提供包含 2 次 階段性校稿修訂。業主需於收到校稿文件後
-          <span class="m-deadline">5 個工作天內</span> 回覆確認或提出修改建議，若業主於期限內有突發狀況，可以書面告知執行方，經雙方協議後得延長校稿期程。<br />
-          回覆時，將請業主於同一批文件中提出針對欲調整項目之修訂意見，此將視為一次校稿回合。<br />
-          原則上，<strong>逾期未回覆將視同確認無誤</strong>，逕行進入程式開發階段。
-        </div>
+    <section>
+      <h2>八、商務規範與支付條款</h2>
+      <div class="m-list-card">
+        <ul class="m-list-group">
+          <li>
+            <strong class="m-list-title">付款與終止條件：</strong>
+            <div class="m-list-desc">
+              本專案採<strong>「先收訂金後開工」</strong>原則，訂金到帳後始進行專案啟動與製作；尾款結清後，始進行正式環境部署與相關權限移交作業。<br />
+              訂金視為專案啟動、前期顧問諮詢、實地場勘與架構規劃之實質勞務對價，一經收取即視為已履行前期服務，不予退還。<br />
+              如專案因業主因素（包含但不限於：計畫中止、延期、取消等），已收取之訂金概不退還；若已產生超出訂金金額之製作成本，執行方得另行結算請求支付。<br />
+              若因場勘評估後因場域條件限制無法執行，訂金優先抵扣已履行之勞務成本，剩餘款項（如有）再依已完成工作比例協議結算。
+            </div>
+          </li>
+          <li>
+            <strong class="m-list-title">專案服務範圍與遠程出勤規範：</strong>
+            <div class="m-list-desc">
+              <ul class="m-list-sub" style="margin-top: 0">
+                <li>本專案標準報價適用於<strong>「北北桃都會區」</strong>（台北市、新北市、桃園市之市區及捷運/機捷沿線）。在此範圍內進行場勘與採集，費用已包含於標準報價內。</li>
+                <li>
+                  若執行場域位於<strong>上述以外縣市</strong>，或雖位於北北桃但屬<strong>偏遠山區、濱海</strong>（如：烏來、平溪、貢寮、復興區等），業主需額外支付<strong>「遠程出勤費」</strong>，費用涵蓋：往返交通實支、人員長途移動與探勘之工時成本。
+                </li>
+                <li>上述費用採「定額報價」制，併入「專案啟動款（訂金）中全額收取，費用涉及行程預定與時段保留，一經確認即不予退還。</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <strong class="m-list-title">稅務單據：</strong>
+            <div class="m-list-desc">
+              執行方為個人身分接案，不開立統一發票，請款時將提供<strong>「勞務報酬單（申報類別：執行業務所得 9B）」</strong>，報價金額為含稅總額，已包含
+              <strong>10% 預扣所得稅及 2.11% 二代健保補充保費</strong>，相關扣繳事宜依現行法令辦理。
+            </div>
+          </li>
+          <li>
+            <strong class="m-list-title">價格依據：</strong>
+            <div class="m-list-desc">
+              本文件所列價格為「標準方案參考基準」，最終費用可能因場地條件、客製需求或工期急迫性而有所調整，請以雙方確認簽署之<strong>「正式報價單」</strong>為準。<br />
+              凡未列於本規格書或正式報價單內之需求，均視為追加項目，須另行評估、報價並經雙方書面確認後方可執行。
+            </div>
+          </li>
+        </ul>
       </div>
+    </section>
 
-      <!-- STEP 7 -->
-      <div class="m-workflow-item">
-        <div class="m-step-header">07. 系統開發與功能實作</div>
-        <div class="m-step-desc">依據報價單上的規格項目以及校稿確認後的文件，進行系統開發與功能實作，包含關卡框架建構、加購模組及服務導入等工程整合。</div>
-        <div class="m-sop-box">
-          <span class="m-sop-title">變更聲明</span>
-          本階段原則上僅以「已確認之設計稿」為實作基準。如需於此階段變更已確認之素材或邏輯，可能影響交付時程並需視變更程度<strong>另行評估成本</strong>。
-        </div>
+    <section>
+      <h2>九、智慧財產權與授權</h2>
+      <div class="m-list-card">
+        <p style="font-size: 14px; color: var(--color-m-muted); margin-top: 0; margin-bottom: 15px">※ 本專案之智慧財產權與授權原則，採模組化系統授權：</p>
+        <ul class="m-list-group">
+          <li>
+            <strong class="m-list-title">核心系統：</strong>
+            <div class="m-list-desc">
+              本專案所使用之核心系統，包括但不限於： 程式原始碼（Source Code）、核心邏輯、系統架構、模組設計與共用元件，其著作權與所有權均歸屬執行方所有。<br />
+              業主僅取得本專案成果之使用授權，不因專案完成或付款而取得核心系統之任何所有權。
+            </div>
+          </li>
+          <li>
+            <strong class="m-list-title">授權範圍：</strong>
+            <div class="m-list-desc">
+              業主就本專案最終成果，<strong>「永久、非專屬、不可轉讓之使用權」</strong>，得用於自身之營運、展示及宣傳用途。<br />
+              除非事前取得執行方之書面授權，業主不得將本系統或其任何部分：
+              <ul class="m-list-sub">
+                <li>轉售、再授權、出租或提供第三方使用</li>
+                <li>複製、拆解、重製或改作核心程式碼</li>
+                <li>用於其他未經授權之商業專案</li>
+                <li>提供第三方進行改作、維護、模組拆分或再利用</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <strong class="m-list-title">內容歸屬：</strong>
+            <div class="m-list-desc">由業主提供或委託製作之客製化文案、圖片與素材，其著作權歸屬業主所有；執行方得於不涉及競業之情況下，作為作品集或案例展示用途使用。</div>
+          </li>
+          <li>
+            <strong class="m-list-title">最終依據：</strong>
+            <div class="m-list-desc">上述條款為本服務之授權原則說明，詳細權利義務，以雙方正式簽署之<strong>「專案合約書」</strong>為最終依據。</div>
+          </li>
+        </ul>
       </div>
+    </section>
 
-      <!-- STEP 8 -->
-      <div class="m-workflow-item">
-        <div class="m-step-header">08. 測試反饋與專案驗收</div>
-        <div class="m-step-desc">完成系統實作後，執行方將提供完整可執行版本，供業主進行測試與驗收，確認是否符合正式報價項目與專案合約之約定內容。</div>
-        <div class="m-sop-box">
-          <span class="m-sop-title">驗收範圍與期限</span>
-          業主需於收到測試版本後 <span class="m-deadline">5 個工作天內</span> 完成驗收測試。若於期限內未提出具體修正需求，即<strong>視為驗收通過</strong>。<br />
-          驗收僅以確認「各關卡觸發邏輯正常、功能按鈕運作無誤、符合雙方確認之校稿定稿內容（文字、圖片、題目與提示設定）」為範圍，不涉及素材內容修改。
-        </div>
-      </div>
-
-      <!-- STEP 9 -->
-      <div class="m-workflow-item">
-        <div class="m-step-header">09. 尾款結清與成果交付</div>
-        <div class="m-step-desc">驗收確認後，業主支付尾款，待確認尾款入帳後，執行方依據合約內容交付約定事項（如：網域設定權限移轉、加購之編譯後靜態檔或金鑰產生器等，實際項目以合約為準）。</div>
-      </div>
-
-      <!-- STEP 10 -->
-      <div class="m-workflow-item">
-        <div class="m-step-header">10. 專案結案與有限保固</div>
-        <div class="m-step-desc">成果交付完成並確認可正常運作後，專案即告結案。為確保交付品質，本專案提供結案後 <strong>2 週</strong> 之瑕疵擔保期。</div>
-        <div class="m-sop-box">
-          <span class="m-sop-title">結案聲明</span>
-          <strong>保固範圍：</strong>僅限於「交付當下已存在之程式瑕疵」修正，不包含第三方平台變動、主機環境問題或新增需求。<br />
-          <strong>專案停滯：</strong>如因業主因素導致專案停滯超過 <span class="m-deadline">30 日曆天</span>，執行方得宣告專案「行政結案」並結算費用。
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <h2>六、系統環境與限制</h2>
-    <div class="m-list-card">
-      <ul class="m-list-group">
-        <li>
-          <strong class="m-list-title">裝置限制：</strong>
-          <div class="m-list-desc">本專案不支援電腦、平板及 iPhone X、iPhone 8 系列及更舊機種。</div>
-        </li>
-        <li>
-          <strong class="m-list-title">建議配備：</strong>
-          <div class="m-list-desc">建議使用 iPhone 11 (或 2021 年後 Android 機型) ，且螢幕尺寸大於 5.5 吋以上之手機遊玩。</div>
-        </li>
-        <li>
-          <strong class="m-list-title">軟體環境：</strong>
-          <div class="m-list-desc">
-            為確保遊戲體驗，建議將作業系統與瀏覽器更新至最新版本，並限定使用 LINE 應用程式開啟 。
-          </div>
-        </li>
-        <li>
-          <strong class="m-list-title">畫面呈現：</strong>
-          <div class="m-list-desc">本專案為 Web 形式之互動遊戲，實際畫面呈現將依不同手機型號、螢幕比例與瀏覽器環境有所差異，屬正常顯示情形。</div>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <section>
-    <h2>七、交付與製作工期</h2>
-    <div class="m-list-card">
-      <ul class="m-list-group">
-        <li>
-          <strong class="m-list-title">交付形式：</strong>
-          <div class="m-list-desc">
-            本專案之最終交付方式為將網站成品部署於業主名下之 Cloudflare 帳號並完成可公開存取之網站專案，若業主尚未持有 Cloudflare 帳號，可協助業主完成帳號申請。<br />
-            交付內容為部署於 Cloudflare pages
-            服務上之靜態網站，不包含任何開發階段原始碼、建置設定、框架原始專案、共用模組或可逆向還原之完整系統結構，如需取得可移轉部署之靜態編譯檔案（ZIP），得另行加購「可移轉部署備份包」服務。<br />
-            網站部署完成後，預設使用 Cloudflare 所提供之網站網址，若有其他需求，亦可依下列方式進行網址設定：
-            <ul class="m-list-sub">
-              <li><strong>業主自有網域：</strong>可協助於業主 Cloudflare 帳號中完成網域綁定與相關設定（需事前評估與測試）。</li>
-              <li><strong>協助購買網域：</strong>若業主未持有網域，可協助於業主 Cloudflare 帳號中購買（需綁定業主信用卡）並完成設定。</li>
-            </ul>
-            當網域綁定成功，且能透過瀏覽器以 HTTPS 正常連線時，即視為交付結案，後續若因網域未續約、自行更改相關設定導致無法連線，需由業主自行排解。
-          </div>
-        </li>
-        <li>
-          <strong class="m-list-title">製作工期：</strong>
-          <div class="m-list-desc">
-            標準版專案製作週期約為 <strong>4 ~ 8 週</strong>。此時程係指「合約簽署」且「訂金款項確認到帳」後起算。<br />
-            若因業主端延遲提供必要之文件、素材或需求確認（如背景資訊、內容定稿等），交付日期將視實際狀況順延。
-          </div>
-        </li>
-        <li>
-          <strong class="m-list-title">校稿與修訂：</strong>
-          <div class="m-list-desc">
-            本專案於素材設計階段含有<strong> 2 次 </strong>階段性校稿修訂機會，將提供設計稿（含文案、圖像、謎題邏輯說明）請業主進行校稿。<br />
-            回覆時，將請業主於同一批文件中提出針對欲調整項目之修訂意見，此將視為一次校稿回合，自第 3
-            次起，或於內容確認定案後提出之修改，若涉及功能調整、流程變更或結構異動，將視為追加項目，另行評估並報價。<br />
-            原則上業主需於收到校稿文件後<span class="m-deadline">5 個工作天內</span>
-            回覆確認，若業主於期限內有突發狀況，可以書面告知執行方，經雙方協議後得延長校稿期程；逾期未回覆將視同確認無誤，執行方得逕行進入下一階段，工期不予順延。
-          </div>
-        </li>
-        <li>
-          <strong class="m-list-title">驗收環境基準：</strong>
-          <div class="m-list-desc">
-            本專案之驗收測試，概以本規格書建議之裝置（iPhone 11以上 / Android 2021年後機型）及標準瀏覽器（Chrome / Safari）為功能運作之判定基準。非標準環境（如 Line/FB
-            內建瀏覽器、舊版機型）之顯示差異，不列入驗收瑕疵範圍。
-          </div>
-        </li>
-        <li>
-          <strong class="m-list-title">素材聲明：</strong>
-          <div class="m-list-desc">專案之圖像素材得採 AI 輔助製作並經後期編修完成，若對細節有嚴格指定需求，建議加購「真人繪師」服務。</div>
-        </li>
-        <li>
-          <strong class="m-list-title">結案與有限保固：</strong>
-          <div class="m-list-desc">
-            <ul class="m-list-sub" style="margin-top: 0">
-              <li><strong>結案聲明：</strong>專案成果完成交付並經業主確認可正常運作後，即視為結案。</li>
-              <li><strong>驗收期限：</strong>業主需於收到最終測試版後 5 個工作天內 完成驗收，逾期未回報視同驗收通過。</li>
-              <li><strong>有限保固：</strong>本專案提供結案後 2 週 之瑕疵擔保期，僅針對「交付當下已存在之程式邏輯錯誤」進行修正。</li>
-              <li><strong>除外責任：</strong>任何因第三方服務、瀏覽器更新、主機環境或外部系統變動所產生之影響，均不包含於本專案服務範圍內。</li>
-            </ul>
-          </div>
-        </li>
-        <li>
-          <strong class="m-list-title">開發凍結原則：</strong>
-          <div class="m-list-desc">
-            系統開發將嚴格依據<strong>校稿確認後之設計稿進行實作</strong>。進入程式開發階段後，若需變更已確認之素材（文案、圖片）或邏輯，將視為規格變更，需另行評估費用與工期影響。
-          </div>
-        </li>
-        <li>
-          <strong class="m-list-title">補充說明：</strong>
-          <div class="m-list-desc">
-            本條所述之交付形式、製作流程、修訂次數與結案說明，僅用於說明專案執行與交付方式，<strong>不涉及智慧財產權之移轉、授權範圍或所有權歸屬之認定</strong>；相關權利義務，悉依本規格書第八條及正式簽署之專案合約為準。
-          </div>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <section>
-    <h2>八、商務規範與支付條款</h2>
-    <div class="m-list-card">
-      <ul class="m-list-group">
-        <li>
-          <strong class="m-list-title">付款與終止條件：</strong>
-          <div class="m-list-desc">
-            本專案採<strong>「先收訂金後開工」</strong>原則，訂金到帳後始進行專案啟動與製作；尾款結清後，始進行正式環境部署與相關權限移交作業。<br />
-            訂金視為專案啟動、前期顧問諮詢、實地場勘與架構規劃之實質勞務對價，一經收取即視為已履行前期服務，不予退還。<br />
-            如專案因業主因素（包含但不限於：計畫中止、延期、取消等），已收取之訂金概不退還；若已產生超出訂金金額之製作成本，執行方得另行結算請求支付。<br />
-            若因場勘評估後因場域條件限制無法執行，訂金優先抵扣已履行之勞務成本，剩餘款項（如有）再依已完成工作比例協議結算。
-          </div>
-        </li>
-        <li>
-          <strong class="m-list-title">專案服務範圍與遠程出勤規範：</strong>
-          <div class="m-list-desc">
-            <ul class="m-list-sub" style="margin-top: 0">
-              <li>本專案標準報價適用於<strong>「北北桃都會區」</strong>（台北市、新北市、桃園市之市區及捷運/機捷沿線）。在此範圍內進行場勘與採集，費用已包含於標準報價內。</li>
-              <li>
-                若執行場域位於<strong>上述以外縣市</strong>，或雖位於北北桃但屬<strong>偏遠山區、濱海</strong>（如：烏來、平溪、貢寮、復興區等），業主需額外支付<strong>「遠程出勤費」</strong>，費用涵蓋：往返交通實支、人員長途移動與探勘之工時成本。
-              </li>
-              <li>上述費用採「定額報價」制，併入「專案啟動款（訂金）中全額收取，費用涉及行程預定與時段保留，一經確認即不予退還。</li>
-            </ul>
-          </div>
-        </li>
-        <li>
-          <strong class="m-list-title">稅務單據：</strong>
-          <div class="m-list-desc">
-            執行方為個人身分接案，不開立統一發票，請款時將提供<strong>「勞務報酬單（申報類別：執行業務所得 9B）」</strong>，報價金額為含稅總額，已包含
-            <strong>10% 預扣所得稅及 2.11% 二代健保補充保費</strong>，相關扣繳事宜依現行法令辦理。
-          </div>
-        </li>
-        <li>
-          <strong class="m-list-title">價格依據：</strong>
-          <div class="m-list-desc">
-            本文件所列價格為「標準方案參考基準」，最終費用可能因場地條件、客製需求或工期急迫性而有所調整，請以雙方確認簽署之<strong>「正式報價單」</strong>為準。<br />
-            凡未列於本規格書或正式報價單內之需求，均視為追加項目，須另行評估、報價並經雙方書面確認後方可執行。
-          </div>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <section>
-    <h2>九、智慧財產權與授權</h2>
-    <div class="m-list-card">
-      <p style="font-size: 14px; color: var(--color-m-muted); margin-top: 0; margin-bottom: 15px">※
-        本專案之智慧財產權與授權原則，採模組化系統授權：</p>
-      <ul class="m-list-group">
-        <li>
-          <strong class="m-list-title">核心系統：</strong>
-          <div class="m-list-desc">
-            本專案所使用之核心系統，包括但不限於： 程式原始碼（Source Code）、核心邏輯、系統架構、模組設計與共用元件，其著作權與所有權均歸屬執行方所有。<br />
-            業主僅取得本專案成果之使用授權，不因專案完成或付款而取得核心系統之任何所有權。
-          </div>
-        </li>
-        <li>
-          <strong class="m-list-title">授權範圍：</strong>
-          <div class="m-list-desc">
-            業主就本專案最終成果，<strong>「永久、非專屬、不可轉讓之使用權」</strong>，得用於自身之營運、展示及宣傳用途。<br />
-            除非事前取得執行方之書面授權，業主不得將本系統或其任何部分：
-            <ul class="m-list-sub">
-              <li>轉售、再授權、出租或提供第三方使用</li>
-              <li>複製、拆解、重製或改作核心程式碼</li>
-              <li>用於其他未經授權之商業專案</li>
-              <li>提供第三方進行改作、維護、模組拆分或再利用</li>
-            </ul>
-          </div>
-        </li>
-        <li>
-          <strong class="m-list-title">內容歸屬：</strong>
-          <div class="m-list-desc">由業主提供或委託製作之客製化文案、圖片與素材，其著作權歸屬業主所有；執行方得於不涉及競業之情況下，作為作品集或案例展示用途使用。</div>
-        </li>
-        <li>
-          <strong class="m-list-title">最終依據：</strong>
-          <div class="m-list-desc">上述條款為本服務之授權原則說明，詳細權利義務，以雙方正式簽署之<strong>「專案合約書」</strong>為最終依據。</div>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- <section>
+    <!-- <section>
     <h2>六、系統環境與限制</h2>
 
     <div class="m-custom-bonus-style">
@@ -1388,7 +1505,6 @@
       </ul>
     </div>
   </section> -->
-  <div class="m-footer">&copy; 2026 實境效應事務所 | Specification Document</div>
-</body>
-
+    <div class="m-footer">&copy; 2026 實境效應事務所 | Specification Document</div>
+  </body>
 </html>
