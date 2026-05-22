@@ -167,8 +167,6 @@ h3::before {
   font-weight: bold;
 }
 
-
-
 .m-pro-plan-title {
   display: block;
   font-size: 15px;
@@ -225,11 +223,10 @@ h3::before {
   margin-bottom: 10px;
 }
 
-
 .m-demo-qrcode {
   display: flex;
-   justify-content: center;
-   align-items: center;
+  justify-content: center;
+  align-items: center;
   /* text-align: center; */
   /* background: var(--color-m-bg); */
   /* padding: 15px 10px; */
@@ -237,8 +234,6 @@ h3::before {
   /* border: 1px solid var(--color-m-border); */
   /* position: relative; */
 }
-
-
 
 .m-qrcode-placeholder {
   display: block;
@@ -250,10 +245,6 @@ h3::before {
   border: 1px solid var(--color-m-border);
   width: 220px;
 }
-
-
-
-
 
 /* === Data Cards (Replaces Tables for Mobile) === */
 .m-data-card {
@@ -794,7 +785,7 @@ strong.m-highlight {
 
   /* PC 網格佈局轉換 */
 
-    .m-rwd-grid-1 {
+  .m-rwd-grid-1 {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     gap: 20px;
@@ -867,8 +858,6 @@ strong.m-highlight {
     flex: 1;
     padding-right: 20px;
   }
-
-
 
   /* 價格方塊強化 */
   .m-standard-price-box {
@@ -1303,4 +1292,8 @@ strong.m-highlight {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
+}
+
+.hiddenArea {
+  display: none;
 }
