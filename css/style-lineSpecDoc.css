@@ -1297,3 +1297,31 @@ strong.m-highlight {
 .hiddenArea {
   display: none;
 }
+
+.m-price-note-card {
+  margin-top: 18px;
+}
+
+.m-price-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  font-size: 13px;
+  line-height: 1.8;
+  color: #6b7280;
+}
+
+.m-price-note-title {
+  flex: 0 0 auto;
+  font-weight: 600;
+  color: #374151;
+  white-space: nowrap;
+}
+
+.m-price-note-content {
+  flex: 1;
+}
+
+.m-price-note-content div {
+  margin: 0;
+}
