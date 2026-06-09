@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-  <!-- 字體 -->
+  <!-- フォント -->
   <link
     href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&amp;family=Noto+Serif+JP:wght@400;700&amp;display=swap"
     rel="stylesheet" />
@@ -13,7 +13,7 @@
   <meta content="現実の場をインタラクティブな謎解き体験へと転換し、観光、イベント、ブランド体験に活用できます。" name="description" />
   <!-- favicon -->
   <link href="https://haohows.com/bizdocs/image/mylogo.webp" rel="icon" />
-  <!-- Open Graph (FB / LINE / 通用分享) -->
+  <!-- Open Graph（FB / LINE / general share） -->
   <meta content="WEB in LINE リアル謎解きプラン仕様書" property="og:title" />
   <meta content="現実の場をインタラクティブな謎解き体験へと転換します。スマートフォンですぐに遊べ、観光、イベント、ブランド体験に活用できます。" property="og:description" />
   <meta content="https://haohows.com/bizdocs/image/mylogo.webp" property="og:image" />
@@ -46,10 +46,13 @@
           style="color: var(--color-m-accent)">https://lin.ee/tgv9YRh</a>
       </p>
     </div>
+    <div class="m-translation-note"> 本仕様書の日本語版は、中文版を基にAI翻訳を活用し、内容の編集および確認を行ったものです。日本語版と中文版の内容または解釈に相違がある場合は、中文版の内容を優先します。
+    </div>
   </header>
-  <!-- 序、方案定位與 Demo 參考說明 -->
+
+  <!-- 序、プランの位置づけとDemo参考説明 -->
   <section>
-    <h2>はじめに：プランおよびDemo参考説明</h2>
+    <h2>はじめに：プランとDemoの参考説明</h2>
     <div class="m-pro-demo-section m-prefacearea">
       <div class="m-pro-demo-text">
         <p class="m-intro-text">
@@ -120,7 +123,7 @@
                 <li>LINE／LIFF、および既存LINE OA入口連携</li>
                 <li>ミッションフローおよび回答検証機能</li>
                 <li>ローカル進捗保存</li>
-                <li>必要に応じた管理画面またはカスタムモジュールの追加購入</li>
+                <li>必要に応じた管理画面またはカスタムモジュールの追加対応</li>
               </ul>
             </div>
             <div class="m-pro-scope-box">
@@ -137,147 +140,8 @@
         </article>
       </div>
     </div>
-    <!-- <table class="m-pro-comparison-table">
-      <thead>
-        <tr>
-          <th style="width: 22%" class="m-pro-current-plan-subTitle">合作方常見需求</th>
-
-          <th class="m-pro-current-plan-header">
-            <div class="m-pro-badge">★ 本方案可協助</div>
-            <span class="m-pro-plan-title">LINE／LIFF WEB 互動層建置</span>
-          </th>
-
-          <th style="width: 28%">
-            <span class="m-pro-plan-title" style="margin-top: 22px">可增加的效果</span>
-          </th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr>
-          <td class="m-pro-current-plan-subTitle">
-            <strong>想把活動流程做成手機互動</strong>
-          </td>
-
-          <td class="m-pro-current-plan">
-            <strong style="font-size: 14px">建置可於 LINE 中開啟的 WEB 闖關系統</strong><br />
-            <span style="font-size: 14px; color: var(--color-m-muted); display: block; margin-top: 4px">
-              將合作方既有的活動流程、任務設計或闖關規則，轉換為玩家可直接在手機上操作的互動頁面。 </span>
-          </td>
-
-          <td style="font-size: 14px; color: var(--color-m-muted)">
-            • 任務頁面<br />
-            • 答題驗證<br />
-            • 關卡解鎖<br />
-            • 進度保存
-          </td>
-        </tr>
-
-        <tr>
-          <td class="m-pro-current-plan-subTitle">
-            <strong>希望保留 LINE 作為入口</strong>
-          </td>
-
-          <td class="m-pro-current-plan">
-            <strong style="font-size: 14px">整合 LINE／LIFF 入口</strong><br />
-            <span style="font-size: 14px; color: var(--color-m-muted); display: block; margin-top: 4px">
-              玩家可從 LINE 官方帳號、圖文選單、訊息連結或 LIFF URL 進入活動頁面，不需另外安裝 App。
-            </span>
-          </td>
-
-          <td style="font-size: 14px; color: var(--color-m-muted)">
-            • LINE 入口串接<br />
-            • LIFF 開啟判斷<br />
-            • 玩家識別資料串接<br />
-            • 非 LINE 環境提示
-          </td>
-        </tr>
-
-        <tr>
-          <td class="m-pro-current-plan-subTitle">
-            <strong>想增加紙本或 LINE 難以呈現的互動</strong>
-          </td>
-
-          <td class="m-pro-current-plan">
-            <strong style="font-size: 14px">加入 WEB 互動模組</strong><br />
-            <span style="font-size: 14px; color: var(--color-m-muted); display: block; margin-top: 4px"> 透過 WEB
-              畫面呈現點擊、排序、拖曳、狀態變化、計時、背包或小遊戲等互動效果。 </span>
-          </td>
-
-          <td style="font-size: 14px; color: var(--color-m-muted)">
-            • 點擊互動<br />
-            • 拖曳排序<br />
-            • 狀態切換<br />
-            • 小遊戲模組
-          </td>
-        </tr>
-
-        <tr>
-          <td class="m-pro-current-plan-subTitle">
-            <strong>需要控管玩家資格</strong>
-          </td>
-
-          <td class="m-pro-current-plan">
-            <strong style="font-size: 14px">可加購序號與基本後台管理</strong><br />
-            <span style="font-size: 14px; color: var(--color-m-muted); display: block; margin-top: 4px">
-              可依需求加入序號啟用、玩家身份綁定、啟用狀態查詢與基本後台管理功能。 </span>
-          </td>
-
-          <td style="font-size: 14px; color: var(--color-m-muted)">
-            • 序號管理<br />
-            • 玩家資格控管<br />
-            • 啟用紀錄查詢<br />
-            • 後台管理
-          </td>
-        </tr>
-
-        <tr>
-          <td class="m-pro-current-plan-subTitle">
-            <strong>需要更多 LINE 活動功能</strong>
-          </td>
-
-          <td class="m-pro-current-plan">
-            <strong style="font-size: 14px">可另行評估 LINE 客製功能</strong><br />
-            <span style="font-size: 14px; color: var(--color-m-muted); display: block; margin-top: 4px">
-              若專案需要集點、優惠券、會員綁定、推播、Webhook 或 LINE API 串接，可依實際需求另行報價。
-            </span>
-          </td>
-
-          <td style="font-size: 14px; color: var(--color-m-muted)">
-            • 集點卡<br />
-            • 優惠券<br />
-            • 會員綁定<br />
-            • Messaging API
-          </td>
-        </tr>
-
-        <tr>
-          <td class="m-pro-current-plan-subTitle">
-            <strong>合作分工</strong>
-          </td>
-
-          <td class="m-pro-current-plan" style="font-size: 14px; color: var(--color-m-muted)">
-            <strong style="color: var(--color-m-text)">我方主要提供</strong><br />
-            • WEB 互動系統建置<br />
-            • LINE／LIFF 技術整合<br />
-            • 任務流程與答題驗證功能<br />
-            • 本機進度保存<br />
-            • 依需求加購後台或客製模組
-          </td>
-
-          <td style="font-size: 14px; color: var(--color-m-muted)">
-            <strong style="color: var(--color-m-text)">不包含於本方案</strong><br />
-            • 紙本道具製作<br />
-            • LINE OA 內容建置<br />
-            • 活動企劃主導<br />
-            • 現場執行<br />
-            • 客戶營運代管
-          </td>
-        </tr>
-      </tbody>
-    </table> -->
   </section>
-  <!-- 一、核心系統配置 -->
+  <!-- 一、コアシステム構成 -->
   <section>
     <h2>一、基礎コアシステム構成</h2>
     <p style="font-size: 15px; margin-bottom: 15px; color: var(--color-m-muted)">
@@ -353,7 +217,7 @@
       </div>
     </div>
   </section>
-  <!-- 二、遊戲流程與內容 -->
+  <!-- 二、ゲームフローとコンテンツ -->
   <section>
     <h2>二、ゲームフローおよびコンテンツ仕様</h2>
     <div class="m-flow-container">
@@ -386,7 +250,8 @@
           <div class="m-data-value">
             <ul>
               <li><strong>オープン型フロー：</strong><span class="m-desc">プレイヤーは任意のステージを自由に選んで挑戦でき、強制的な解答順序の制限はありません。</span></li>
-              <li><strong>章立て型フロー：</strong><span class="m-desc">プレイヤーはあらかじめ設定された物語の流れに沿って進行し、完整な起承転結を体験できます。</span></li>
+              <li><strong>章立て型フロー：</strong><span class="m-desc">プレイヤーはあらかじめ設定された物語の流れに沿って進行し、一貫した起承転結を体験できます。</span>
+              </li>
             </ul>
           </div>
         </div>
@@ -441,7 +306,7 @@
       </div>
     </div>
   </section>
-  <!-- 三、單一關卡標準配置 -->
+  <!-- 三、単一ステージ標準構成 -->
   <section>
     <h2>三、単一ステージ標準構成</h2>
     <p style="font-size: 15px; color: var(--color-m-muted); margin-bottom: 15px">※
@@ -471,10 +336,10 @@
       <div class="m-data-card">
         <div class="m-data-row">
           <span class="m-data-label">項目名</span>
-          <strong class="m-data-value">資料文献 </strong>
+          <strong class="m-data-value">関連資料 </strong>
         </div>
         <div class="m-data-row m-full">
-          <span class="m-data-value">画像と文章で表示し、イベント背景や関連資料を補足する説明内容。</span>
+          <span class="m-data-value">画像と文章で表示し、イベント背景や参考資料を補足する説明内容。</span>
         </div>
       </div>
       <!-- Row 4 -->
@@ -486,7 +351,7 @@
         <div class="m-data-row m-full">
           <div class="m-data-value">
             <p>ステージ内でプレイヤーが操作する謎、手がかり、行動指示などの内容。</p>
-            <p>その他の手がかり提示形式（例：AR拡張画像、ミラー画像オーバーレイなど）が必要な場合は、高度機能パッケージを追加購入できます。</p>
+            <p>その他の手がかり提示形式（例：AR拡張画像、ミラー画像オーバーレイなど）が必要な場合は、上位機能パッケージを別途追加できます。</p>
           </div>
         </div>
       </div>
@@ -499,7 +364,7 @@
         <div class="m-data-row m-full">
           <div class="m-data-value">
             クリア条件を満たしているかを確認する判定機構です。基本構成は単一文字列検証（厳密モード）で、大小文字、全角半角、句読点・記号などを含め、完全に一致する回答を入力する必要があります。</div>
-          <span class="m-data-value">その他の検証機構（例：画像認識）が必要な場合は、高度機能パッケージを追加購入できます。</span>
+          <span class="m-data-value">その他の検証方式（例：画像認識）が必要な場合は、上位機能パッケージを別途追加できます。</span>
         </div>
       </div>
       <!-- Row 6 -->
@@ -538,7 +403,7 @@
       </div>
     </div>
   </section>
-  <!-- ★ 標準方案價格宣告區塊 ★ -->
+  <!-- ★ 標準プラン費用表示エリア ★ -->
   <section>
     <div class="m-standard-price-box">
       <h3>【 WEB in LINE 標準プラン費用 】</h3>
@@ -552,7 +417,7 @@
   </section>
   <section>
     <div class="m-rwd-grid-3">
-      <!-- 標準方案 -->
+      <!-- 標準プラン -->
       <div class="m-data-card">
         <div class="m-data-row">
           <span class="m-data-label">プラン種別</span>
@@ -567,14 +432,14 @@
             <ul class="m-sub-desc-scope">
               <li>20個以内のミッション／ステージを含む</li>
               <li>標準ホスティングデプロイ：含む</li>
-              <li>高度機能パッケージ：+ 50,000 円</li>
-              <li>ご依頼者様環境デプロイ：+ 30,000 円</li>
+              <li>上位機能パッケージ：+ 50,000 円</li>
+              <li>ご依頼者様の環境へのデプロイ：+ 30,000 円</li>
               <li>カスタム機能：別途見積</li>
             </ul>
           </div>
         </div>
       </div>
-      <!-- 初次合作 -->
+      <!-- 初回導入案件 -->
       <div class="m-data-card">
         <div class="m-data-row">
           <span class="m-data-label">プラン種別</span>
@@ -588,14 +453,14 @@
           <div class="m-data-value">
             <ul class="m-sub-desc-scope">
               <li>20個以内のミッション／ステージを含む</li>
-              <li>特典：高度機能パッケージを無償提供</li>
-              <li>特典：ご依頼者様環境へのデプロイを無償対応</li>
+              <li>特典：上位機能パッケージを無料で追加</li>
+              <li>特典：ご依頼者様の環境へのデプロイに無料で対応</li>
               <li>カスタム機能：別途見積</li>
             </ul>
           </div>
         </div>
       </div>
-      <!-- 年度多案優惠 -->
+      <!-- 年間複数案件割引 -->
       <div class="m-data-card">
         <div class="m-data-row">
           <span class="m-data-label">プラン種別</span>
@@ -610,8 +475,8 @@
             <ul class="m-sub-desc-scope">
               <li>同一団体で12か月以内に累計3件目以降から適用</li>
               <li>20個以内のミッション／ステージを含む</li>
-              <li>高度機能パッケージ＋標準ホスティングデプロイを含む</li>
-              <li>ご依頼者様環境デプロイへのアップグレード：+ 30,000 円</li>
+              <li>上位機能パッケージ＋標準ホスティングデプロイを含む</li>
+              <li>ご依頼者様の環境へのデプロイにアップグレード：+ 30,000 円</li>
               <li>カスタム機能：別途見積</li>
             </ul>
           </div>
@@ -629,11 +494,11 @@
       </div>
     </div>
   </section>
-  <!-- 四、進階加購與服務 -->
+  <!-- 四、上位機能オプションおよびサービス -->
   <section>
-    <h2>四、高度な追加オプションおよびプロジェクトサービス</h2>
-    <h3>1. 高度機能パッケージ</h3>
-    <p class="m-module-note">※ 手がかり提示や検証方式を追加する必要がある場合は、必要に応じて本構成パッケージを追加購入できます。</p>
+    <h2>四、上位機能オプションおよびプロジェクトサービス</h2>
+    <h3>1. 上位機能パッケージ</h3>
+    <p class="m-module-note">※ 手がかり提示や検証方式を追加する必要がある場合は、必要に応じて本構成パッケージを別途追加できます。</p>
     <div class="m-module-table-wrap">
       <table class="m-module-table">
         <thead>
@@ -662,24 +527,6 @@
             </td>
             <td data-label="説明">外部Webページを埋め込み、追加の手がかり情報を表示します。当該Webページが埋め込みを許可しているか確認が必要です。</td>
           </tr>
-          <!-- <tr>
-              <td data-label="模組名稱">
-                <strong class="m-module-name">全景視圖</strong>
-              </td>
-              <td data-label="類型">
-                <span class="m-module-type m-module-type-clue">線索呈現</span>
-              </td>
-              <td data-label="說明">以 360 度全景圖的方式呈現線索資訊（需提供全景圖素材）。</td>
-            </tr> -->
-          <!-- <tr>
-              <td data-label="模組名稱">
-                <strong class="m-module-name">事件地圖</strong>
-              </td>
-              <td data-label="類型">
-                <span class="m-module-type m-module-type-clue">線索呈現</span>
-              </td>
-              <td data-label="說明">顯示事件發生地的所在位置。</td>
-            </tr> -->
           <tr>
             <td data-label="モジュール名">
               <strong class="m-module-name">ミラー画像オーバーレイ</strong>
@@ -783,7 +630,7 @@
         </tbody>
         <tfoot>
           <tr class="m-module-total-row">
-            <td class="m-module-total-label" colspan="2">高度機能パッケージ合計金額：</td>
+            <td class="m-module-total-label" colspan="2">上位機能パッケージ合計金額：</td>
             <td class="m-module-total-price">50,000 円</td>
           </tr>
         </tfoot>
@@ -818,17 +665,15 @@
             「<strong>数学アルゴリズム</strong> 」を用いてローカル検証を行い、プレイヤーが保有するキーの有効性を判定できます。
             <ul class="m-sub-desc-scope">
               <li>
-                <!-- <strong>交付專屬桌上型金鑰生產器</strong>， -->
                 発注者はご自身のPC上で、無制限にキーを生成できます。
-                <!-- ，並一鍵匯出 Excel 與 QR Code。 -->
               </li>
-              <li>オフライン検証機構を採用するため、<span
+              <li>オフライン検証方式を採用するため、<span
                   style="color: #d9534f; font-weight: bold">キーは再利用可能な特性を持ちます。「単一キーを一度だけ使用可能」に厳密に制限する必要がある場合は、下記のクラウド型ライセンス管理プラットフォームをご参照ください。</span>
               </li>
               <li>
                 発注者は<strong>バーチャルとリアルの連携</strong>の方式を採用し、一部の謎解き道具を物理化（例：謎解きキット）することもできます。キーが共有された場合でも、プレイヤーが実物の道具を持っていなければプレイできません。
               </li>
-              <li>本プランはソフトウェア側の検証機構のみを提供します。実物の道具の設計および制作は発注者側でご計画ください。</li>
+              <li>本プランはソフトウェア側の検証方式のみを提供します。実物の道具の設計および制作は発注者側でご計画ください。</li>
             </ul>
           </div>
         </div>
@@ -846,12 +691,12 @@
           <div class="m-data-value">
             一式の<strong>標準化データベース構造</strong>と<strong>標準版シリアル番号管理画面</strong>を提供し、新規シリアル番号の生成、既存ゲームシリアル番号の管理、および管理画面自体の基本権限管理に使用します。
             <ul class="m-sub-desc-scope">
-              <li>管理画面にはアカウント管理機構を設け、未承認者によるアクセスや操作を防ぎます。ゲーム側にはシリアル番号検証機構を追加し、シリアル番号は使用後ただちに無効化され、重複使用を防止します。</li>
+              <li>管理画面にはアカウント管理機構を設け、未承認者によるアクセスや操作を防ぎます。ゲーム側にはシリアル番号検証方式を追加し、シリアル番号は使用後ただちに無効化され、重複使用を防止します。</li>
               <li>本システムは既存の標準機能構成で納品し、単一プロジェクトにおけるシリアル番号生成・管理ニーズに対応します。データ構造の調整や管理画面機能の拡張が必要な場合は、必要に応じて別途評価のうえ見積もります。
               </li>
               <li>
                 <strong>外部費用とデプロイ責任：</strong>システム納品時には、<span
-                  style="color: #d9534f; font-weight: bold">発注者にて指示に従い、クラウドデータベースおよびデプロイ環境を申請していただく必要があります（発注者のクレジットカード登録が必要）</span>。その後、毎月発生するトラフィックおよびサーバー費用も発注者が全額負担します。
+                  style="color: #d9534f; font-weight: bold">発注者にて指示に従い、Googleが提供するクラウドデータベースおよびデプロイ環境を申請していただく必要があります（発注者のクレジットカード登録が必要）</span>。その後、毎月発生するトラフィックおよびサーバー費用も発注者が全額負担します。
               </li>
             </ul>
           </div>
@@ -863,7 +708,7 @@
       <div class="m-data-card">
         <div class="m-data-row">
           <span class="m-data-label">項目カテゴリ</span>
-          <strong class="m-data-value">ご依頼者様環境デプロイ</strong>
+          <strong class="m-data-value">ご依頼者様の環境へのデプロイ</strong>
         </div>
         <div class="m-data-row">
           <span class="m-data-label">参考単価</span>
@@ -886,7 +731,7 @@
           <span class="m-price-col">別途見積</span>
         </div>
         <div class="m-data-row m-full">
-          <span class="m-data-value">発注者に代わり、LINE OAに対応する返信内容の構築を支援します。自動返信設定、トーン調整、リッチメニュー等の設定を含みます。</span>
+          <span class="m-data-value">発注者に代わり、LINE OAに対応する返信内容の構築を支援します。自動返信設定、リッチメニュー等の設定を含みます。</span>
         </div>
       </div>
       <div class="m-data-card">
@@ -948,7 +793,7 @@
     <h2>五、プロジェクトサービスフロー説明</h2>
     <div class="m-header-section">
       <p class="m-section-intro">
-        本項目では、本プロジェクトの実行フローと各段階の作業内容を説明し、発注者がプロジェクトの進め方と各節目の安排を理解できるようにします。<br />
+        本項目では、本プロジェクトの実行フローと各段階の作業内容を説明し、発注者がプロジェクトの進め方と各段階の進め方を理解できるようにします。<br />
         実際の権利義務、責任の所在および関連制限は、すべて正式な契約条項を基準とします。
       </p>
     </div>
@@ -1036,7 +881,7 @@
         <li>
           <strong class="m-list-title">納品形式：</strong>
           <div class="m-list-desc">
-            本プロジェクトの納品物には、ビルド済みプロジェクトの静的圧縮ファイルが含まれ、発注者のバックアップ保存用として提供されます。また、発注者の要望に応じて、「標準ホスティングデプロイ」と「ご依頼者様環境デプロイ」の2種類に分けられます。
+            本プロジェクトの納品物には、ビルド済みプロジェクトの静的圧縮ファイルが含まれ、発注者のバックアップ保存用として提供されます。また、発注者の要望に応じて、「標準ホスティングデプロイ」と「ご依頼者様の環境へのデプロイ」の2種類に分けられます。
             <ul class="m-list-sub">
               <li>
                 <strong>標準ホスティングデプロイ：</strong><br />
@@ -1045,7 +890,7 @@
                 ホスティング期間満了後、更新契約がない場合、オンライン版は契約に基づき公開停止となります。
               </li>
               <li>
-                <strong>ご依頼者様環境デプロイ：</strong><br />
+                <strong>ご依頼者様の環境へのデプロイ：</strong><br />
                 プロジェクトのLIFF入口および関連設定を、発注者が提供するLINE
                 Developers環境に構築し、発注者が提供するCloudflareアカウントへデプロイします。納品完了後は発注者自身で保有・管理します。<br />
                 その後、発注者自身によるLINE Developers、LIFF、Cloudflare、DNS、ドメインまたは関連設定の変更により接続できなくなった場合は、発注者自身で解決する必要があります。

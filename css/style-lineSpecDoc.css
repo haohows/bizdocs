@@ -36,6 +36,7 @@ header {
   background: var(--color-m-surface);
   border-bottom: 2px solid var(--color-m-accent);
   padding: 30px 20px 25px;
+  flex-wrap: wrap;
 }
 
 .m-title-block h1 {
@@ -1325,3 +1326,17 @@ strong.m-highlight {
 .m-price-note-content div {
   margin: 0;
 }
+
+
+.m-translation-note {
+  width: 100%;
+  margin-top: 18px;
+  padding: 10px 12px;
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--color-m-muted);
+  border: 1px solid var(--color-m-border);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.6);
+}
+
