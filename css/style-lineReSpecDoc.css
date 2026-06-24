@@ -638,8 +638,8 @@ strong.m-highlight {
   list-style: none;
 }
 .m-list-group > li {
-  margin-bottom: 24px;
-  padding-bottom: 24px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
   border-bottom: 1px solid var(--color-m-border);
 }
 .m-list-group > li:last-child {
@@ -653,7 +653,7 @@ strong.m-highlight {
   font-size: 16px;
   color: var(--color-m-primary);
   font-weight: bold;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 .m-list-desc {
   display: block;
@@ -804,6 +804,12 @@ strong.m-highlight {
     gap: 20px;
   }
 
+    .m-rwd-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
   .m-data-card {
     margin-bottom: 0;
     display: flex;
@@ -898,8 +904,31 @@ strong.m-highlight {
   border: 1px solid var(--color-m-border);
   border-radius: 8px;
   overflow: hidden;
+  margin-top: 25px;
   margin-bottom: 25px;
+  padding: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.m-advfunc-tag {
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--color-m-muted);
+  letter-spacing: 1.5px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+}
+
+.m-advfunc-tag::before {
+  content: "CLUE VERIFY FUNCTIONS";
+  background: #e9ecef;
+  color: #495057;
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-size: 9px;
+  margin-right: 8px;
 }
 
 .m-module-table {
