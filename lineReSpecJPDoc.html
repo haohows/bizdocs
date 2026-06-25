@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+  <!-- 字體 -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&amp;family=Noto+Serif+TC:wght@400;700&amp;display=swap"
+    rel="stylesheet" />
+  <!-- SEO -->
+  <meta content="実在する場をインタラクティブな謎解き体験へ転換し、観光、イベント、ブランド体験に活用できます。" name="description" />
+  <!-- favicon -->
+  <link href="https://haohows.com/bizdocs/image/mylogo.webp" rel="icon" />
+  <!-- Open Graph (FB / LINE / 通用分享) -->
+  <meta content="WEB in LINE リアル謎解きプラン仕様書" property="og:title" />
+  <meta content="実在する場をインタラクティブな謎解き体験へ転換します。スマートフォンですぐに遊べ、観光、イベント、ブランド体験に活用できます。" property="og:description" />
+  <meta content="https://haohows.com/bizdocs/image/mylogo.webp" property="og:image" />
+  <meta content="https://haohows.com/bizdocs/lineSpecDoc" property="og:url" />
+  <meta content="website" property="og:type" />
+  <!-- Twitter -->
+  <meta content="summary_large_image" name="twitter:card" />
+  <meta content="WEB in LINE リアル謎解きプラン仕様書" name="twitter:title" />
+  <meta content="実在する場をインタラクティブな謎解き体験へ転換します。スマートフォンですぐに遊べます。" name="twitter:description" />
+  <meta content="https://haohows.com/bizdocs/image/mylogo.webp" name="twitter:image" />
+  <link href="css/style-lineReSpecDoc.css" rel="stylesheet" />
+  <title>WEB in LINE リアル謎解きプラン仕様書</title>
+</head>
+
+<body>
+  <header>
+    <div class="m-title-block">
+      <h1>WEB in LINE リアル謎解きプラン仕様書</h1>
+      <div class="m-subtitle">Web in LINE Reality Puzzle Service Specification</div>
+    </div>
+    <div class="m-meta-info">
+      <p style="padding: 0; margin: 0; display: flex; justify-content: space-between">
+        <span>バージョン：</span><span>v3.0</span>
+      </p>
+      <p style="padding: 0; margin: 0; display: flex; justify-content: space-between">
+        <span>日付：</span><span>2026-06-15</span>
+      </p>
+      <p style="padding: 0; margin: 0; display: flex; justify-content: space-between">
+        <span>種別：</span>相互協力プラン
+      </p>
+    </div>
+  </header>
+  <!-- 序、方案定位與 Demo 參考說明 -->
+  <section>
+    <h2>はじめに：プランとデモの参考説明</h2>
+    <div class="m-pro-demo-section m-prefacearea">
+      <div class="m-pro-demo-text">
+        <p class="m-intro-text">
+          本プランでは、LINEのフローに組み込めるWEBインタラクションシステムを提供します。既存コンテンツに追加する「デジタルインタラクション層」として、WEB画面上でミッション操作、インタラクション、仕組み上の判定を受け持ち、ゲームの枠組みとしてLINE単体では表現しにくい部分を補い、より没入感のある体験を実現します。
+        </p>
+        <p class="m-intro-text">
+          プレイヤーはLINEから直接ゲームに入ることができ、協力団体もLINE公式アカウントを活動の入口として継続利用できます。これにより、プレイヤーの利用ハードルを下げつつ、今後の接点づくり、誘導、インタラクション拡張の可能性を残すことができます。
+        </p>
+        <p class="m-pro-disclaimer">具体的な表示イメージをご確認いただくため、QRコードを読み取る、またはクリックして体験いただけます。</p>
+      </div>
+      <div class="m-demo-qrcode">
+        <a class="m-qrcode-placeholder" href="https://lin.ee/ws2UCL5"
+          style="background-image: url(image/jp/linedemo.png)">
+        </a>
+      </div>
+    </div>
+    <div class="m-pro-service-section">
+      <div class="m-pro-service-header">
+        <span class="m-pro-service-kicker">LINE／LIFF WEBインタラクション層の構築</span>
+        <h3 class="m-pro-service-heading">本プランで支援できる内容</h3>
+        <p class="m-pro-service-lead">協力団体が既に持っているミッションフロー、ステージ設計、LINE OAの仕組みを、スマートフォン上で操作できるWEBインタラクション体験へと拡張します。</p>
+      </div>
+      <div class="m-pro-service-list">
+        <article class="m-pro-service-card">
+          <div class="m-pro-card-main">
+            <h4 class="m-pro-card-title">LINEを入口として残す</h4>
+            <div class="m-pro-card-content">
+              <strong>LINEアプリ入口連携</strong>
+              <p>プレイヤーはLINE公式アカウント、リッチメニュー、メッセージリンクからゲームページへ入ることができ、別途アプリをインストールする必要はありません。</p>
+            </div>
+          </div>
+          <div class="m-pro-effect-area">
+            <span class="m-pro-effect-title">追加できる効果</span>
+            <div class="m-pro-effect-tags">
+              <span>LINE入口連携</span>
+              <span>LINE OA連携</span>
+              <span>LINE外環境での案内表示</span>
+            </div>
+          </div>
+        </article>
+        <article class="m-pro-service-card">
+          <div class="m-pro-card-main">
+            <h4 class="m-pro-card-title">紙媒体やLINEだけでは表現しにくいインタラクションを追加</h4>
+            <div class="m-pro-card-content">
+              <strong>LINE内で開けるWEBインタラクション画面の構築</strong>
+              <p>既存コンテンツをスマートフォン上で操作できるインタラクションページへ変換し、LINE単体では実現できないインタラクション効果を可能にします。</p>
+            </div>
+          </div>
+          <div class="m-pro-effect-area">
+            <span class="m-pro-effect-title">追加できる効果</span>
+            <div class="m-pro-effect-tags">
+              <span>多様な回答検証</span>
+              <span>インタラクション機構</span>
+              <span>イベント・ストーリー演出</span>
+              <span>進行状況の保存</span>
+            </div>
+          </div>
+        </article>
+        <article class="m-pro-service-card m-pro-service-card-full">
+          <div class="m-pro-card-main">
+            <h4 class="m-pro-card-title">双方の協力における役割と範囲</h4>
+          </div>
+          <div class="m-pro-scope-grid">
+            <div class="m-pro-scope-box">
+              <strong>当方が主に提供するサービス</strong>
+              <ul>
+                <li>WEBインタラクションシステム構築</li>
+                <li>LINE／LIFFおよび既存LINE OA入口連携</li>
+                <li>ミッションフロー、回答検証、進行状況の保存</li>
+                <li>インタラクション画面、ステージフレーム、基本操作体験</li>
+              </ul>
+            </div>
+            <div class="m-pro-scope-box">
+              <strong>協力団体が主に提供する内容</strong>
+              <ul>
+                <li>地域のストーリー、歴史・文化資料、現地情報</li>
+                <li>謎の内容、ストーリー設定、写真および画像・文章素材</li>
+                <li>LINE OAコンテンツ構築</li>
+                <li>実物小道具の制作（必要な場合）</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+  <!-- 一、核心系統配置 -->
+  <section>
+    <h2>一、基本コアシステム構成</h2>
+    <p style="font-size: 15px; margin-bottom: 15px; color: var(--color-m-muted)">
+      モジュール化されたWebアーキテクチャ設計を採用し、各種プロジェクト形態に対応しながら開発速度を高めます。</p>
+    <div class="m-rwd-grid-3">
+      <div class="m-data-card">
+        <div class="m-data-row">
+          <span class="m-data-label">モジュール名</span>
+          <strong class="m-data-value">状態管理モジュール </strong>
+        </div>
+        <div class="m-data-row m-full">
+          <div class="m-data-value">
+            <ul>
+              <li><strong>実行環境チェック：</strong><span class="m-desc">端末と実行環境を自動判定し、環境が条件に合わない場合は案内を表示して、安定した動作を確保します。</span>
+              </li>
+              <li><strong>初期ロジック判定：</strong><span
+                  class="m-desc">現在のデータ状態を自動検出し、対応するリソースの事前読み込みを行うことで、スムーズなプレイ体験を確保します。</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="m-data-card">
+        <div class="m-data-row">
+          <span class="m-data-label">モジュール名</span>
+          <strong class="m-data-value">システム制御モジュール </strong>
+        </div>
+        <div class="m-data-row m-full">
+          <div class="m-data-value">
+            <ul>
+              <li><strong>進行状況の保存・読込機能：</strong><span
+                  class="m-desc">クライアント側ストレージを用いて現在のプレイ進行状況を記録し、再読み込み後のデータ消失を防ぎます。</span></li>
+              <li><strong>メイン機能コントロールバー：</strong><span class="m-desc">「ゲームガイド」「資料ファイル」「状態設定」を含むコントロール画面です。</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="m-data-card">
+        <div class="m-data-row">
+          <span class="m-data-label">モジュール名</span>
+          <strong class="m-data-value">インタラクティブ謎解きモジュール </strong>
+        </div>
+        <div class="m-data-row m-full">
+          <div class="m-data-value">
+            <ul>
+              <li><strong>コアミッション機能：</strong><span
+                  class="m-desc">インタラクションと謎解きを行うための中核機構です。画像・文章による手がかり、回答照合処理などを含みます。</span></li>
+              <li><strong>リアルタイムフィードバック機構：</strong><span class="m-desc">検証判定、エラーフィードバック、詰まった際のヒント、クリア時の遷移演出を含みます。</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="m-visual-reference">
+      <div class="m-reference-tag">コアシステム構成イメージ</div>
+      <div class="m-visual-grid">
+        <div class="m-visual-item">
+          <div class="m-screen-mock" style="background-image: url(image/jp/19.png)"></div>
+          <span class="m-visual-label">状態管理-環境チェック</span>
+        </div>
+        <div class="m-visual-item">
+          <div class="m-screen-mock" style="background-image: url(image/jp/12.png)"></div>
+          <span class="m-visual-label">状態管理-初期読み込み</span>
+        </div>
+        <div class="m-visual-item">
+          <div class="m-screen-mock" style="background-image: url(image/jp/08.png)"></div>
+          <span class="m-visual-label">システム制御-メイン画面</span>
+        </div>
+        <div class="m-visual-item">
+          <div class="m-screen-mock" style="background-image: url(image/jp/13.png)"></div>
+          <span class="m-visual-label">インタラクティブ謎解き-ミッションシーケンス</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- 二、遊戲流程與內容 -->
+  <section>
+    <h2>二、ゲームフローと内容仕様</h2>
+    <div class="m-flow-container">
+      <div class="m-flow-step"><strong>プロローグ</strong><span style="font-size: 14px">ミッション導入</span></div>
+      <div class="m-flow-step"><strong>章立てステージ</strong><span style="font-size: 14px">インタラクション操作</span></div>
+      <div class="m-flow-step"><strong>エンディング</strong><span style="font-size: 14px">結末の収束</span></div>
+      <div class="m-flow-step"><strong>クリア結果</strong><span style="font-size: 14px">データ集計</span></div>
+    </div>
+    <div class="m-rwd-grid-4">
+      <div class="m-data-card">
+        <div class="m-data-row">
+          <span class="m-data-label">段階-1</span>
+          <strong class="m-data-value">プロローグ演出 </strong>
+        </div>
+        <div class="m-data-row m-full">
+          <div class="m-data-value">
+            <ul>
+              <li><strong>表示形式：</strong><span
+                  class="m-desc">「画像と文章を対応させる」形式を採用し、1枚のシーン画像に対応する文章を添えて、プレイヤーを物語の背景へ導きます。</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="m-data-card">
+        <div class="m-data-row">
+          <span class="m-data-label">段階-2</span>
+          <strong class="m-data-value">章立てステージモード </strong>
+        </div>
+        <div class="m-data-row m-full">
+          <div class="m-data-value">
+            <ul>
+              <li><strong>オープン型フロー：</strong><span class="m-desc">ステージを自由に選んで挑戦でき、強制的な順序制限はありません。</span></li>
+              <li><strong>章立て型フロー：</strong><span class="m-desc">あらかじめ設定された物語の流れに沿って、起承転結のある一貫した体験を味わえます。</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="m-data-card">
+        <div class="m-data-row">
+          <span class="m-data-label">段階-3</span>
+          <strong class="m-data-value">エンディング演出 </strong>
+        </div>
+        <div class="m-data-row m-full">
+          <div class="m-data-value">
+            <ul>
+              <li><strong>表示形式：</strong><span
+                  class="m-desc">「長文と画像を組み合わせる」形式を採用し、まとまった物語文を主体として、複数の挿絵とともに結末の雰囲気を表現します。</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="m-data-card">
+        <div class="m-data-row">
+          <span class="m-data-label">段階-4</span>
+          <strong class="m-data-value">クリア結果 </strong>
+        </div>
+        <div class="m-data-row m-full">
+          <div class="m-data-value">
+            <ul>
+              <li><strong>表示内容：</strong><span class="m-desc">チャレンジ情報、プレイ所要時間、最終結果情報を表示します。</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="m-visual-reference">
+      <div class="m-reference-tag">ステージフローイメージ</div>
+      <div class="m-visual-grid">
+        <div class="m-visual-item">
+          <div class="m-screen-mock" style="background-image: url(image/jp/01.png)"></div>
+          <span class="m-visual-label">プロローグ</span>
+        </div>
+        <div class="m-visual-item">
+          <div class="m-screen-mock" style="background-image: url(image/jp/02.png)"></div>
+          <span class="m-visual-label">章立てステージ</span>
+        </div>
+        <div class="m-visual-item">
+          <div class="m-screen-mock" style="background-image: url(image/jp/03.png)"></div>
+          <span class="m-visual-label">エンディング</span>
+        </div>
+        <div class="m-visual-item">
+          <div class="m-screen-mock" style="background-image: url(image/jp/04.png)"></div>
+          <span class="m-visual-label">クリア結果</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- 三、單一關卡標準配置 -->
+  <section>
+    <h2>三、単一ステージの標準構成</h2>
+    <p style="font-size: 15px; color: var(--color-m-muted); margin-bottom: 15px">※ 各ステージには、標準で以下の固定構成が含まれます：</p>
+    <div class="m-rwd-grid-3">
+      <!-- Row 1 -->
+      <div class="m-data-card">
+        <div class="m-data-row">
+          <span class="m-data-label">項目名</span>
+          <strong class="m-data-value">ステージ情報</strong>
+        </div>
+        <div class="m-data-row m-full">
+          <span class="m-data-value">ステージ内容の概要表示、実際のプレイ場所における雰囲気づくり、またはビジュアルテーマの表示などに用います。</span>
+        </div>
+      </div>
+      <!-- Row 2 -->
+      <div class="m-data-card">
+        <div class="m-data-row">
+          <span class="m-data-label">項目名</span>
+          <strong class="m-data-value">シナリオ案内</strong>
+        </div>
+        <div class="m-data-row m-full">
+          <span class="m-data-value">場面描写、導線説明、ステージ内のシナリオ演出などに用います。</span>
+        </div>
+      </div>
+      <!-- Row 3 -->
+      <div class="m-data-card">
+        <div class="m-data-row">
+          <span class="m-data-label">項目名</span>
+          <strong class="m-data-value">資料・文献 </strong>
+        </div>
+        <div class="m-data-row m-full">
+          <span class="m-data-value">画像と文章で表示し、出来事の背景や関連資料を補足説明するための内容です。</span>
+        </div>
+      </div>
+      <!-- Row 4 -->
+      <div class="m-data-card">
+        <div class="m-data-row">
+          <span class="m-data-label">項目名</span>
+          <strong class="m-data-value">ステージと謎</strong>
+        </div>
+        <div class="m-data-row m-full">
+          <div class="m-data-value">
+            <p>ステージ内でプレイヤーが操作する謎、手がかり、行動指示などの内容です。</p>
+            <p>詳しい手がかりの表示タイプは、下記の手がかり・検証機能一覧をご参照ください。</p>
+          </div>
+        </div>
+      </div>
+      <!-- Row 5 -->
+      <div class="m-data-card">
+        <div class="m-data-row">
+          <span class="m-data-label">項目名</span>
+          <strong class="m-data-value">判定・検証</strong>
+        </div>
+        <div class="m-data-row m-full">
+          <div class="m-data-value">
+            <p>プレイヤーの操作内容がクリア条件を満たしているかを確認する判定機構です。</p>
+            <p>詳しい検証機構のタイプは、下記の手がかり・検証機能一覧をご参照ください。</p>
+          </div>
+        </div>
+      </div>
+      <!-- Row 6 -->
+      <div class="m-data-card">
+        <div class="m-data-row">
+          <span class="m-data-label">項目名</span>
+          <strong class="m-data-value">LINEヒント入口連携</strong>
+        </div>
+        <div class="m-data-row m-full">
+          <div class="m-data-value">
+            <p>回答が誤っている場合にヒント（Hint）ボタンを表示し、プレイヤーが閲覧するかどうかを自分で選べるようにします。</p>
+            <p>LINE画面を開くことができ、返信内容は協力団体側のLINE OA設定に準じます。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="m-module-table-wrap">
+      <div class="m-advfunc-tag">手がかり・検証機能一覧</div>
+      <table class="m-module-table">
+        <thead>
+          <tr>
+            <th>モジュール名</th>
+            <th>タイプ</th>
+            <th>説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="模組名稱">
+              <strong class="m-module-name">画像手がかり</strong>
+            </td>
+            <td data-label="類型">
+              <span class="m-module-type m-module-type-clue">手がかり表示</span>
+            </td>
+            <td data-label="說明">追加の手がかり情報を画像で表示します。</td>
+          </tr>
+          <tr>
+            <td data-label="模組名稱">
+              <strong class="m-module-name">外部Webページ</strong>
+            </td>
+            <td data-label="類型">
+              <span class="m-module-type m-module-type-clue">手がかり表示</span>
+            </td>
+            <td data-label="說明">外部Webページを1つ埋め込むことができます。ただし、そのページが埋め込みを許可しているか確認が必要です。</td>
+          </tr>
+          <tr>
+            <td data-label="模組名稱">
+              <strong class="m-module-name">鏡像ステッカー</strong>
+            </td>
+            <td data-label="類型">
+              <span class="m-module-type m-module-type-clue">手がかり表示</span>
+            </td>
+            <td data-label="說明">画像素材を、カメラモード上で表示する手がかり内容として適用します。</td>
+          </tr>
+          <tr>
+            <td data-label="模組名稱">
+              <strong class="m-module-name">AR拡張画像</strong>
+            </td>
+            <td data-label="類型">
+              <span class="m-module-type m-module-type-clue">手がかり表示</span>
+            </td>
+            <td data-label="說明">プレイヤーが指定のマーカーをスキャンした後に、隠された手がかり内容を表示します。</td>
+          </tr>
+          <tr>
+            <td data-label="模組名稱">
+              <strong class="m-module-name">文字厳密モード</strong>
+            </td>
+            <td data-label="類型">
+              <span class="m-module-type m-module-type-verify">検証モード</span>
+            </td>
+            <td data-label="說明">回答検証時に、大文字・小文字、全角・半角などを含め、完全に一致する回答の入力が必要です。</td>
+          </tr>
+          <tr>
+            <td data-label="模組名稱">
+              <strong class="m-module-name">文字寛容モード</strong>
+            </td>
+            <td data-label="類型">
+              <span class="m-module-type m-module-type-verify">検証モード</span>
+            </td>
+            <td data-label="說明">回答検証時に、プレイヤー入力の大文字・小文字、前後の空白、全角・半角の違いを無視します。</td>
+          </tr>
+          <tr>
+            <td data-label="模組名稱">
+              <strong class="m-module-name">複数テキスト検証</strong>
+            </td>
+            <td data-label="類型">
+              <span class="m-module-type m-module-type-verify">検証モード</span>
+            </td>
+            <td data-label="說明">同一ステージに複数の回答を設定できます。</td>
+          </tr>
+          <tr>
+            <td data-label="模組名稱">
+              <strong class="m-module-name">語順組み立てパネル</strong>
+            </td>
+            <td data-label="類型">
+              <span class="m-module-type m-module-type-verify">検証モード</span>
+            </td>
+            <td data-label="說明">指定された語句の中から正しい語順を組み立てることで検証を通過できます。</td>
+          </tr>
+          <tr>
+            <td data-label="模組名稱">
+              <strong class="m-module-name">実行確認</strong>
+            </td>
+            <td data-label="類型">
+              <span class="m-module-type m-module-type-verify">検証モード</span>
+            </td>
+            <td data-label="說明">ボタンをクリックするだけで検証を通過できます。プレイヤーへの確認事項、場面転換、メッセージ告知などに用います。</td>
+          </tr>
+          <tr>
+            <td data-label="模組名稱">
+              <strong class="m-module-name">項目選択</strong>
+            </td>
+            <td data-label="類型">
+              <span class="m-module-type m-module-type-verify">検証モード</span>
+            </td>
+            <td data-label="說明">複数の選択肢を提示できます。分岐ストーリーやマルチエンディングの設定に適しています。</td>
+          </tr>
+          <tr>
+            <td data-label="模組名稱">
+              <strong class="m-module-name">QRスキャン</strong>
+            </td>
+            <td data-label="類型">
+              <span class="m-module-type m-module-type-verify">検証モード</span>
+            </td>
+            <td data-label="說明">ゲーム内でカメラを起動し、指定のQRコードをスキャンすることで検証を通過します。</td>
+          </tr>
+          <tr>
+            <td data-label="模組名稱">
+              <strong class="m-module-name">GPS検証</strong>
+            </td>
+            <td data-label="類型">
+              <span class="m-module-type m-module-type-verify">検証モード</span>
+            </td>
+            <td data-label="說明">
+              <span>GPS位置情報で検証し、プレイヤーが指定範囲内にいる場合のみ検証を通過できます。</span>
+              <ul class="m-sub-desc-scope">
+                <li>実際の利用可否は、素材、現地環境、端末、ブラウザの対応状況に応じて確認が必要です。特殊な判定ロジックや高度なカスタム認識が必要な場合は、別途評価・見積もりとなります。</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td data-label="模組名稱">
+              <strong class="m-module-name">画像認識</strong>
+            </td>
+            <td data-label="類型">
+              <span class="m-module-type m-module-type-verify">検証モード</span>
+            </td>
+            <td data-label="說明">
+              <span>画像認識対象を1組設定し、検証の根拠として使用します。</span>
+              <ul class="m-sub-desc-scope">
+                <li>実際の利用可否は、素材、現地環境、端末、ブラウザの対応状況に応じて確認が必要です。特殊な判定ロジックや高度なカスタム認識が必要な場合は、別途評価・見積もりとなります。</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="m-visual-reference">
+      <div class="m-reference-tag">単一ステージ画面要素イメージ</div>
+      <div class="m-visual-grid">
+        <div class="m-visual-item">
+          <div class="m-screen-mock" style="background-image: url(image/jp/17.png)"></div>
+          <span class="m-visual-label">ステージ情報</span>
+        </div>
+        <div class="m-visual-item">
+          <div class="m-screen-mock" style="background-image: url(image/jp/05.png)"></div>
+          <span class="m-visual-label">シナリオ案内</span>
+        </div>
+        <div class="m-visual-item">
+          <div class="m-screen-mock" style="background-image: url(image/jp/06.png)"></div>
+          <span class="m-visual-label">シナリオ案内</span>
+        </div>
+        <div class="m-visual-item">
+          <div class="m-screen-mock" style="background-image: url(image/jp/07.png)"></div>
+          <span class="m-visual-label">ステージと謎</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ★ 標準方案價格宣告區塊 ★ -->
+  <section>
+    <div class="m-standard-price-box">
+      <h3>【 WEB in LINE 相互協力プラン費用 】</h3>
+      <span class="m-price-tag">0円から</span>
+      <span class="m-price-note">
+        本プランは、「技術実装」と「実際の成果事例」を交換する相互協力型の取り組みであるため、システム実装費はいただきません。<br />
+        第4項のカスタマイズサービス追加、または本プラン範囲を超える追加要件がある場合、その部分は別途見積もりとなります。
+      </span>
+      <span class="m-price-warning">※ 作品完成後、協力成果は協力団体の必要に応じて活用でき、当方の今後のポートフォリオ、サービス紹介、または提案事例として使用できるものとします。 </span>
+    </div>
+  </section>
+  <!-- 四、客製化服務加購 -->
+  <section>
+    <h2>四、カスタマイズサービス追加</h2>
+    <h3>1. 特殊機能</h3>
+    <div class="m-rwd-grid-1">
+      <div class="m-data-card">
+        <div class="m-data-row">
+          <span class="m-data-label">項目区分</span>
+          <strong class="m-data-value">カスタム検証開発</strong>
+        </div>
+        <div class="m-data-row">
+          <span class="m-data-label">参考単価</span>
+          <span class="m-price-col">別途見積もり</span>
+        </div>
+        <div class="m-data-row m-full">
+          <span class="m-data-value">要件に応じて特殊な謎解き機構を開発します。例：ロジック並べ替え、ドラッグ操作による謎解き、ミニゲームのクリアチャレンジなど、標準モジュール以外の機能。</span>
+        </div>
+      </div>
+      <div class="m-data-card">
+        <div class="m-data-row">
+          <span class="m-data-label">項目区分</span>
+          <strong class="m-data-value">キー発行・検証モジュール</strong>
+        </div>
+        <div class="m-data-row">
+          <span class="m-data-label">参考単価</span>
+          <span class="m-price-col">別途見積もり</span>
+        </div>
+        <div class="m-data-row m-full">
+          <div class="m-data-value">
+            <strong>数学アルゴリズム</strong>を採用してローカル検証を行い、プレイヤーが保有するキーの有効性を判定できます。
+            <ul class="m-sub-desc-scope">
+              <li>
+                協力団体は、自身のパソコン上でキーを無制限に生成できます。
+              </li>
+              <li>オフライン検証機構を採用するため、<span
+                  style="color: #d9534f; font-weight: bold">キーには再利用可能な性質があります。「1つのキーは1回のみ使用可能」と厳密に制限する必要がある場合は、下記のクラウド型ライセンスプラットフォームをご参照ください。</span>
+              </li>
+              <li>
+                協力団体は、<strong>実物とデジタルの連携</strong>という方法を採用し、一部の謎解き道具を実物化することもできます（例：謎解きキット）。キーが共有された場合でも、プレイヤーが実物道具を持っていなければプレイできません。
+              </li>
+              <li>本プランで提供するのはソフトウェア側の検証機構のみです。実物道具の設計・制作は協力団体側で計画する必要があります。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="m-data-card">
+        <div class="m-data-row">
+          <span class="m-data-label">項目区分</span>
+          <strong class="m-data-value">クラウド型シリアル番号ライセンス管理プラットフォーム</strong>
+        </div>
+        <div class="m-data-row">
+          <span class="m-data-label">参考単価</span>
+          <span class="m-price-col">別途見積もり</span>
+        </div>
+        <div class="m-data-row m-full">
+          <div class="m-data-value">
+            一式の<strong>標準化データベース構造</strong>と<strong>汎用版シリアル番号管理画面</strong>を提供し、新しいシリアル番号の生成、既存ゲームシリアル番号の管理、および管理画面自体の基本権限管理に使用します。
+            <ul class="m-sub-desc-scope">
+              <li>管理画面にはアカウント管理機構を設け、未承認の人物によるアクセスや操作を防ぎます。ゲーム側にはシリアル番号検証機構を追加し、シリアル番号は使用後ただちに無効化され、重複使用を防ぎます。</li>
+              <li>
+                <strong>外部コスト：</strong>システム納品時には、<span
+                  style="color: #d9534f; font-weight: bold">協力団体側で当方の案内に沿って、クラウドデータベースおよびデプロイ用スペースを申請していただく必要があります（Googleが提供するサービスを使用するため、協力団体のクレジットカード登録が必要です）</span>。その後、毎月発生する通信量およびサーバー費用も、協力団体が全額負担します。
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <h3>2. プロジェクト関連サービス</h3>
+    <div class="m-rwd-grid-1">
+      <div class="m-data-card">
+        <div class="m-data-row">
+          <span class="m-data-label">項目区分</span>
+          <strong class="m-data-value">LINE OA構築</strong>
+        </div>
+        <div class="m-data-row">
+          <span class="m-data-label">参考単価</span>
+          <span class="m-price-col">別途見積もり</span>
+        </div>
+        <div class="m-data-row m-full">
+          <span class="m-data-value">協力団体に代わって、LINE OAに対応する返信内容の構築を支援します。自動返信設定、スタイル調整、画像・文章設定を含みます。</span>
+        </div>
+      </div>
+      <div class="m-data-card">
+        <div class="m-data-row">
+          <span class="m-data-label">項目区分</span>
+          <strong class="m-data-value">スタイルカスタマイズ</strong>
+        </div>
+        <div class="m-data-row">
+          <span class="m-data-label">参考単価</span>
+          <span class="m-price-col">別途見積もり</span>
+        </div>
+        <div class="m-data-row m-full">
+          <div class="m-data-value">
+            標準テンプレート内の「指定セクション」に対してスタイルを差し替えるものです。レイアウト構造の調整、フロー変更、機能の増減は含みません。以下は一般的な調整対象の例です：
+            <ul class="m-sub-desc-scope">
+              <li>初期ページ：進行状況表示器。</li>
+              <li>コントロールページ：テーマエリア、ランチャー、状態表示、機能コントロールバーなど。</li>
+              <li>インタラクションページ：ミッションシーケンス、エンディングなど。</li>
+            </ul>
+            実際の調整範囲はプロジェクト要件に応じて確認し、見積もりは調整内容の複雑度と作業量に応じて評価します。
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="m-visual-reference">
+      <div class="m-reference-tag">スタイルカスタマイズ（例：コントロールメインページ）</div>
+      <div class="m-visual-grid">
+        <div class="m-visual-item">
+          <div class="m-screen-mock" style="background-image: url(image/08.png)"></div>
+          <span class="m-visual-label">標準デフォルト型</span>
+        </div>
+        <div class="m-visual-item">
+          <div class="m-screen-mock" style="background-image: url(image/09.png)"></div>
+          <span class="m-visual-label">スチームパンク風</span>
+        </div>
+        <div class="m-visual-item">
+          <div class="m-screen-mock" style="background-image: url(image/10.png)"></div>
+          <span class="m-visual-label">剣道テーマ風</span>
+        </div>
+        <div class="m-visual-item">
+          <div class="m-screen-mock" style="background-image: url(image/11.png)"></div>
+          <span class="m-visual-label">サイバーSF風</span>
+        </div>
+      </div>
+    </div>
+    <h3>3. プロジェクト付帯サービス</h3>
+    <div class="m-list-card">
+      <ul class="m-list-group">
+        <li>
+          <strong class="m-list-title">プレイデータモニター：</strong>
+          <div class="m-list-desc">
+            プレイ人数の基礎統計機能を提供します。これは第三者が公開している、または無料で提供しているウェブリソースを用いて実装するものです。<strong>詳細な行動分析、データ保存の保証、長期的な利用可能性の保証は含みません</strong>。第三者サービスの終了、ポリシー変更、技術的変更によって生じたデータ消失や機能停止は、当方の保証または賠償責任の対象にはなりません。
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <section>
+    <h2>五、プロジェクトサービスフロー説明</h2>
+    <div class="m-header-section">
+      <p class="m-section-intro">
+        本項目では、プロジェクト実施時の各段階の作業内容を説明し、協力団体がプロジェクトの進め方、作業上の節目、双方の協力事項を理解できるようにします。
+      </p>
+    </div>
+    <div class="m-workflow-list">
+      <!-- STEP 1 -->
+      <div class="m-workflow-item">
+        <div class="m-step-header">01. プラン説明</div>
+        <div class="m-step-desc">プロジェクト開始前に初期コミュニケーションを行い、開発方式、全体フロー、想定スケジュール、協力方法を説明し、協力団体がプロジェクト全体像を理解できるようにします。</div>
+      </div>
+      <!-- STEP 2 -->
+      <div class="m-workflow-item">
+        <div class="m-step-header">02. 資料入力</div>
+        <div class="m-step-desc">協力団体は共同作業プラットフォーム上で、必要な文案、画像・文章素材、謎の設計などの資料を作成・登録します。これらは後続のシステム開発およびコンテンツ構築の根拠となります。
+        </div>
+        <div class="m-sop-box m-critical">
+          資料入力期間は原則として3か月とします。期限到来前に、双方は現状に応じて期限を延長するか（回数制限なし）、または協力を終了するかを確認できます。
+        </div>
+      </div>
+      <!-- STEP 3 -->
+      <div class="m-workflow-item">
+        <div class="m-step-header">03. 範囲確認</div>
+        <div class="m-step-desc">双方は共同作業プラットフォーム上の資料内容に基づいて確認を行い、本プロジェクト作品の制作範囲を確定します。</div>
+        <div class="m-sop-box m-critical">
+          本プラン範囲を超える追加要件がある場合、その部分は別途見積もりとなり、当方は費用の受領後に次のフロー段階へ進みます。
+        </div>
+      </div>
+      <!-- STEP 4 -->
+      <div class="m-workflow-item">
+        <div class="m-step-header">04. システム開発・機能実装</div>
+        <div class="m-step-desc">
+          この段階に入ると、共同作業プラットフォームはロック状態になります。当方は共同作業プラットフォームの内容に基づき、システム開発、機能実装、追加要件項目の統合などの作業を行います。</div>
+      </div>
+      <!-- STEP 5 -->
+      <div class="m-workflow-item">
+        <div class="m-step-header">05. テスト、修正、プロジェクト検収</div>
+        <div class="m-step-desc">システム実装完了後、当方はテスト版を提供し、協力団体がテストおよび検収を行い、プロジェクト共同作業プラットフォーム上の内容と一致しているかを確認します。</div>
+        <div class="m-sop-box m-critical">テスト過程で共同作業プラットフォームの内容と一致しない箇所が見つかった場合、当方はフィードバックに基づいて修正を行います。</div>
+      </div>
+      <!-- STEP 6 -->
+      <div class="m-workflow-item">
+        <div class="m-step-header">06. 成果物の納品と事例使用</div>
+        <div class="m-step-desc">
+          作品完成後、本番環境に公開します。成果物は協力団体が自身の必要に応じて活用でき、また当方の今後のポートフォリオ、サービス紹介、または提案事例として使用できるものとします。
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <h2>六、システム環境と制限</h2>
+    <div class="m-list-card">
+      <ul class="m-list-group">
+        <li>
+          <strong class="m-list-title">対応端末の制限：</strong>
+          <div class="m-list-desc">本プロジェクトは、パソコン、タブレット、iPhone X、iPhone 8シリーズおよびそれ以前の機種には対応していません。</div>
+        </li>
+        <li>
+          <strong class="m-list-title">推奨端末：</strong>
+          <div class="m-list-desc">iPhone 11（または2021年以降のAndroid機種）で、画面サイズが5.5インチ以上のスマートフォンでのプレイを推奨します。</div>
+        </li>
+        <li>
+          <strong class="m-list-title">ソフトウェア環境：</strong>
+          <div class="m-list-desc">ゲーム体験を確保するため、OSとブラウザを最新バージョンに更新し、LINEアプリ内での起動に限定します。</div>
+        </li>
+        <li>
+          <strong class="m-list-title">画面表示：</strong>
+          <div class="m-list-desc">本プロジェクトはWeb形式のインタラクティブゲームであり、実際の画面表示はスマートフォンの機種や画面比率によって異なります。これは通常想定される表示差異です。</div>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <section>
+    <h2>七、納品形式と制作期間</h2>
+    <div class="m-list-card">
+      <ul class="m-list-group">
+        <li>
+          <strong class="m-list-title">納品形式：</strong>
+          <div class="m-list-desc">
+            本プロジェクトの納品成果物には、ビルド済みプロジェクトの静的圧縮ファイルが含まれ、協力団体の保存・バックアップ用として提供します。プロジェクトのLIFF入口および関連設定は、協力団体が保有するLINE
+            Developers環境に構築し、協力団体が保有するCloudflareアカウント上にデプロイします。協力団体が関連アカウントをまだ保有していない場合は、当方がアカウント開設および必要な設定を支援できます。
+            <ul class="m-sub-desc-scope" style="line-height: 1.2; margin-left: 20px">
+              <li>納品完了後、プロジェクト環境は協力団体が自ら保有・管理します。</li>
+              <li>本番環境がLINEアプリから正常に開けることを確認できた時点で、納品完了とします。</li>
+              <li>静的圧縮ファイルは保存・バックアップおよび後日の再デプロイ用です。再公開が必要な場合でも、Cloudflare、LINE Developers／LIFFなどの関連環境設定が必要です。</li>
+              <li>納品後、協力団体がLINE
+                Developers、LIFF、Cloudflare、DNS、ドメイン、または関連設定を自ら変更したことにより接続できなくなった場合は、協力団体側で対応・解決する必要があります。</li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <strong class="m-list-title">制作期間：</strong>
+          <div class="m-list-desc">
+            プロジェクト制作期間は約<strong> 3〜6週間</strong>です。この期間は「システム開発・機能実装」の部分のみを指します。<br />
+            協力団体側で資料入力や素材アップロードが遅延した場合、または追加のカスタム開発要件がある場合、納品日は実際の状況に応じて調整します。
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <div class="m-footer">© 2026 實境效應事務所 | Specification Document</div>
+</body>
+
+</html>
