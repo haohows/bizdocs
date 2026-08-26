@@ -977,6 +977,27 @@ strong.m-highlight {
   margin-bottom: 0;
 }
 
+/* 模組名稱後方的條件標記（＊），對應表格下方的統一註記 */
+.m-module-flag {
+  color: var(--color-m-accent);
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 0;
+  vertical-align: super;
+  margin-left: 1px;
+}
+
+.m-module-note-flag {
+  margin-top: -12px;
+  margin-bottom: 25px;
+  line-height: 1.7;
+}
+
+.m-module-note-flag .m-module-flag-inline {
+  color: var(--color-m-accent);
+  font-weight: bold;
+}
+
 /* ==========================================================================
    Total Price
    ========================================================================== */
