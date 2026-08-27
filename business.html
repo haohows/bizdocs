@@ -41,10 +41,10 @@
     </div>
 
     <div class="m-meta-info">
-      <p style="padding: 0; margin: 0; display: flex; justify-content: space-between"><span>版本：</span><span>v4.0</span>
+      <p style="padding: 0; margin: 0; display: flex; justify-content: space-between"><span>版本：</span><span>v5.0</span>
       </p>
       <p style="padding: 0; margin: 0; display: flex; justify-content: space-between">
-        <span>日期：</span><span>2026-08-20</span>
+        <span>日期：</span><span>2026-08-25</span>
       </p>
       <p style="padding: 0; margin: 0; display: flex; justify-content: space-between">
         <span>官方 LINE：</span><a href="https://lin.ee/tgv9YRh"
@@ -52,6 +52,335 @@
       </p>
     </div>
   </header>
+
+  <!-- ▼▼▼ 導讀區塊（不列入章節編號） ▼▼▼ -->
+  <section class="m-primer">
+    <span class="m-primer-kicker">READING GUIDE</span>
+    <h2 class="m-primer-title">什麼是實境解謎？</h2>
+
+    <p class="m-primer-lead">
+      實境解謎是一種將遊戲機制融入真實場域的體驗設計，在既有的場域或環境中設計一條虛構的架空故事線，玩家透過探索環境、解讀線索與邏輯推理，逐步解開謎題並推進劇情。
+    </p>
+    <p class="m-primer-lead">
+      與一般遊戲最大的差別在於：<span class="m-primer-key">線索存在於真實世界，而不在遊戲裡</span>，玩家必須親自走到那個地點、看見那樣東西，才有辦法解開。
+    </p>
+
+    <!-- ★ 圖片版位 A1｜導讀主視覺 ─────────────────────────────────
+         填圖：在下方 div 加上 style="background-image: url(image/xx.jpg)"
+    ────────────────────────────────────────────────────────── -->
+    <figure class="m-figure m-figure-16x9" data-slot="A1">
+      <div class="m-figure-img" data-hint="【圖片版位 A1｜導讀主視覺】
+玩家在真實場域中，對照現場實物尋找線索的畫面
+建議 16:9 橫幅、寬 1200px 以上"></div>
+      <figcaption>玩家依故事指引抵達現場，對照環境中的實物尋找線索。</figcaption>
+    </figure>
+
+    <!-- 圖 1：場域即舞台 -->
+    <div class="m-primer-stage">
+      <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" role="img"
+        aria-label="場域示意圖：數個真實地點以動線串連，構成遊戲的舞台">
+        <!-- 場域底圖 -->
+        <rect x="8" y="8" width="584" height="184" rx="10" fill="#ffffff" stroke="#e9ecef" stroke-width="1" />
+
+        <!-- 動線（依序串連五個定點） -->
+        <path d="M75 150 C 120 150, 150 108, 200 108 S 275 156, 320 156 S 395 104, 440 104 S 515 148, 540 148"
+          fill="none" stroke="#b38b5d" stroke-width="2" stroke-dasharray="6 6" stroke-linecap="round" />
+
+        <g stroke="#1a1a1a" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <!-- 定點 1：起點旗 -->
+          <line x1="75" y1="136" x2="75" y2="100" />
+          <path d="M75 102 L101 110 L75 118 Z" fill="#b38b5d" stroke="#b38b5d" />
+          <line x1="63" y1="136" x2="87" y2="136" />
+
+          <!-- 定點 2：建築 -->
+          <path d="M181 70 L200 56 L219 70" />
+          <rect x="186" y="70" width="28" height="24" />
+          <rect x="196" y="82" width="8" height="12" />
+
+          <!-- 定點 3：石碑 -->
+          <path d="M308 142 L308 116 a12 12 0 0 1 24 0 L332 142 Z" />
+          <line x1="315" y1="126" x2="325" y2="126" />
+          <line x1="315" y1="134" x2="325" y2="134" />
+          <line x1="300" y1="142" x2="340" y2="142" />
+
+          <!-- 定點 4：樹 -->
+          <circle cx="440" cy="62" r="14" />
+          <line x1="440" y1="76" x2="440" y2="90" />
+          <line x1="430" y1="90" x2="450" y2="90" />
+
+          <!-- 定點 5：橋 -->
+          <path d="M518 134 Q 540 112 562 134" />
+          <line x1="528" y1="124" x2="528" y2="134" />
+          <line x1="552" y1="124" x2="552" y2="134" />
+          <line x1="512" y1="134" x2="568" y2="134" />
+        </g>
+
+        <!-- 玩家（沿動線步行） -->
+        <g stroke="#1a1a1a" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="140" cy="112" r="6" />
+          <line x1="140" y1="118" x2="140" y2="130" />
+          <line x1="133" y1="123" x2="147" y2="123" />
+          <line x1="140" y1="130" x2="134" y2="141" />
+          <line x1="140" y1="130" x2="146" y2="141" />
+        </g>
+
+        <!-- 定點編號（一律落在動線節點上） -->
+        <g fill="#ffffff" stroke="#b38b5d" stroke-width="2">
+          <circle cx="75" cy="150" r="9" />
+          <circle cx="200" cy="108" r="9" />
+          <circle cx="320" cy="156" r="9" />
+          <circle cx="440" cy="104" r="9" />
+          <circle cx="540" cy="148" r="9" />
+        </g>
+        <g fill="#b38b5d" font-family="monospace" font-size="11" font-weight="bold" text-anchor="middle">
+          <text x="75" y="154">1</text>
+          <text x="200" y="112">2</text>
+          <text x="320" y="160">3</text>
+          <text x="440" y="108">4</text>
+          <text x="540" y="152">5</text>
+        </g>
+      </svg>
+      <p class="m-primer-stage-cap">既有的街區、館舍或園區，本身就是遊戲的舞台；場域中的定點依故事順序串成一條動線。</p>
+    </div>
+
+    <!-- 圖 2：玩家四步 -->
+    <h3 class="m-primer-sub">玩家實際上在做什麼</h3>
+    <div class="m-primer-steps">
+
+      <div class="m-primer-step">
+        <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="抵達起點">
+          <g stroke="#1a1a1a" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="26" y1="62" x2="26" y2="18" />
+            <path d="M26 20 L58 30 L26 40 Z" fill="#b38b5d" stroke="#b38b5d" />
+            <line x1="14" y1="62" x2="38" y2="62" />
+          </g>
+        </svg>
+        <span class="m-primer-step-no">STEP 1</span>
+        <strong>起點出發</strong>
+        <span>在指定地點展開故事，接下第一個任務</span>
+      </div>
+
+      <div class="m-primer-step">
+        <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="前往定點">
+          <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="68" r="4" fill="#1a1a1a" stroke="none" />
+            <path d="M12 68 C 24 72, 32 68, 42 63" stroke="#b38b5d" stroke-width="3" stroke-dasharray="4 7" />
+            <path d="M50 60 C 42 46, 35 39, 35 31 a15 15 0 1 1 30 0 c0 8 -7 15 -15 29 z" stroke="#1a1a1a"
+              stroke-width="2.5" />
+            <circle cx="50" cy="31" r="5.5" stroke="#1a1a1a" stroke-width="2.5" />
+          </g>
+        </svg>
+        <span class="m-primer-step-no">STEP 2</span>
+        <strong>前往定點</strong>
+        <span>依線索指引，走到場域中的某個位置</span>
+      </div>
+
+      <div class="m-primer-step">
+        <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="觀察現場">
+          <g fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 66 L20 28 a15 15 0 0 1 30 0 L50 66 Z" />
+            <line x1="12" y1="66" x2="58" y2="66" />
+          </g>
+          <g fill="none" stroke="#b38b5d" stroke-width="3" stroke-linecap="round">
+            <circle cx="47" cy="47" r="16" fill="#ffffff" />
+            <line x1="58" y1="58" x2="69" y2="69" />
+            <line x1="40" y1="43" x2="54" y2="43" />
+            <line x1="40" y1="51" x2="49" y2="51" />
+          </g>
+        </svg>
+        <span class="m-primer-step-no">STEP 3</span>
+        <strong>觀察現場</strong>
+        <span>從碑文、雕像等現場細節中找出隱藏訊息</span>
+      </div>
+
+      <div class="m-primer-step">
+        <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="解謎推進">
+          <g fill="none" stroke="#1a1a1a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="12" y="34" width="32" height="28" rx="5" />
+            <path d="M20 34 L20 24 a8 8 0 0 1 16 0 L36 28" />
+            <circle cx="28" cy="47" r="3.5" fill="#1a1a1a" stroke="none" />
+            <line x1="28" y1="50" x2="28" y2="54" />
+          </g>
+          <g fill="none" stroke="#b38b5d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="52" y1="48" x2="70" y2="48" />
+            <path d="M63 41 L70 48 L63 55" />
+          </g>
+        </svg>
+        <span class="m-primer-step-no">STEP 4</span>
+        <strong>解謎推進</strong>
+        <span>答對後開啟下一段劇情與下一個地點，直到完成整段故事旅程</span>
+      </div>
+    </div>
+
+    <!-- 應用場合 -->
+    <h3 class="m-primer-sub">常見的應用場合</h3>
+    <div class="m-primer-uses">
+
+      <div class="m-primer-use">
+        <div class="m-primer-use-body">
+          <strong>文化導覽</strong>
+          <span>把靜態的解說牌，變成玩家主動想讀的內容。</span>
+          <span class="m-primer-use-scene">博物館 · 歷史古蹟 · 地方文化</span>
+        </div>
+      </div>
+
+      <div class="m-primer-use">
+        <div class="m-primer-use-body">
+          <strong>觀光與城市探索</strong>
+          <span>讓遊客停留更久，走進平常不會注意的角落。</span>
+          <span class="m-primer-use-scene">景點 · 商圈 · 特色市集</span>
+        </div>
+      </div>
+
+      <div class="m-primer-use">
+        <div class="m-primer-use-body">
+          <strong>教育與企業訓練</strong>
+          <span>在走動、觀察與討論之中完成學習。</span>
+          <span class="m-primer-use-scene">校園課程 · 團隊活動</span>
+        </div>
+      </div>
+
+      <div class="m-primer-use">
+        <div class="m-primer-use-body">
+          <strong>品牌與文創體驗</strong>
+          <span>讓觀眾參與故事，而不只是站著觀看。</span>
+          <span class="m-primer-use-scene">主題展覽 · IP 延伸</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ★ 圖片版位 A2｜場域類型三連圖 ───────────────────────────────
+         填圖：分別在三個 div 加上 style="background-image: url(image/xx.jpg)"
+    ────────────────────────────────────────────────────────── -->
+    <figure class="m-figure" data-slot="A2">
+      <div class="m-figure-group m-figure-1x1">
+        <div class="m-figure-img" data-hint="【A2-1】
+館舍類場域
+博物館／古蹟"></div>
+        <div class="m-figure-img" data-hint="【A2-2】
+街區類場域
+商圈／老街"></div>
+        <div class="m-figure-img" data-hint="【A2-3】
+園區類場域
+校園／展場"></div>
+      </div>
+      <figcaption>不同類型的場域，皆可作為實境解謎的舞台。</figcaption>
+    </figure>
+  </section>
+  <!-- ▲▲▲ 導讀區塊結束 ▲▲▲ -->
+
+  <!-- ▼▼▼ 範例區塊（不列入章節編號） ▼▼▼ -->
+  <section class="m-case">
+    <span class="m-case-kicker">DEMO CASE</span>
+    <div class="m-case-title-row">
+      <h2 class="m-case-title">範例：無社之神</h2>
+      <span class="m-case-title-jp">社なき神</span>
+    </div>
+
+    <p class="m-case-lead">
+      以下以自製 Demo《無社之神》為例，說明一個實境解謎專案，是如何從一座真實場域長出故事與關卡的。
+    </p>
+
+    <div class="m-case-facts">
+      <div class="m-case-fact">
+        <span class="m-case-fact-label">開發背景</span>
+        <p>自行開發的 Demo 作品，用於呈現「劇場型」的敘事與互動樣貌，讓合作方在評估階段即可實際體驗，而非僅憑文字想像。</p>
+      </div>
+
+      <div class="m-case-fact">
+        <span class="m-case-fact-label">場域選擇</span>
+        <p>桃園神社——全臺保存最完整的日治時期神社建築，戰後改為忠烈祠沿用至今。場域本身即帶有「身份被替換」的歷史，是現成的故事素材。</p>
+      </div>
+
+      <div class="m-case-fact">
+        <span class="m-case-fact-label">故事主線</span>
+        <p>靈異調查員王大熊被捲入一場突如其來的神祇失控危機，必須在一切混亂爆發前，找到「歸位」的關鍵。</p>
+      </div>
+    </div>
+
+    <div class="m-case-note">
+      <span class="m-case-note-mark">◆</span>
+      <p>
+        「無社之神」意指失去神社的神。命名直接呼應場域那段被改造的歷史——當一座神社不再是神社，原本被供奉的神明去了哪裡。故事的前提，就是從場域的真實身世長出來的。
+      </p>
+    </div>
+
+    <!-- ★ 圖片版位 B1｜場域主視覺 ─────────────────────────────────
+         填圖：在下方 div 加上 style="background-image: url(image/xx.jpg)"
+    ────────────────────────────────────────────────────────── -->
+    <figure class="m-figure m-figure-16x9" data-slot="B1">
+      <div class="m-figure-img" data-hint="【圖片版位 B1｜場域主視覺】
+桃園神社的場域全景，可辨識出參道、鳥居或本殿
+建議 16:9 橫幅、寬 1200px 以上"></div>
+      <figcaption>桃園神社——本 Demo 的實際場域。</figcaption>
+    </figure>
+
+    <h3>故事如何引領玩家走進場域</h3>
+    <p class="m-case-body">
+      故事從艋舺龍山寺的求籤問卜開場，再由籤詩指向桃園神社；抵達之後的章節，則沿著參道的實際動線推進——鳥居、石燈籠、狛犬，直到本殿。
+    </p>
+    <p class="m-case-body">
+      這樣安排的目的很單純：<span class="m-case-key">讓平常沒有人會停下來看的東西，變成玩家必須注意的東西</span>。玩家不是被要求去閱讀解說牌，而是為了推進故事，自己走過去把它看清楚。
+    </p>
+
+    <h3>關卡設計概念（節錄）</h3>
+    <ul class="m-case-chapters">
+      <li>
+        <strong class="m-case-ch-name">艋舺龍山・觀音靈籤</strong>
+        <span class="m-case-ch-desc">將廟宇的擲筊儀式轉為小挑戰，玩家親手體驗，加深記憶並增添趣味</span>
+      </li>
+      <li>
+        <strong class="m-case-ch-name">潛禍將興・兇</strong>
+        <span class="m-case-ch-desc">以籤詩上的文字作為線索，由玩家自行推敲出下一個目的地的地名</span>
+      </li>
+      <li>
+        <strong class="m-case-ch-name">咦？難不成是我眼花了？</strong>
+        <span class="m-case-ch-desc">以劇情引導出一組符文供玩家破解；取材自場域歷史而非現地實物</span>
+      </li>
+      <li>
+        <strong class="m-case-ch-name">迷霧深處・狛犬</strong>
+        <span class="m-case-ch-desc">引導玩家近距離觀察狛犬石雕的造型細節，答案就在實物本身</span>
+      </li>
+      <li>
+        <strong class="m-case-ch-name">古怪的雙十鳥居</strong>
+        <span class="m-case-ch-desc">以神社戰後改為忠烈祠所留下的改造痕跡，直接作為謎題主體</span>
+      </li>
+      <li>
+        <strong class="m-case-ch-name">舊日印記・回歸</strong>
+        <span class="m-case-ch-desc">以現地圖樣作為辨識依據，採用圖像辨識驗證，須面對實物才能通過</span>
+      </li>
+    </ul>
+
+    <!-- ★ 圖片版位 B2｜現地實物三連圖 ─────────────────────────────
+         填圖：分別在三個 div 加上 style="background-image: url(image/xx.jpg)"
+    ────────────────────────────────────────────────────────── -->
+    <figure class="m-figure" data-slot="B2">
+      <div class="m-figure-group m-figure-1x1">
+        <div class="m-figure-img" data-hint="【B2-1】
+擲筊的筊杯或擲筊瞬間
+（艋舺龍山寺）"></div>
+        <div class="m-figure-img" data-hint="【B2-2】
+狛犬石雕
+（造型細節可辨識）"></div>
+        <div class="m-figure-img" data-hint="【B2-3】
+鳥居上的雙十標記
+（戰後改造痕跡）"></div>
+      </div>
+      <figcaption>上述關卡所運用的，都是場域中真實存在的實物與儀式。</figcaption>
+    </figure>
+
+    <div class="m-case-demo">
+      <span class="m-case-qr" style="background-image: url(image/linedemo.png)"></span>
+      <div class="m-case-demo-text">
+        <strong>實際體驗</strong>
+        <p>掃描 QR Code 即可自 LINE 開啟《無社之神》，親自走一遍上述流程。</p>
+        <p class="m-case-demo-note">
+          本 Demo 已調整為可於任何地點體驗，無須前往現場；正式活動版本則需玩家實際抵達場域。Demo 僅用於說明呈現樣貌與操作概念，實際內容以正式報價單與專案合約載明為準。
+        </p>
+      </div>
+    </div>
+  </section>
+  <!-- ▲▲▲ 範例區塊結束 ▲▲▲ -->
 
   <!-- 序、方案定位與 Demo 參考說明 -->
   <section>
@@ -64,10 +393,6 @@
           聊天介面作為遊戲框架的侷限，呈現更具沉浸感的互動體驗。
         </p>
         <p class="m-intro-text">玩家可直接從 LINE 開啟活動頁面，業主亦可延續 LINE 官方帳號作為活動入口，降低玩家使用門檻，並保留後續觸及、導流與互動延伸的可能性。</p>
-        <p class="m-pro-disclaimer">為方便理解具體的呈現樣貌，歡迎掃描 QR code 進行體驗。</p>
-      </div>
-      <div class="m-demo-qrcode">
-        <div class="m-qrcode-placeholder" style="background-image: url(image/linedemo.png)"></div>
       </div>
     </div>
 

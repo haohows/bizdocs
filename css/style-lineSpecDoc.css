@@ -118,6 +118,474 @@ h3::before {
   margin-bottom: 15px;
 }
 
+/* ==========================================================================
+   圖片版位 Figure Slot
+   --------------------------------------------------------------------------
+   填圖方式：於 .m-figure-img 加上 style="background-image: url(image/xx.jpg)"
+   即可。加上 style 後，虛線框與提示文字會自動消失，無須改動其他任何地方。
+   若某個版位確定不放圖，整個 <figure> 區塊刪除即可。
+   ========================================================================== */
+.m-figure {
+  margin: 20px 0 0;
+}
+
+.m-figure-img {
+  width: 100%;
+  border-radius: 8px;
+  background-color: var(--color-m-bg);
+  background-size: cover;
+  background-position: center;
+}
+
+.m-figure-16x9 .m-figure-img {
+  aspect-ratio: 16 / 9;
+}
+
+.m-figure-4x3 .m-figure-img {
+  aspect-ratio: 4 / 3;
+}
+
+.m-figure-1x1 .m-figure-img {
+  aspect-ratio: 1 / 1;
+}
+
+/* 尚未填圖時的佔位樣式（一旦加上 style 屬性即失效） */
+.m-figure-img:not([style]) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+  border: 1px dashed #ced4da;
+}
+
+.m-figure-img:not([style])::after {
+  content: attr(data-hint);
+  font-size: 12px;
+  line-height: 1.9;
+  color: var(--color-m-muted);
+  text-align: center;
+  white-space: pre-line;
+}
+
+.m-figure figcaption {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--color-m-muted);
+  text-align: center;
+  margin-top: 8px;
+}
+
+/* 多張並排的圖組 */
+.m-figure-group {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.m-figure-group .m-figure-img:not([style])::after {
+  font-size: 11px;
+}
+
+/* === 導讀區塊 Primer === */
+.m-primer {
+  background: var(--color-m-surface);
+  border-top: 1px solid var(--color-m-border);
+  border-bottom: 1px solid var(--color-m-border);
+  padding: 30px 20px 35px;
+}
+
+.m-primer-kicker {
+  display: inline-block;
+  font-family: monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: #495057;
+  background: #e9ecef;
+  border-radius: 20px;
+  padding: 3px 10px;
+  margin-bottom: 10px;
+}
+
+.m-primer-title {
+  font-family: "Noto Serif TC", serif;
+  font-size: 22px;
+  color: var(--color-m-primary);
+  margin: 0 0 16px;
+  letter-spacing: 1px;
+}
+
+.m-primer-lead {
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--color-m-text);
+  margin: 0 0 14px;
+}
+
+.m-primer-key {
+  color: var(--color-m-primary);
+  font-weight: bold;
+  border-bottom: 2px solid var(--color-m-accent);
+  padding-bottom: 1px;
+}
+
+.m-primer-sub {
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--color-m-muted);
+  letter-spacing: 1.5px;
+  margin: 28px 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.m-primer-sub::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--color-m-border);
+}
+
+/* 場域示意圖 */
+.m-primer-stage {
+  background: var(--color-m-bg);
+  border: 1px solid var(--color-m-border);
+  border-radius: 8px;
+  padding: 16px 14px 12px;
+  margin: 20px 0 0;
+}
+
+.m-primer-stage svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.m-primer-stage-cap {
+  font-size: 13px;
+  color: var(--color-m-muted);
+  text-align: center;
+  margin: 10px 0 0;
+  line-height: 1.7;
+}
+
+/* 四步旅程 */
+.m-primer-steps {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.m-primer-step {
+  background: var(--color-m-bg);
+  border: 1px solid var(--color-m-border);
+  border-radius: 8px;
+  padding: 16px 12px 14px;
+  text-align: center;
+}
+
+.m-primer-step svg {
+  display: block;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 10px;
+}
+
+.m-primer-step-no {
+  display: block;
+  font-family: monospace;
+  font-size: 11px;
+  color: var(--color-m-accent);
+  letter-spacing: 1px;
+  margin-bottom: 3px;
+}
+
+.m-primer-step strong {
+  display: block;
+  font-size: 15px;
+  color: var(--color-m-primary);
+  margin-bottom: 5px;
+}
+
+.m-primer-step span {
+  display: block;
+  font-size: 13px;
+  color: var(--color-m-muted);
+  line-height: 1.7;
+}
+
+/* 應用場合 */
+.m-primer-uses {
+  display: grid;
+  gap: 12px;
+}
+
+.m-primer-use {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: var(--color-m-bg);
+  border-left: 3px solid var(--color-m-accent);
+  border-radius: 0 6px 6px 0;
+  padding: 12px 14px;
+}
+
+.m-primer-use-body strong {
+  display: block;
+  font-size: 15px;
+  color: var(--color-m-primary);
+  margin-bottom: 3px;
+}
+
+.m-primer-use-body span {
+  display: block;
+  font-size: 13px;
+  color: var(--color-m-muted);
+  line-height: 1.7;
+}
+
+.m-primer-use-scene {
+  display: block;
+  font-family: monospace;
+  font-size: 11px;
+  color: var(--color-m-accent);
+  letter-spacing: 0.5px;
+  margin-top: 5px;
+}
+
+@media screen and (min-width: 768px) {
+  .m-primer {
+    padding: 40px 30px 45px;
+  }
+
+  .m-primer-title {
+    font-size: 26px;
+  }
+
+  .m-primer-steps {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .m-primer-uses {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* === 範例區塊 Case === */
+.m-case-kicker {
+  display: inline-block;
+  font-family: monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: var(--color-m-accent);
+  background: #fdf8f3;
+  border: 1px solid #f5ebd9;
+  border-radius: 20px;
+  padding: 3px 10px;
+  margin-bottom: 10px;
+}
+
+.m-case-title-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.m-case-title {
+  font-family: "Noto Serif TC", serif;
+  font-size: 22px;
+  color: var(--color-m-primary);
+  border-bottom: none;
+  padding-bottom: 0;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.m-case-title-jp {
+  font-family: "Noto Serif TC", serif;
+  font-size: 13px;
+  color: var(--color-m-muted);
+  letter-spacing: 2px;
+}
+
+.m-case-lead {
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--color-m-text);
+  margin: 0 0 20px;
+}
+
+/* 三則基本資訊 */
+.m-case-facts {
+  display: grid;
+  gap: 12px;
+}
+
+.m-case-fact {
+  background: var(--color-m-surface);
+  border: 1px solid var(--color-m-border);
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+
+.m-case-fact-label {
+  display: block;
+  font-family: monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--color-m-accent);
+  margin-bottom: 6px;
+}
+
+.m-case-fact p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--color-m-text);
+  text-align: justify;
+}
+
+/* 命名呼應 */
+.m-case-note {
+  display: flex;
+  gap: 10px;
+  background: #fdf8f3;
+  border-left: 3px solid var(--color-m-accent);
+  border-radius: 0 6px 6px 0;
+  padding: 14px 16px;
+  margin-top: 16px;
+}
+
+.m-case-note-mark {
+  color: var(--color-m-accent);
+  font-size: 11px;
+  line-height: 2.4;
+}
+
+.m-case-note p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--color-m-text);
+  text-align: justify;
+}
+
+.m-case-body {
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--color-m-text);
+  margin: 0 0 12px;
+  text-align: justify;
+}
+
+.m-case-key {
+  color: var(--color-m-primary);
+  font-weight: bold;
+  border-bottom: 2px solid var(--color-m-accent);
+  padding-bottom: 1px;
+}
+
+/* 關卡設計概念 */
+.m-case-chapters {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.m-case-chapters li {
+  background: var(--color-m-surface);
+  border: 1px solid var(--color-m-border);
+  border-left: 3px solid var(--color-m-accent);
+  border-radius: 0 6px 6px 0;
+  padding: 12px 15px;
+}
+
+.m-case-ch-name {
+  display: block;
+  font-size: 14px;
+  color: var(--color-m-primary);
+  margin-bottom: 4px;
+}
+
+.m-case-ch-desc {
+  display: block;
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--color-m-muted);
+  text-align: justify;
+}
+
+/* 體驗區 */
+.m-case-demo {
+  margin-top: 22px;
+  background: var(--color-m-surface);
+  border: 1px solid var(--color-m-border);
+  border-radius: 8px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.m-case-qr {
+  display: block;
+  width: 160px;
+  aspect-ratio: 1;
+  background-size: cover;
+  background-position: center;
+  border: 1px solid var(--color-m-border);
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.m-case-demo-text strong {
+  display: block;
+  font-size: 15px;
+  color: var(--color-m-primary);
+  margin-bottom: 6px;
+}
+
+.m-case-demo-text p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--color-m-text);
+  margin: 0 0 10px;
+}
+
+.m-case-demo-note {
+  font-size: 13px !important;
+  color: var(--color-m-muted) !important;
+  border-top: 1px dashed var(--color-m-border);
+  padding-top: 10px;
+  margin: 0 !important;
+  text-align: justify;
+}
+
+@media screen and (min-width: 768px) {
+  .m-case-title {
+    font-size: 26px;
+  }
+
+  .m-case-facts {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .m-case-chapters {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .m-case-demo {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 22px;
+  }
+}
+
 /* === Comparison Table (Mobile Optimized Side-by-Side) === */
 .m-pro-comparison-table {
   width: 100%;
