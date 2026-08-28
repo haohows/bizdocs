@@ -255,18 +255,11 @@ h3::before {
   margin: 20px 0 0;
 }
 
-.m-primer-stage svg {
+.m-primer-stage svg,
+.m-primer-stage img {
   display: block;
   width: 100%;
   height: auto;
-}
-
-.m-primer-stage-cap {
-  font-size: 13px;
-  color: var(--color-m-muted);
-  text-align: center;
-  margin: 10px 0 0;
-  line-height: 1.7;
 }
 
 /* 四步旅程 */
@@ -572,7 +565,7 @@ h3::before {
   }
 
   .m-case-facts {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .m-case-chapters {
