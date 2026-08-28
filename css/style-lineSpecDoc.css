@@ -228,7 +228,8 @@ h3::before {
   padding-bottom: 1px;
 }
 
-.m-primer-sub {
+.m-primer-sub,
+.m-case-sub {
   font-size: 13px;
   font-weight: bold;
   color: var(--color-m-muted);
@@ -239,7 +240,8 @@ h3::before {
   gap: 8px;
 }
 
-.m-primer-sub::after {
+.m-primer-sub::after,
+.m-case-sub::after {
   content: "";
   flex: 1;
   height: 1px;
@@ -478,6 +480,18 @@ h3::before {
   font-weight: bold;
   border-bottom: 2px solid var(--color-m-accent);
   padding-bottom: 1px;
+}
+
+.m-case-story {
+  background: var(--color-m-surface);
+  border: 1px solid var(--color-m-border);
+  border-radius: 8px;
+  padding: 16px 18px;
+  margin-bottom: 12px;
+}
+
+.m-case-story .m-case-body:last-child {
+  margin-bottom: 0;
 }
 
 /* 關卡設計概念 */
