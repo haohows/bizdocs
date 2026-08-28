@@ -573,6 +573,12 @@ h3::before {
   text-align: justify;
 }
 
+.m-case-demo-fine {
+  display: block;
+  font-size: 12px;
+  margin-top: 6px;
+}
+
 @media screen and (min-width: 768px) {
   .m-case-title {
     font-size: 26px;
