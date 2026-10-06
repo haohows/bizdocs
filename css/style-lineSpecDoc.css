@@ -1855,6 +1855,28 @@ strong.m-highlight {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
+.m-price-comparison {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+}
+
+.m-price-comparison > .m-price-panel {
+  min-width: 0;
+  margin: 0;
+}
+
+.m-price-comparison-heading {
+  grid-column: 1 / -1;
+  margin-bottom: 0;
+}
+
+.m-price-comparison > .m-price-panel-notes {
+  grid-column: 1 / -1;
+  margin-top: 0;
+  background: var(--color-m-primary);
+}
+
 .m-price-panel-head {
   text-align: center;
   padding-bottom: 22px;
@@ -1954,6 +1976,13 @@ strong.m-highlight {
   color: #ced4da;
 }
 
+.m-price-panel-total {
+  margin: 0 0 20px;
+  font-size: 15px;
+  line-height: 1.75;
+  color: #ffffff;
+}
+
 .m-price-panel-warning {
   margin-top: 20px;
   padding-top: 16px;
@@ -1983,5 +2012,22 @@ strong.m-highlight {
     grid-template-columns: 1fr 1fr;
     gap: 34px;
     padding-top: 26px;
+  }
+
+  .m-price-comparison {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .m-price-comparison > .m-price-panel {
+    padding: 28px 24px;
+  }
+
+  .m-price-comparison .m-price-panel-body {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .m-price-comparison .m-price-panel-amount {
+    font-size: clamp(30px, 4vw, 44px);
   }
 }
