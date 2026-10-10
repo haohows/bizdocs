@@ -1,0 +1,4178 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#122623" />
+    <title>WEB in LINE｜實境探索互動系統・合作洽談簡報</title>
+    <style>
+      :root {
+        --ink: #182b28;
+        --night: #112521;
+        --night2: #1a3730;
+        --green: #285f50;
+        --mint: #d9e8dd;
+        --paper: #f8f6f0;
+        --sand: #e9e4d9;
+        --gold: #dfb778;
+        --grey: #6c7870;
+        --stroke: rgba(30, 65, 55, 0.12);
+        --font: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", system-ui, sans-serif;
+        --serif: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+      body {
+        background: #0b1514;
+        color: #f6f5ed;
+        font-family: var(--font);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+      button {
+        font: inherit;
+      }
+      a {
+        color: inherit;
+      }
+      .stage {
+        min-height: 0;
+        flex: 1;
+        position: relative;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+      }
+      .deck {
+        width: 1440px;
+        height: 810px;
+        position: relative;
+        transform-origin: center center;
+        overflow: hidden;
+        background: var(--paper);
+        box-shadow: 0 36px 110px rgba(0, 0, 0, 0.4);
+      }
+      .slide {
+        position: absolute;
+        inset: 0;
+        padding: 66px 82px 60px;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease;
+        overflow: hidden;
+        color: var(--ink);
+        background: var(--paper);
+      }
+      .slide.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      .slide.dark {
+        color: #f9f6ee;
+        background: var(--night);
+      }
+      .slide.muted {
+        background: #eaece6;
+      }
+      .slide .eyebrow {
+        letter-spacing: 4px;
+        font-size: 15px;
+        font-weight: 800;
+        text-transform: uppercase;
+        color: #718d7e;
+      }
+      .slide.dark .eyebrow {
+        color: #c9ac75;
+      }
+      .slide h1,
+      .slide h2,
+      .slide h3,
+      .slide p {
+        margin: 0;
+      }
+      .slide h2 {
+        font-size: 57px;
+        line-height: 1.22;
+        letter-spacing: -1.7px;
+        font-weight: 850;
+      }
+      .slide .sub {
+        font-size: 23px;
+        line-height: 1.7;
+        color: #597068;
+      }
+      .slide.dark .sub {
+        color: #b9c7bc;
+      }
+      .gold {
+        color: var(--gold);
+      }
+      .lead {
+        font-size: 24px;
+        line-height: 1.65;
+      }
+      .outline {
+        color: transparent;
+        -webkit-text-stroke: 1px currentColor;
+      }
+      .accent {
+        color: var(--green);
+      }
+      .dark .accent {
+        color: #dcbd8c;
+      }
+      .thin {
+        font-weight: 400;
+      }
+      .quiet {
+        color: #74857d;
+      }
+      .dark .quiet {
+        color: #a7bdb4;
+      }
+      .caps {
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+      .slide-id {
+        position: absolute;
+        right: 82px;
+        bottom: 33px;
+        font-size: 13px;
+        letter-spacing: 2px;
+        color: #748880;
+        z-index: 4;
+      }
+      .slide.dark .slide-id {
+        color: #b9c7ba;
+      }
+      .brand {
+        position: absolute;
+        left: 82px;
+        bottom: 31px;
+        z-index: 4;
+        font-size: 14px;
+        font-weight: 850;
+        letter-spacing: 2px;
+      }
+      .brand small {
+        margin-left: 11px;
+        font-size: 10px;
+        color: #84958c;
+        font-weight: 500;
+        letter-spacing: 1.4px;
+      }
+      .slide.dark .brand small {
+        color: #a9b9b2;
+      }
+      .kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 11px;
+      }
+      .kicker::before {
+        content: "";
+        height: 2px;
+        width: 27px;
+        background: var(--gold);
+      }
+      .dark .kicker::before {
+        background: var(--gold);
+      }
+      .panel {
+        border: 1px solid var(--stroke);
+        border-radius: 22px;
+        background: #fff;
+        box-shadow: 0 10px 30px rgba(25, 43, 33, 0.045);
+      }
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        background: #e5eee6;
+        color: #276050;
+        border-radius: 30px;
+        font-size: 14px;
+        font-weight: 800;
+        padding: 9px 15px;
+      }
+      .dark .tag {
+        background: #28473d;
+        color: #d8eddf;
+      }
+      .photo {
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(140deg, #667e65, #2d544a 60%, #b79a73);
+        isolation: isolate;
+      }
+      .photo img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        inset: 0;
+        object-fit: cover;
+        z-index: 1;
+      }
+      .photo .film {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        background: linear-gradient(90deg, rgba(12, 31, 26, 0.86), rgba(15, 31, 25, 0.27));
+        pointer-events: none;
+      }
+      .photo .image-label {
+        position: absolute;
+        bottom: 18px;
+        right: 19px;
+        font-size: 11px;
+        letter-spacing: 1.8px;
+        color: #fff;
+        background: rgba(19, 39, 34, 0.53);
+        border: 1px solid rgba(255, 255, 255, 0.19);
+        border-radius: 8px;
+        padding: 8px 11px;
+        z-index: 5;
+      }
+      .photo .fallback-shape {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        opacity: 0.6;
+        width: 100%;
+        height: 100%;
+      }
+      .dash-rule {
+        height: 1px;
+        background: linear-gradient(90deg, #a7b5a8, transparent);
+      }
+      .big-num {
+        font-size: 92px;
+        letter-spacing: -4px;
+        line-height: 1;
+        font-weight: 900;
+      }
+      .two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+      }
+      .small-note {
+        font-size: 16px;
+        color: #677971;
+        line-height: 1.7;
+      }
+      .dark .small-note {
+        color: #b1c4b8;
+      }
+      .raised {
+        box-shadow: 0 26px 50px rgba(13, 33, 29, 0.16);
+      }
+      /* opening */
+      .s1 {
+        padding: 0 !important;
+        background: #142722 !important;
+      }
+      .s1 .backdrop {
+        position: absolute;
+        inset: 0 0 0 41%;
+      }
+      .s1 .backdrop .film {
+        background: linear-gradient(90deg, #142722 3%, rgba(19, 42, 36, 0.82) 28%, rgba(21, 45, 35, 0.14) 100%), linear-gradient(0deg, rgba(8, 26, 24, 0.52), transparent 45%);
+      }
+      .s1 .content {
+        position: absolute;
+        inset: 0;
+        padding: 90px 88px 80px;
+        z-index: 3;
+      }
+      .s1 .topline {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 15px;
+        letter-spacing: 2px;
+        color: #b9c9bb;
+      }
+      .s1 .topline .line {
+        height: 1px;
+        width: 150px;
+        background: #b39d76;
+        margin-left: 22px;
+        display: inline-block;
+        vertical-align: middle;
+      }
+      .s1 h1 {
+        margin-top: 134px;
+        max-width: 960px;
+        font-size: 80px;
+        line-height: 1.22;
+        letter-spacing: -3px;
+        color: #fcfaf2;
+      }
+      .s1 h1 em {
+        color: #e4bc7e;
+        font-style: normal;
+      }
+      .s1 .decktitle {
+        font-size: 22px;
+        color: #e1e7df;
+        margin-top: 29px;
+        letter-spacing: 2px;
+      }
+      .s1 .strip {
+        position: absolute;
+        bottom: 96px;
+        left: 88px;
+        display: flex;
+        align-items: center;
+        gap: 17px;
+        font-size: 15px;
+        color: #c3d1c5;
+      }
+      .s1 .strip span {
+        display: inline-block;
+        height: 2px;
+        width: 46px;
+        background: #d3ad76;
+      }
+      .s1 .brand {
+        left: 88px;
+      }
+      .s1 .slide-id {
+        right: 50px;
+      }
+      /* agenda / interactive chapter directory */
+      .sAgenda {
+        background: radial-gradient(circle at 13% 90%, rgba(93, 140, 110, 0.2), transparent 39%), linear-gradient(128deg, #172f29, #10231f 72%) !important;
+        padding: 88px 88px 66px !important;
+      }
+      .sAgenda::before {
+        content: "";
+        position: absolute;
+        width: 740px;
+        height: 740px;
+        border: 1px solid rgba(204, 226, 200, 0.095);
+        border-radius: 50%;
+        top: -350px;
+        left: -285px;
+        box-shadow:
+          0 0 0 65px rgba(223, 238, 211, 0.025),
+          0 0 0 180px rgba(223, 238, 211, 0.018);
+      }
+      .sAgenda .agenda-eyebrow {
+        position: relative;
+        z-index: 2;
+        letter-spacing: 4px;
+        color: #dbba80;
+        font-size: 16px;
+        font-weight: 800;
+      }
+      .sAgenda .agenda-left {
+        position: relative;
+        z-index: 2;
+        width: 440px;
+        padding-top: 90px;
+      }
+      .sAgenda h2 {
+        color: #f7f6ed;
+        font-size: 66px;
+        letter-spacing: -2px;
+        line-height: 1.28;
+      }
+      .sAgenda h2 em {
+        color: #e2c18e;
+        font-style: normal;
+      }
+      .sAgenda .agenda-summary {
+        font-size: 22px;
+        color: #c7d4c9;
+        line-height: 1.85;
+        margin-top: 28px;
+      }
+      .sAgenda .agenda-line {
+        height: 3px;
+        width: 64px;
+        background: #d7b17d;
+        margin-top: 41px;
+      }
+      .sAgenda .agenda-help {
+        font-size: 14px;
+        color: #9fbdad;
+        margin-top: 18px;
+        letter-spacing: 0.3px;
+      }
+      .sAgenda .agenda-list {
+        position: absolute;
+        z-index: 2;
+        top: 111px;
+        right: 80px;
+        width: 742px;
+        display: grid;
+        gap: 15px;
+      }
+      .sAgenda .agenda-jump {
+        width: 100%;
+        border: 1px solid rgba(202, 231, 210, 0.2);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.07);
+        color: #f2f6ed;
+        padding: 20px 25px;
+        min-height: 130px;
+        display: flex;
+        gap: 24px;
+        align-items: center;
+        text-align: left;
+        cursor: pointer;
+        transition:
+          transform 0.18s,
+          background 0.18s,
+          border-color 0.18s;
+        box-shadow: 0 10px 22px rgba(0, 0, 0, 0.06);
+      }
+      .sAgenda .agenda-jump:hover,
+      .sAgenda .agenda-jump:focus-visible {
+        transform: translateX(-7px);
+        background: rgba(255, 255, 255, 0.125);
+        border-color: rgba(235, 198, 138, 0.74);
+        outline: none;
+      }
+      .sAgenda .agenda-number {
+        font-size: 35px;
+        color: #d9bb8e;
+        font-weight: 850;
+        min-width: 70px;
+        letter-spacing: -1px;
+      }
+      .sAgenda .agenda-body {
+        flex: 1;
+        min-width: 0;
+      }
+      .sAgenda .agenda-title {
+        display: block;
+        font-size: 25px;
+        line-height: 1.35;
+        font-weight: 850;
+        color: #f9faf1;
+      }
+      .sAgenda .agenda-description {
+        display: block;
+        font-size: 15px;
+        color: #b8cdc0;
+        line-height: 1.4;
+        margin-top: 7px;
+      }
+      .sAgenda .agenda-pages {
+        font-size: 16px;
+        color: #dcbf94;
+        min-width: 84px;
+        text-align: right;
+        letter-spacing: 1.2px;
+        font-weight: 700;
+      }
+      .sAgenda .brand {
+        left: 88px;
+      }
+      .sAgenda .slide-id {
+        right: 78px;
+      }
+      /* what */
+      .s2 .top {
+        max-width: 630px;
+      }
+      .s2 h2 {
+        font-size: 64px;
+        margin: 25px 0 15px;
+      }
+      .s2 .statement {
+        font-size: 28px;
+        margin-top: 40px;
+        line-height: 1.56;
+      }
+      .s2 .statement strong {
+        color: #2c705d;
+      }
+      .s2 .definition {
+        margin-top: 31px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .s2 .right {
+        position: absolute;
+        right: 78px;
+        top: 92px;
+        width: 545px;
+        height: 600px;
+      }
+      .s2 .route {
+        position: absolute;
+        top: 46px;
+        left: 2px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        z-index: 2;
+      }
+      .s2 .node {
+        width: 124px;
+        height: 97px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        border-radius: 19px;
+        background: white;
+        border: 1px solid #dce6dc;
+        box-shadow: 0 13px 25px #163b3120;
+        font-size: 17px;
+        font-weight: 800;
+      }
+      .s2 .node b {
+        font-size: 30px;
+        color: #377660;
+      }
+      .s2 .route .arrow {
+        font-size: 33px;
+        color: #9bb3a4;
+      }
+      .s2 .handset {
+        position: absolute;
+        bottom: 2px;
+        right: 28px;
+        transform: rotate(5deg);
+        z-index: 3;
+      }
+      .s2 .sunburst {
+        position: absolute;
+        right: 2px;
+        bottom: 67px;
+        width: 430px;
+        height: 430px;
+        border-radius: 50%;
+        background: #dce8dc;
+        box-shadow: 0 0 0 65px rgba(223, 233, 220, 0.45);
+      }
+      .s2 .caption {
+        position: absolute;
+        right: 18px;
+        bottom: 26px;
+        font-size: 13px;
+        color: #6d8072;
+      }
+
+      /* added intro: what is reality exploration */
+      .sIntro {
+        background: #f6f5ed;
+      }
+      .sIntro .textblock {
+        position: relative;
+        z-index: 3;
+        width: 605px;
+      }
+      .sIntro h2 {
+        font-size: 59px;
+        margin: 21px 0 24px;
+      }
+      .sIntro .intro-lead {
+        font-family: var(--serif);
+        font-size: 31px;
+        font-weight: 700;
+        line-height: 1.55;
+        letter-spacing: -0.7px;
+      }
+      .sIntro .intro-lead em {
+        color: #2d795f;
+        font-style: normal;
+      }
+      .sIntro .intro-desc {
+        font-size: 20px;
+        color: #64766b;
+        line-height: 1.8;
+        margin-top: 21px;
+        max-width: 540px;
+      }
+      .sIntro .intro-quote {
+        margin-top: 30px;
+        width: 566px;
+        background: #e6ede4;
+        border-left: 5px solid #2d7358;
+        border-radius: 0 14px 14px 0;
+        padding: 17px 21px;
+        color: #24533d;
+        line-height: 1.6;
+        font-size: 27px;
+        font-weight: 850;
+      }
+      .sIntro .intro-quote small {
+        display: block;
+        letter-spacing: 2px;
+        font-size: 12px;
+        font-weight: 850;
+        color: #668477;
+        margin-bottom: 5px;
+      }
+      .sIntro .intro-photo {
+        position: absolute;
+        top: 132px;
+        right: 82px;
+        width: 621px;
+        height: 423px;
+        border-radius: 23px;
+        box-shadow: 0 27px 55px #26433321;
+      }
+      .sIntro .intro-photo .film {
+        background: linear-gradient(0deg, rgba(9, 30, 23, 0.46), rgba(9, 30, 23, 0.04) 60%);
+      }
+      .sIntro .intro-photo .photo-title {
+        position: absolute;
+        bottom: 62px;
+        left: 28px;
+        z-index: 5;
+        color: #fff;
+        font-size: 29px;
+        font-weight: 800;
+        letter-spacing: 0.3px;
+        text-shadow: 0 3px 12px #0c2b24aa;
+      }
+      .sIntro .intro-flow {
+        position: absolute;
+        left: 82px;
+        right: 82px;
+        bottom: 93px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+      }
+      .sIntro .flow-chip {
+        background: #fff;
+        border-radius: 14px;
+        padding: 14px 17px;
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        box-shadow: 0 8px 21px #1b443315;
+        border: 1px solid #dfe8dc;
+        min-height: 77px;
+      }
+      .sIntro .flow-chip span {
+        font-size: 26px;
+        color: #2c7458;
+        font-weight: 850;
+      }
+      .sIntro .flow-chip div {
+        font-size: 20px;
+        line-height: 1.3;
+        font-weight: 800;
+      }
+      .sIntro .flow-chip small {
+        display: block;
+        font-size: 12px;
+        color: #819389;
+        margin-top: 5px;
+        font-weight: 500;
+      }
+      .sIntro .intro-photo {
+        background-color: #e8ece4;
+      }
+      .sIntro .intro-photo img {
+        object-fit: contain;
+      }
+      /* product showcase: replace the old fabricated four-phone flow with a real-demo placeholder */
+      .s4 {
+        background: #f3f3eb;
+      }
+      .s4 h2 {
+        margin: 19px 0 12px;
+      }
+      .s4 .demo-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
+        gap: 28px;
+        margin-top: 36px;
+        align-items: stretch;
+      }
+      .s4 .demo-preview {
+        height: 443px;
+        border-radius: 24px;
+        background: linear-gradient(140deg, #1b4439, #102923 78%);
+        border: 1px solid #365647;
+        position: relative;
+        overflow: hidden;
+        display: grid;
+        place-items: center;
+        color: #e8efe8;
+        box-shadow: 0 20px 40px #16372820;
+      }
+      .s4 .demo-preview::before {
+        content: "";
+        position: absolute;
+        width: 580px;
+        height: 580px;
+        top: -235px;
+        left: -200px;
+        border: 1px solid #78988a30;
+        border-radius: 50%;
+        box-shadow:
+          0 0 0 100px #78988a12,
+          0 0 0 210px #78988a09;
+      }
+      .s4 .demo-preview img {
+        object-fit: contain;
+      }
+      .s4 .demo-inner {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        padding: 35px 50px;
+        max-width: 625px;
+      }
+      .s4 .demo-inner .demo-mark {
+        width: 86px;
+        height: 86px;
+        border: 1px solid #739f8755;
+        border-radius: 24px;
+        margin: 0 auto 25px;
+        display: grid;
+        place-items: center;
+        font-size: 35px;
+        color: #e0c38e;
+        background: #284a3e;
+      }
+      .s4 .demo-inner .demo-mini {
+        font-size: 13px;
+        letter-spacing: 3px;
+        color: #d6bc88;
+        font-weight: 800;
+      }
+      .s4 .demo-inner h3 {
+        font-size: 32px;
+        margin: 15px 0 11px;
+        font-weight: 850;
+      }
+      .s4 .demo-inner p {
+        font-size: 17px;
+        color: #b5cdbd;
+        line-height: 1.7;
+      }
+      .s4 .demo-panel {
+        background: white;
+        border: 1px solid #dfe8df;
+        border-radius: 22px;
+        padding: 29px 27px;
+        box-shadow: 0 10px 25px #1637280a;
+      }
+      .s4 .demo-panel .panel-tag {
+        font-size: 13px;
+        font-weight: 900;
+        letter-spacing: 2px;
+        color: #63907d;
+      }
+      .s4 .demo-panel h3 {
+        font-size: 25px;
+        margin: 17px 0 25px;
+        line-height: 1.4;
+      }
+      .s4 .demo-point {
+        padding: 0 0 18px;
+        margin: 0 0 18px;
+        border-bottom: 1px solid #e5ebe5;
+      }
+      .s4 .demo-point:last-child {
+        border-bottom: 0;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+      .s4 .demo-point b {
+        display: block;
+        font-size: 20px;
+        color: #295945;
+        margin-bottom: 9px;
+      }
+      .s4 .demo-point p {
+        font-size: 16px;
+        line-height: 1.65;
+        color: #697e70;
+      }
+      .s4 .foot {
+        font-size: 14px;
+        position: absolute;
+        bottom: 76px;
+        right: 84px;
+        color: #8a948b;
+      }
+      .s4 .demo-preview.has-demo .demo-inner {
+        display: none;
+      }
+      /* added application scenarios */
+      .sUse {
+        background: #edf0e8;
+      }
+      .sUse h2 {
+        font-size: 55px;
+        margin: 16px 0 8px;
+      }
+      .sUse .sub {
+        font-size: 20px;
+      }
+      .sUse .use-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px 22px;
+        margin-top: 27px;
+      }
+      .sUse .use-card {
+        height: 234px;
+        border-radius: 20px;
+        box-shadow: 0 16px 30px #24402f1a;
+        overflow: hidden;
+        position: relative;
+      }
+      .sUse .use-card .film {
+        background: linear-gradient(90deg, rgba(7, 27, 23, 0.82), rgba(7, 27, 23, 0.19)), linear-gradient(0deg, rgba(4, 20, 16, 0.55), transparent 70%);
+      }
+      .sUse .use-card .use-copy {
+        position: absolute;
+        z-index: 4;
+        left: 31px;
+        top: 23px;
+        max-width: 460px;
+        color: white;
+      }
+      .sUse .use-copy .use-label {
+        font-size: 12px;
+        font-weight: 850;
+        color: #ead0a5;
+        letter-spacing: 2px;
+      }
+      .sUse .use-copy h3 {
+        font-size: 31px;
+        letter-spacing: -0.5px;
+        margin: 17px 0 7px;
+      }
+      .sUse .use-copy p {
+        font-size: 17px;
+        color: #edf2e9;
+        line-height: 1.55;
+        max-width: 480px;
+      }
+      .sUse .use-card .image-label {
+        bottom: 13px;
+        right: 13px;
+        font-size: 10px;
+        padding: 5px 8px;
+      }
+      .sUse .use-outro {
+        margin-top: 18px;
+        font-size: 18px;
+        text-align: center;
+        color: #3d6955;
+        font-weight: 750;
+        letter-spacing: 0.2px;
+      }
+
+      /* phone reusable */
+      .phone {
+        width: 258px;
+        height: 526px;
+        background: #121b1b;
+        border: 9px solid #17221f;
+        border-radius: 38px;
+        padding: 8px;
+        box-shadow: 0 19px 38px rgba(20, 47, 40, 0.25);
+        position: relative;
+        color: #23372d;
+        flex: none;
+      }
+      .phone::before {
+        content: "";
+        position: absolute;
+        top: 13px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 64px;
+        height: 15px;
+        background: #101716;
+        border-radius: 0 0 13px 13px;
+        z-index: 10;
+      }
+      .phone .screen {
+        border-radius: 25px;
+        overflow: hidden;
+        background: #f6f7f4;
+        height: 100%;
+        position: relative;
+        font-size: 13px;
+      }
+      .phone .status {
+        height: 32px;
+        padding: 7px 13px;
+        font-size: 10px;
+        letter-spacing: 1px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .phone .appbar {
+        height: 42px;
+        background: #fff;
+        border-bottom: 1px solid #e2e6e0;
+        padding: 12px;
+        font-weight: 850;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .phone .appbar.green {
+        background: #0fba5a;
+        color: white;
+      }
+      .phone .bubble {
+        max-width: 82%;
+        padding: 10px 12px;
+        border-radius: 11px;
+        line-height: 1.55;
+        font-size: 12px;
+        background: white;
+        margin: 12px 14px;
+        border: 1px solid #e2e8e1;
+      }
+      .phone .bubble.owner {
+        margin-left: auto;
+        background: #a5ecc0;
+        border-color: transparent;
+      }
+      .phone .action {
+        background: #2b745d;
+        color: white;
+        border-radius: 9px;
+        text-align: center;
+        padding: 11px 10px;
+        margin: 12px 14px;
+        font-weight: 900;
+        font-size: 13px;
+      }
+      .phone .mini-thumb {
+        height: 153px;
+        background: linear-gradient(135deg, #39594a, #192d24);
+        position: relative;
+        overflow: hidden;
+      }
+      .phone .mini-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        inset: 0;
+      }
+      .phone .mini-thumb::after {
+        content: "";
+        inset: 0;
+        position: absolute;
+        background: linear-gradient(0deg, rgba(8, 21, 18, 0.71), transparent 65%);
+      }
+      .phone .mini-thumb .mini-title {
+        position: absolute;
+        left: 17px;
+        bottom: 19px;
+        color: white;
+        z-index: 2;
+        font-size: 20px;
+        font-weight: 850;
+        line-height: 1.4;
+      }
+      .phone .question {
+        padding: 18px 14px;
+        line-height: 1.75;
+        font-weight: 700;
+        font-size: 14px;
+      }
+      .phone .inputline {
+        height: 36px;
+        background: #fff;
+        border: 1px solid #dce4dc;
+        border-radius: 8px;
+        margin: 10px 14px;
+        padding: 10px;
+        color: #88968c;
+      }
+      .phone .wrong {
+        margin: 4px 14px;
+        color: #ba5b4f;
+        font-weight: 800;
+        font-size: 11px;
+      }
+      .phone .success-ring {
+        width: 109px;
+        height: 109px;
+        border: 7px solid #bce2cb;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: #e7f5e9;
+        color: #428467;
+        font-size: 50px;
+        margin: 45px auto 18px;
+      }
+      .phone .counter {
+        position: absolute;
+        bottom: 19px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-size: 11px;
+        color: #89968d;
+      }
+      /* why choose LINE — player / organizer benefits */
+      .s3 {
+        background: radial-gradient(circle at 95% 1%, rgba(195, 217, 192, 0.55), transparent 40%), #eef1e9;
+      }
+      .s3 h2 {
+        font-size: 54px;
+        margin: 17px 0 12px;
+        line-height: 1.22;
+      }
+      .s3 .sub {
+        font-size: 20px;
+        color: #526d60;
+      }
+      .s3 .why-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
+        margin-top: 26px;
+      }
+      .s3 .why-card {
+        border-radius: 22px;
+        min-height: 405px;
+        padding: 26px 31px 27px;
+        background: #fff;
+        border: 1px solid #dce5db;
+        box-shadow: 0 16px 35px rgba(24, 63, 48, 0.09);
+      }
+      .s3 .why-card.organizer {
+        background: linear-gradient(145deg, #214a3d, #132e29);
+        border-color: rgba(224, 237, 217, 0.15);
+        color: #fff;
+        box-shadow: 0 18px 36px rgba(11, 46, 36, 0.18);
+      }
+      .s3 .why-head {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid #dce7de;
+      }
+      .s3 .organizer .why-head {
+        border-bottom-color: rgba(255, 255, 255, 0.19);
+      }
+      .s3 .why-role-icon {
+        display: grid;
+        place-items: center;
+        width: 56px;
+        height: 56px;
+        border-radius: 15px;
+        background: #e5eee7;
+        color: #255d48;
+        font-size: 27px;
+        font-weight: 800;
+      }
+      .s3 .organizer .why-role-icon {
+        background: rgba(234, 207, 152, 0.16);
+        color: #edd19f;
+      }
+      .s3 .why-role {
+        display: block;
+        font-size: 27px;
+        font-weight: 850;
+        letter-spacing: 0.3px;
+      }
+      .s3 .why-role-sub {
+        display: block;
+        font-size: 13px;
+        color: #769285;
+        margin-top: 4px;
+        letter-spacing: 1px;
+      }
+      .s3 .organizer .why-role-sub {
+        color: #b5ccbd;
+      }
+      .s3 .why-benefit {
+        display: grid;
+        grid-template-columns: 41px 1fr;
+        gap: 13px;
+        padding-top: 23px;
+      }
+      .s3 .why-benefit + .why-benefit {
+        margin-top: 19px;
+        border-top: 1px solid #e7ece5;
+      }
+      .s3 .organizer .why-benefit + .why-benefit {
+        border-top-color: rgba(255, 255, 255, 0.14);
+      }
+      .s3 .why-n {
+        font-size: 19px;
+        letter-spacing: 1px;
+        color: #408063;
+        font-weight: 900;
+        padding-top: 3px;
+      }
+      .s3 .organizer .why-n {
+        color: #e2c48b;
+      }
+      .s3 .why-benefit b {
+        font-size: 24px;
+        line-height: 1.3;
+      }
+      .s3 .why-benefit p {
+        font-size: 17px;
+        line-height: 1.56;
+        margin-top: 8px;
+        color: #607a6b;
+      }
+      .s3 .organizer .why-benefit p {
+        color: #c7d8c9;
+      }
+      .s3 .bottomline {
+        position: absolute;
+        bottom: 79px;
+        left: 85px;
+        font-size: 21px;
+        font-weight: 800;
+        color: #295d49;
+        letter-spacing: 0.4px;
+      }
+
+      /* journey */
+      .s4 h2 {
+        margin: 19px 0 12px;
+      }
+      .s4 .journey {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        gap: 13px;
+        margin-top: 28px;
+      }
+      .s4 .step {
+        width: 281px;
+        text-align: center;
+        position: relative;
+      }
+      .s4 .step:not(:last-child)::after {
+        content: "→";
+        position: absolute;
+        right: -33px;
+        top: 235px;
+        font-size: 40px;
+        color: #aac2ad;
+        z-index: 3;
+      }
+      .s4 .step .phone {
+        width: 214px;
+        height: 413px;
+        border-width: 7px;
+        border-radius: 31px;
+        padding: 6px;
+        margin: 0 auto 11px;
+        box-shadow: 0 9px 23px #18392c26;
+      }
+      .s4 .step .phone .screen {
+        border-radius: 19px;
+        font-size: 11px;
+      }
+      .s4 .step .phone .appbar {
+        height: 37px;
+        padding: 11px;
+        font-size: 11px;
+      }
+      .s4 .step .phone .status {
+        height: 25px;
+        padding: 5px;
+        font-size: 9px;
+      }
+      .s4 .step .phone .bubble {
+        margin: 8px 9px;
+        padding: 8px;
+        font-size: 10px;
+      }
+      .s4 .step .phone .action {
+        font-size: 10px;
+        padding: 9px;
+        margin: 10px;
+      }
+      .s4 .step .phone .mini-thumb {
+        height: 128px;
+      }
+      .s4 .step .phone .mini-thumb .mini-title {
+        font-size: 16px;
+      }
+      .s4 .step .phone .question {
+        padding: 12px;
+        font-size: 11px;
+      }
+      .s4 .step .phone .inputline {
+        margin: 8px;
+        padding: 7px;
+        height: 28px;
+      }
+      .s4 .step .phone .success-ring {
+        width: 86px;
+        height: 86px;
+        margin: 27px auto 15px;
+        font-size: 38px;
+      }
+      .s4 .step b {
+        font-size: 21px;
+      }
+      .s4 .step p {
+        font-size: 15px;
+        color: #7b8c80;
+        margin-top: 7px;
+      }
+      .s4 .foot {
+        font-size: 14px;
+        position: absolute;
+        bottom: 77px;
+        right: 92px;
+        color: #8a948b;
+      }
+      /* Third-party service introduction: provider credibility, not integration architecture */
+      .s5 h2 {
+        margin-top: 22px;
+        font-size: 56px;
+      }
+      .s5 .provider-intro {
+        margin-top: 16px;
+        font-size: 22px;
+        line-height: 1.5;
+        color: #677b70;
+      }
+      .s5 .provider-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 26px;
+        margin-top: 32px;
+      }
+      .s5 .provider-card {
+        height: 350px;
+        display: flex;
+        flex-direction: column;
+        background: #fff;
+        border-radius: 23px;
+        border: 1px solid #dbe6db;
+        padding: 29px 32px;
+        box-shadow: 0 16px 40px #223d3012;
+        position: relative;
+        overflow: hidden;
+      }
+      .s5 .provider-card::after {
+        content: "";
+        position: absolute;
+        width: 225px;
+        height: 225px;
+        right: -126px;
+        top: -142px;
+        border: 1px solid #dce9df;
+        border-radius: 50%;
+        box-shadow: 0 0 0 40px #e7efe630;
+        pointer-events: none;
+      }
+      .s5 .provider-head {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        min-height: 85px;
+      }
+      .s5 .provider-mark {
+        width: 82px;
+        height: 82px;
+        flex: none;
+        border-radius: 21px;
+        display: grid;
+        place-items: center;
+      }
+      .s5 .line-mark {
+        background: #06c755;
+        color: white;
+        font-size: 23px;
+        font-weight: 950;
+        letter-spacing: -1.6px;
+      }
+      .s5 .cloud-mark {
+        background: #fff0df;
+        color: #f08020;
+      }
+      .s5 .cloud-mark svg {
+        width: 63px;
+        height: 55px;
+      }
+      .s5 .provider-kicker {
+        font-size: 14px;
+        letter-spacing: 1px;
+        color: #70887b;
+        font-weight: 700;
+      }
+      .s5 .provider-card h3 {
+        font-size: 39px;
+        line-height: 1.1;
+        margin-top: 8px;
+        letter-spacing: -1px;
+      }
+      .s5 .provider-card .provider-lead {
+        font-size: 24px;
+        font-weight: 850;
+        color: #285a49;
+        margin-top: 20px;
+        line-height: 1.4;
+      }
+      .s5 .provider-card p {
+        font-size: 18px;
+        line-height: 1.68;
+        color: #5d7466;
+        margin-top: 12px;
+        max-width: 540px;
+      }
+      .s5 .provider-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 9px;
+        margin-top: auto;
+      }
+      .s5 .provider-tags span {
+        font-size: 14px;
+        font-weight: 750;
+        color: #3e6954;
+        background: #e9f1e8;
+        border-radius: 20px;
+        padding: 7px 13px;
+      }
+      .s5 .provider-link {
+        font-size: 14px;
+        color: #2c6a51;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+        font-weight: 750;
+        position: absolute;
+        right: 31px;
+        bottom: 35px;
+        background: #fff;
+      }
+      .s5 .provider-card .provider-tags {
+        padding-right: 155px;
+      }
+      .s5 .provider-takeaway {
+        margin-top: 23px;
+        background: #e7eee4;
+        border: 1px solid #d9e7d7;
+        border-radius: 16px;
+        padding: 15px 26px;
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        min-height: 76px;
+      }
+      .s5 .provider-takeaway-icon {
+        height: 49px;
+        width: 49px;
+        flex: none;
+        border-radius: 13px;
+        display: grid;
+        place-items: center;
+        font-size: 28px;
+        color: #285f4e;
+        background: #d3e4d5;
+      }
+      .s5 .provider-takeaway b {
+        font-size: 22px;
+        color: #295e47;
+        line-height: 1.4;
+      }
+      .s5 .provider-takeaway p {
+        font-size: 16px;
+        color: #687c6b;
+        margin-top: 4px;
+        line-height: 1.35;
+      }
+      /* hints — two alternatives: editable LINE OA or integrated Web */
+      .s6 {
+        background: #eef0e9;
+      }
+      .s6 h2 {
+        margin: 18px 0 10px;
+        font-size: 53px;
+      }
+      .s6 .hint-intro {
+        font-size: 20px;
+        line-height: 1.5;
+        color: #62796a;
+      }
+      .s6 .hint-compare {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 27px;
+        margin-top: 28px;
+      }
+      .s6 .hint-choice {
+        border-radius: 22px;
+        min-height: 442px;
+        padding: 25px 27px 22px;
+        border: 1px solid #d4e3d7;
+        background: #fff;
+        box-shadow: 0 14px 34px rgba(18, 57, 39, 0.075);
+      }
+      .s6 .hint-choice.integrated {
+        background: linear-gradient(138deg, #21473a, #132d27);
+        border-color: rgba(229, 235, 213, 0.17);
+        color: #f7f6ed;
+        box-shadow: 0 14px 33px rgba(9, 43, 30, 0.16);
+      }
+      .s6 .hint-choice-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+      .s6 .hint-number {
+        display: grid;
+        place-items: center;
+        flex: none;
+        width: 49px;
+        height: 49px;
+        border-radius: 14px;
+        background: #e6f0e7;
+        color: #30684e;
+        font-size: 21px;
+        font-weight: 900;
+      }
+      .s6 .integrated .hint-number {
+        background: rgba(236, 201, 143, 0.14);
+        color: #eacf9c;
+      }
+      .s6 .hint-choice h3 {
+        font-size: 29px;
+        line-height: 1.3;
+        font-weight: 850;
+      }
+      .s6 .hint-desc {
+        height: 59px;
+        margin: 12px 0 8px;
+        font-size: 17px;
+        line-height: 1.6;
+        color: #61796a;
+      }
+      .s6 .integrated .hint-desc {
+        color: #c7d8c9;
+      }
+      .s6 .hint-demo {
+        height: 186px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 13px;
+        background: #f1f6f0;
+        border: 1px solid #e1eae0;
+        padding: 15px;
+      }
+      .s6 .integrated .hint-demo {
+        background: rgba(242, 251, 241, 0.065);
+        border-color: rgba(233, 238, 217, 0.13);
+      }
+      .s6 .hint-mini-window {
+        width: 210px;
+        height: 157px;
+        background: #fff;
+        border-radius: 13px;
+        overflow: hidden;
+        box-shadow: 0 6px 14px rgba(38, 72, 53, 0.11);
+        border: 1px solid #e1e9e2;
+        flex: none;
+      }
+      .s6 .hint-mini-top {
+        height: 34px;
+        background: #375e4c;
+        color: #f9fff9;
+        font-size: 13px;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        padding: 0 12px;
+      }
+      .s6 .hint-mini-body {
+        padding: 13px 13px;
+        font-size: 14px;
+        color: #3b5947;
+        line-height: 1.45;
+      }
+      .s6 .hint-mini-body .hint-failure {
+        font-size: 13px;
+        color: #bc675d;
+        font-weight: 800;
+        margin-bottom: 13px;
+      }
+      .s6 .hint-mini-link {
+        display: block;
+        padding: 8px 9px;
+        background: #e4f0e7;
+        color: #2f6a4d;
+        font-weight: 800;
+        font-size: 13px;
+        text-align: center;
+        border-radius: 7px;
+      }
+      .s6 .hint-arrow {
+        font-size: 33px;
+        color: #92b7a0;
+        font-weight: 600;
+        flex: none;
+      }
+      .s6 .hint-mini-oa .hint-mini-top {
+        background: #1eae5f;
+      }
+      .s6 .hint-chat-bubble {
+        background: #e8f4e9;
+        border-radius: 13px 13px 13px 4px;
+        padding: 11px 10px;
+        color: #355b41;
+        font-size: 13px;
+        line-height: 1.45;
+      }
+      .s6 .hint-integrated-phone {
+        width: 345px;
+        height: 167px;
+        border: 1px solid rgba(235, 246, 234, 0.34);
+        border-radius: 12px;
+        background: #f9fbf6;
+        overflow: hidden;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+      }
+      .s6 .hint-integrated-phone .hint-mini-top {
+        height: 31px;
+        font-size: 12px;
+      }
+      .s6 .hint-stage {
+        height: 136px;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(145deg, #e2e9dd, #f7f8f0);
+      }
+      .s6 .hint-inline-modal {
+        width: 260px;
+        padding: 11px 16px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 7px 16px #19433325;
+        text-align: center;
+      }
+      .s6 .hint-inline-modal strong {
+        font-size: 14px;
+        display: block;
+        color: #285d43;
+        margin-bottom: 7px;
+      }
+      .s6 .hint-inline-modal p {
+        font-size: 13px;
+        line-height: 1.4;
+        color: #526b5b;
+      }
+      .s6 .hint-takeaway {
+        border-top: 1px solid #deeadf;
+        margin-top: 18px;
+        padding-top: 15px;
+        display: flex;
+        gap: 13px;
+        align-items: flex-start;
+      }
+      .s6 .integrated .hint-takeaway {
+        border-top-color: rgba(234, 246, 228, 0.18);
+      }
+      .s6 .hint-takeaway-icon {
+        display: grid;
+        place-items: center;
+        background: #e5f0e6;
+        border-radius: 11px;
+        flex: none;
+        width: 40px;
+        height: 40px;
+        font-size: 22px;
+        color: #327557;
+        font-weight: 800;
+      }
+      .s6 .integrated .hint-takeaway-icon {
+        background: rgba(243, 212, 166, 0.14);
+        color: #e9ce9c;
+      }
+      .s6 .hint-takeaway strong {
+        font-size: 21px;
+        line-height: 1.35;
+        display: block;
+        color: #295e45;
+      }
+      .s6 .integrated .hint-takeaway strong {
+        color: #f1d8ab;
+      }
+      .s6 .hint-takeaway p {
+        font-size: 15px;
+        line-height: 1.5;
+        color: #687e6c;
+        margin-top: 6px;
+      }
+      .s6 .integrated .hint-takeaway p {
+        color: #c4d8c6;
+      }
+      .s6 .hint-summary {
+        margin-top: 19px;
+        display: flex;
+        justify-content: center;
+        gap: 17px;
+        align-items: center;
+        color: #3c6a51;
+        font-size: 18px;
+        font-weight: 850;
+      }
+      .s6 .hint-summary .hint-dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: #a2bcaa;
+      }
+      /* capacity: local-first architecture + verified Cloudflare Pages case */
+      .s7 {
+        padding: 0 !important;
+        background: radial-gradient(circle at 105% -10%, #2b5141 0, transparent 46%), linear-gradient(135deg, #162c25, #10221e 74%) !important;
+      }
+      .s7 .cap-header {
+        position: absolute;
+        top: 73px;
+        left: 88px;
+        right: 88px;
+        z-index: 3;
+      }
+      .s7 .cap-header h2 {
+        font-size: 54px;
+        margin-top: 20px;
+        line-height: 1.14;
+        letter-spacing: -1.3px;
+      }
+      .s7 .cap-header p {
+        margin-top: 12px;
+        color: #c0d3c5;
+        font-size: 20px;
+        letter-spacing: 0.3px;
+      }
+      .s7 .cap-grid {
+        position: absolute;
+        top: 241px;
+        left: 88px;
+        right: 88px;
+        display: grid;
+        grid-template-columns: 1.07fr 0.93fr;
+        gap: 24px;
+        z-index: 2;
+      }
+      .s7 .cap-panel {
+        height: 343px;
+        min-width: 0;
+        padding: 25px 26px;
+        border: 1px solid rgba(215, 232, 216, 0.22);
+        border-radius: 23px;
+        background: rgba(227, 246, 232, 0.062);
+        box-shadow: 0 18px 34px rgba(5, 26, 17, 0.14);
+      }
+      .s7 .cap-small-label {
+        font-size: 14px;
+        letter-spacing: 2px;
+        color: #d3c096;
+        font-weight: 850;
+      }
+      .s7 .cap-steps {
+        display: grid;
+        grid-template-columns: 1fr 39px 1fr;
+        gap: 10px;
+        align-items: center;
+        margin-top: 22px;
+      }
+      .s7 .cap-step {
+        border: 1px solid rgba(218, 241, 222, 0.2);
+        background: rgba(226, 241, 228, 0.075);
+        border-radius: 18px;
+        height: 202px;
+        padding: 19px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+      }
+      .s7 .cap-step-head {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 16px;
+        color: #c7ddcc;
+        font-weight: 700;
+      }
+      .s7 .cap-step-icon {
+        display: grid;
+        place-items: center;
+        width: 41px;
+        height: 41px;
+        border-radius: 12px;
+        background: rgba(228, 241, 217, 0.14);
+        color: #e7d3a8;
+        font-size: 25px;
+      }
+      .s7 .cap-key {
+        font-size: 36px;
+        color: #eed29c;
+        font-weight: 900;
+        line-height: 1.18;
+        margin-top: 24px;
+        white-space: nowrap;
+        letter-spacing: -1.1px;
+      }
+      .s7 .cap-step-desc {
+        font-size: 15px;
+        color: #c4d7cc;
+        margin-top: 11px;
+        line-height: 1.5;
+      }
+      .s7 .cap-arrow {
+        font-size: 33px;
+        color: #e6c99e;
+        text-align: center;
+        font-weight: 300;
+      }
+      .s7 .cap-network {
+        font-size: 13px;
+        color: #adc2b3;
+        margin-top: 17px;
+        line-height: 1.45;
+      }
+      .s7 .cloud-case {
+        background: linear-gradient(145deg, rgba(72, 112, 92, 0.28), rgba(215, 189, 140, 0.095));
+        border-color: rgba(221, 190, 134, 0.34);
+        position: relative;
+        overflow: hidden;
+      }
+      .s7 .cloud-case::after {
+        content: "";
+        position: absolute;
+        right: -88px;
+        top: -125px;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        border: 1px solid rgba(241, 222, 174, 0.13);
+        box-shadow:
+          0 0 0 45px rgba(241, 222, 174, 0.035),
+          0 0 0 95px rgba(241, 222, 174, 0.026);
+        pointer-events: none;
+      }
+      .s7 .cloud-case .cap-stat {
+        display: flex;
+        align-items: baseline;
+        gap: 15px;
+        margin-top: 24px;
+        position: relative;
+        z-index: 1;
+      }
+      .s7 .cloud-case .cap-stat-number {
+        font-size: 102px;
+        line-height: 1;
+        letter-spacing: -5px;
+        font-weight: 900;
+        color: #f0cb8c;
+      }
+      .s7 .cloud-case .cap-stat-unit {
+        font-size: 28px;
+        font-weight: 800;
+        color: #f2e3c9;
+        white-space: nowrap;
+      }
+      .s7 .cloud-case .cap-stat-caption {
+        font-size: 20px;
+        color: #e6eadf;
+        font-weight: 800;
+        margin-top: 6px;
+      }
+      .s7 .cloud-case .cap-case-desc {
+        font-size: 16px;
+        line-height: 1.55;
+        color: #bdcfc1;
+        margin-top: 17px;
+        max-width: 465px;
+      }
+      .s7 .cap-source {
+        color: #e6cc9e;
+        text-underline-offset: 4px;
+        text-decoration-color: rgba(232, 207, 161, 0.7);
+        font-size: 14px;
+        display: inline-block;
+        margin-top: 11px;
+        position: relative;
+        z-index: 2;
+      }
+      .s7 .cap-source:focus-visible {
+        outline: 2px solid #f1daae;
+        outline-offset: 3px;
+        border-radius: 3px;
+      }
+      .s7 .cap-proof {
+        position: absolute;
+        top: 608px;
+        left: 88px;
+        right: 88px;
+        min-height: 108px;
+        border: 1px solid rgba(211, 234, 211, 0.35);
+        background: linear-gradient(105deg, rgba(67, 123, 96, 0.38), rgba(226, 196, 141, 0.15));
+        border-radius: 17px;
+        padding: 18px 27px;
+        z-index: 2;
+        display: flex;
+        gap: 29px;
+        align-items: center;
+      }
+      .s7 .cap-proof-label {
+        background: #c8e5c9;
+        color: #17392d;
+        border-radius: 12px;
+        padding: 12px 19px;
+        font-size: 19px;
+        font-weight: 850;
+        white-space: nowrap;
+      }
+      .s7 .cap-proof-copy {
+        font-size: 29px;
+        line-height: 1.3;
+        color: #f8f3e8;
+        font-weight: 800;
+      }
+      .s7 .cap-proof-copy strong {
+        color: #f0cf93;
+        font-size: 39px;
+        font-weight: 900;
+        letter-spacing: -0.6px;
+      }
+      .s7 .brand {
+        left: 88px;
+      }
+      /* slide 10 / document preparation & project collaboration */
+      .s8 h2 {
+        margin: 23px 0 11px;
+        font-size: 55px;
+      }
+      .s8 .sub {
+        font-size: 20px;
+        line-height: 1.5;
+      }
+      .s8 .layout {
+        display: grid;
+        grid-template-columns: 675px 1fr;
+        gap: 32px;
+        margin-top: 22px;
+        align-items: stretch;
+      }
+      .s8 .editor-shell {
+        border: 1px solid #d2dfd2;
+        border-radius: 17px;
+        background: #fff;
+        box-shadow: 0 20px 38px #19372e1a;
+        overflow: hidden;
+        height: 377px;
+      }
+      .s8 .editor-head {
+        height: 44px;
+        background: #264e43;
+        color: #ecf8ef;
+        display: flex;
+        align-items: center;
+        padding: 0 17px;
+        justify-content: space-between;
+        font-size: 14px;
+        font-weight: 800;
+        letter-spacing: 0.4px;
+      }
+      .s8 .editor-head small {
+        font-size: 11px;
+        color: #bfd8c4;
+        font-weight: 500;
+      }
+      .s8 .editor-head .editor-state {
+        font-size: 12px;
+        color: #cfdfd3;
+        font-weight: 600;
+      }
+      .s8 .editor-body {
+        display: grid;
+        grid-template-columns: 145px 1fr;
+        height: calc(100% - 44px);
+      }
+      .s8 .editor-nav {
+        background: #eaf1e9;
+        padding: 14px 9px;
+      }
+      .s8 .editor-nav .navlabel {
+        padding: 11px 11px;
+        font-size: 13px;
+        color: #6f8172;
+        border-radius: 8px;
+        line-height: 1.3;
+      }
+      .s8 .editor-nav .navlabel.active {
+        background: #c9ddcd;
+        color: #2b654a;
+        font-weight: 800;
+      }
+      .s8 .editor-form {
+        padding: 17px 22px;
+      }
+      .s8 .editor-form label {
+        font-size: 12px;
+        letter-spacing: 0.4px;
+        color: #6d8674;
+        display: block;
+        margin-bottom: 4px;
+        font-weight: 700;
+      }
+      .s8 .fake-input {
+        border: 1px solid #d8e6db;
+        border-radius: 7px;
+        padding: 9px 12px;
+        color: #445e50;
+        background: #fbfcfa;
+        font-size: 13px;
+        margin-bottom: 9px;
+        line-height: 1.4;
+      }
+      .s8 .fake-area {
+        height: 61px;
+        overflow: hidden;
+      }
+      .s8 .form-bottom {
+        display: grid;
+        grid-template-columns: 1.65fr 1fr;
+        gap: 13px;
+      }
+      .s8 .fake-upload {
+        height: 39px;
+        border: 1px dashed #9db9a3;
+        background: #e9f1e9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        color: #527e61;
+        font-size: 13px;
+        font-weight: 800;
+        border-radius: 8px;
+      }
+      .s8 .rightcolumn {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .s8 .material-heading {
+        font-size: 22px;
+        font-weight: 850;
+        color: #244839;
+        margin: 0 0 1px;
+      }
+      .s8 .materials {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 11px;
+        flex: 1;
+      }
+      .s8 .material {
+        background: #fff;
+        border: 1px solid #d9e5da;
+        border-radius: 13px;
+        padding: 15px 15px;
+        min-width: 0;
+        box-shadow: 0 7px 19px rgba(29, 65, 48, 0.025);
+      }
+      .s8 .material .material-icon {
+        width: 29px;
+        height: 29px;
+        border-radius: 8px;
+        background: #e6efe7;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #39715c;
+        font-size: 14px;
+        font-weight: 900;
+        margin-bottom: 9px;
+      }
+      .s8 .material strong {
+        display: block;
+        font-size: 17px;
+        font-weight: 850;
+        margin-bottom: 7px;
+        color: #233f35;
+      }
+      .s8 .material p {
+        font-size: 13.5px;
+        line-height: 1.52;
+        color: #688073;
+      }
+      .s8 .material-method {
+        color: #356c57;
+        font-size: 13px;
+        font-weight: 750;
+        white-space: nowrap;
+        background: #e2ede5;
+        border-radius: 8px;
+        padding: 9px 12px;
+        text-align: center;
+      }
+      .s8 .design-flow {
+        margin-top: 15px;
+        background: #e6eee6;
+        border: 1px solid #d3e2d5;
+        border-radius: 15px;
+        padding: 14px 17px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        align-items: center;
+        gap: 8px;
+      }
+      .s8 .design-step {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        justify-content: center;
+        position: relative;
+        min-width: 0;
+      }
+      .s8 .design-step:not(:last-child)::after {
+        content: "→";
+        position: absolute;
+        right: -9px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-weight: 850;
+        font-size: 20px;
+        color: #8ca999;
+      }
+      .s8 .design-step .stepnum {
+        font-size: 13px;
+        font-weight: 900;
+        color: #559079;
+        border: 1px solid #b6d0bd;
+        background: #f5f8f2;
+        border-radius: 50%;
+        height: 30px;
+        width: 30px;
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+      }
+      .s8 .design-step strong {
+        font-size: 15px;
+        color: #244b3c;
+        line-height: 1.3;
+      }
+      .s8 .design-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 18px;
+        margin-top: 10px;
+        color: #687c6e;
+        font-size: 13px;
+        line-height: 1.45;
+      }
+      .s8 .design-footer .extra {
+        color: #2e6652;
+        font-weight: 760;
+      }
+      /* timeline */
+      .s9 h2 {
+        margin: 22px 0 17px;
+      }
+      .s9 .timeline {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        margin-top: 37px;
+      }
+      .s9 .tcard {
+        height: 143px;
+        border-radius: 18px;
+        padding: 20px 20px;
+        background: white;
+        box-shadow: 0 10px 24px #26433210;
+        border: 1px solid #dce7db;
+        position: relative;
+      }
+      .s9 .tcard strong {
+        font-size: 19px;
+        line-height: 1.5;
+      }
+      .s9 .tcard .index {
+        font-size: 17px;
+        color: #7da08b;
+        font-weight: 900;
+        margin-bottom: 13px;
+      }
+      .s9 .tcard .ttext {
+        font-size: 14px;
+        color: #6e8373;
+        line-height: 1.45;
+        margin-top: 6px;
+      }
+      .s9 .tcard.active {
+        background: #315d4d;
+        color: white;
+        border-color: #315d4d;
+      }
+      .s9 .tcard.active .index,
+      .s9 .tcard.active .ttext {
+        color: #cfe3d3;
+      }
+      .s9 .tcard:nth-child(4)::after {
+        content: "↓";
+        position: absolute;
+        bottom: -41px;
+        right: 43%;
+        font-size: 34px;
+        color: #9eb8a8;
+      }
+      .s9 .tcard:nth-child(5) {
+        grid-column: 1;
+        grid-row: 2;
+      }
+      .s9 .tcard:nth-child(6) {
+        grid-column: 2;
+        grid-row: 2;
+      }
+      .s9 .tcard:nth-child(7) {
+        grid-column: 3;
+        grid-row: 2;
+      }
+      .s9 .tcard:nth-child(4)::after {
+        display: none;
+      }
+      .s9 .metricbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        background: #e6eee5;
+        border-radius: 15px;
+        padding: 18px;
+        margin-top: 28px;
+      }
+      .s9 .metric {
+        text-align: center;
+      }
+      .s9 .metric b {
+        font-size: 25px;
+        color: #2e6852;
+      }
+      .s9 .metric p {
+        font-size: 13px;
+        color: #77917c;
+        margin-top: 3px;
+      }
+      .s9 .fine {
+        position: absolute;
+        bottom: 75px;
+        right: 83px;
+        color: #87968b;
+        font-size: 12px;
+      }
+      /* delivery */
+      .s10 {
+        background: linear-gradient(133deg, #172d27, #10221f) !important;
+      }
+      .s10 .orb {
+        position: absolute;
+        width: 760px;
+        height: 760px;
+        border: 1px solid #688f7d33;
+        border-radius: 50%;
+        top: -270px;
+        right: -215px;
+        box-shadow:
+          0 0 0 90px #78957e10,
+          0 0 0 210px #78957e0a;
+      }
+      .s10 h2 {
+        margin: 24px 0 20px;
+        font-size: 58px;
+      }
+      .s10 .deliver {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 21px;
+        margin-top: 52px;
+      }
+      .s10 .dcard {
+        height: 225px;
+        border: 1px solid rgba(198, 226, 208, 0.26);
+        background: rgba(238, 247, 235, 0.075);
+        border-radius: 21px;
+        padding: 26px 23px;
+      }
+      .s10 .dicon {
+        font-size: 38px;
+        color: #dfbf8a;
+        margin-bottom: 19px;
+      }
+      .s10 .dcard h3 {
+        font-size: 23px;
+        margin: 0 0 10px;
+      }
+      .s10 .dcard p {
+        font-size: 16px;
+        color: #b4cab9;
+        line-height: 1.7;
+      }
+      .s10 .closing {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 42px;
+        background: #e9e9d9;
+        border-radius: 18px;
+        padding: 24px 31px;
+        color: #1f4436;
+      }
+      .s10 .closing strong {
+        font-size: 25px;
+      }
+      .s10 .closing p {
+        font-size: 16px;
+        margin-top: 8px;
+        color: #617466;
+      }
+      .s10 .cta {
+        background: #225c45;
+        color: white;
+        padding: 16px 23px;
+        border-radius: 11px;
+        text-decoration: none;
+        font-weight: 900;
+        font-size: 17px;
+        white-space: nowrap;
+      }
+      .s10 .cta small {
+        font-weight: 500;
+        font-size: 12px;
+        display: block;
+        opacity: 0.75;
+        margin-top: 3px;
+      }
+      .s10 .footer-small {
+        position: absolute;
+        bottom: 76px;
+        left: 83px;
+        color: #a2b6a8;
+        font-size: 13px;
+      }
+
+      /* 12｜customer-facing delivery & ongoing use — no legal jargon */
+      .s10 {
+        background: radial-gradient(circle at 95% 0%, rgba(89, 131, 105, 0.2) 0, transparent 36%), linear-gradient(135deg, #172e28, #10231f 78%) !important;
+      }
+      .s10 .delivery-head {
+        position: relative;
+        z-index: 2;
+      }
+      .s10 h2 {
+        font-size: 55px;
+        line-height: 1.2;
+        margin: 23px 0 9px;
+      }
+      .s10 .delivery-sub {
+        font-size: 20px;
+        color: #c4d2c7;
+        line-height: 1.55;
+      }
+      .s10 .delivery-qa {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px 23px;
+        margin-top: 31px;
+      }
+      .s10 .delivery-item {
+        background: rgba(233, 245, 234, 0.067);
+        border: 1px solid rgba(215, 235, 217, 0.24);
+        border-radius: 19px;
+        padding: 24px 27px;
+        min-height: 174px;
+      }
+      .s10 .delivery-item .question-head {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .s10 .delivery-item .q-index {
+        display: inline-grid;
+        place-items: center;
+        width: 37px;
+        height: 37px;
+        flex: none;
+        border-radius: 10px;
+        background: rgba(230, 202, 150, 0.16);
+        color: #e6c38e;
+        font-size: 15px;
+        font-weight: 900;
+      }
+      .s10 .delivery-item h3 {
+        font-size: 23px;
+        color: #faf8f0;
+        line-height: 1.35;
+        font-weight: 850;
+      }
+      .s10 .delivery-item p {
+        font-size: 17px;
+        line-height: 1.65;
+        color: #c4d6c8;
+        margin: 14px 0 0 51px;
+      }
+      .s10 .delivery-note {
+        position: relative;
+        z-index: 2;
+        margin-top: 21px;
+        font-size: 14px;
+        color: #b1c4b8;
+        line-height: 1.5;
+      }
+      .s10 .brand,
+      .s10 .slide-id {
+        z-index: 4;
+      }
+      /* 13｜Q&A first, then real-world project discussion */
+      /* Final slide: Q&A only — no assumption of procurement or project kickoff */
+      .s11 {
+        background: radial-gradient(circle at 104% 8%, rgba(76, 126, 99, 0.21), transparent 46%), linear-gradient(136deg, #153028, #10221f 83%) !important;
+      }
+      .s11 .qna-eyebrow {
+        font-size: 15px;
+        letter-spacing: 3.4px;
+        font-weight: 800;
+        color: #d6b77d;
+      }
+      .s11 h2 {
+        font-size: 64px;
+        line-height: 1.18;
+        margin: 25px 0 13px;
+        letter-spacing: -1.9px;
+      }
+      .s11 .qna-sub {
+        font-size: 21px;
+        color: #c4d6c8;
+        line-height: 1.65;
+      }
+      .s11 .qna-feature {
+        margin-top: 33px;
+        min-height: 128px;
+        display: grid;
+        grid-template-columns: 65px 1fr;
+        gap: 23px;
+        align-items: center;
+        padding: 23px 31px;
+        border-radius: 21px;
+        background: linear-gradient(105deg, #edece0, #dbe8db);
+        color: #1f4434;
+        box-shadow: 0 13px 36px rgba(0, 0, 0, 0.13);
+      }
+      .s11 .qna-feature .icon {
+        width: 61px;
+        height: 61px;
+        border-radius: 16px;
+        display: grid;
+        place-items: center;
+        font-size: 33px;
+        font-weight: 800;
+        background: #315f4a;
+        color: #fff;
+      }
+      .s11 .qna-feature h3 {
+        font-size: 28px;
+        line-height: 1.28;
+        letter-spacing: -0.35px;
+      }
+      .s11 .qna-feature p {
+        font-size: 17px;
+        line-height: 1.5;
+        margin-top: 9px;
+        color: #507462;
+      }
+      .s11 .qna-label {
+        margin-top: 32px;
+        font-size: 17px;
+        font-weight: 800;
+        letter-spacing: 0.6px;
+        color: #e3c38d;
+      }
+      .s11 .question-topics {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-top: 17px;
+      }
+      .s11 .question-topic {
+        min-height: 160px;
+        background: rgba(233, 247, 236, 0.06);
+        border: 1px solid rgba(225, 238, 219, 0.23);
+        border-radius: 19px;
+        padding: 25px 25px 21px;
+        display: flex;
+        flex-direction: column;
+        gap: 13px;
+      }
+      .s11 .topic-icon {
+        height: 35px;
+        color: #dec28b;
+        display: flex;
+        align-items: center;
+      }
+      .s11 .topic-icon svg {
+        width: 32px;
+        height: 32px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .s11 .question-topic h3 {
+        font-size: 23px;
+        color: #faf8ef;
+        line-height: 1.25;
+      }
+      .s11 .question-topic p {
+        font-size: 16px;
+        color: #bcd1c4;
+        line-height: 1.48;
+      }
+      .s11 .qna-invite {
+        margin-top: 27px;
+        padding-top: 19px;
+        border-top: 1px solid rgba(240, 238, 213, 0.2);
+        font-size: 18px;
+        color: #c8d8ce;
+        line-height: 1.55;
+      }
+      .s11 .brand,
+      .s11 .slide-id {
+        z-index: 4;
+      }
+
+      /* viewer controls */
+      .viewerbar {
+        min-height: 60px;
+        height: 60px;
+        flex: none;
+        padding: 0 max(16px, calc((100vw - 1160px) / 2));
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        background: #101b19;
+        border-top: 1px solid #2a3d36;
+        color: #e8f0e6;
+      }
+      .viewerbar .title {
+        font-size: 13px;
+        letter-spacing: 1.2px;
+        color: #a4bab0;
+        margin-right: 14px;
+        white-space: nowrap;
+      }
+      .viewerbar button {
+        background: #21342f;
+        color: #e1ece5;
+        border: 1px solid #345247;
+        cursor: pointer;
+        border-radius: 9px;
+        padding: 8px 13px;
+        font-size: 13px;
+        transition: 0.18s;
+      }
+      .viewerbar button:hover,
+      .viewerbar button:focus-visible {
+        background: #34604f;
+        outline: none;
+      }
+      .viewerbar .pagecount {
+        font-size: 12px;
+        min-width: 49px;
+        color: #c7d5cc;
+        text-align: center;
+      }
+      .progress {
+        flex: 1;
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        min-width: 60px;
+      }
+      .progress button {
+        flex: 1;
+        border: 0 !important;
+        height: 6px;
+        border-radius: 5px;
+        background: #335045;
+        padding: 0 !important;
+        min-width: 4px;
+      }
+      .progress button.active {
+        background: #dfb778;
+      }
+      .viewerbar .hotkey {
+        font-size: 11px;
+        color: #78948a;
+        white-space: nowrap;
+      }
+      .note-panel {
+        position: fixed;
+        bottom: 72px;
+        right: 22px;
+        width: min(580px, calc(100vw - 40px));
+        padding: 21px 23px;
+        background: #fff;
+        color: #213a30;
+        z-index: 30;
+        border-radius: 16px;
+        box-shadow: 0 30px 60px #0009;
+        display: none;
+        font-size: 16px;
+        line-height: 1.8;
+        border: 1px solid #d5e3d5;
+      }
+      .note-panel.open {
+        display: block;
+      }
+      .note-panel h4 {
+        margin: 0 0 9px;
+        color: #1d5a45;
+        font-size: 16px;
+      }
+      .note-panel .notetiming {
+        font-weight: 600;
+        font-size: 13px;
+        color: #829187;
+        float: right;
+      }
+      .sources-panel {
+        position: fixed;
+        bottom: 69px;
+        left: 22px;
+        width: min(690px, calc(100vw - 40px));
+        max-height: 60vh;
+        overflow: auto;
+        background: #fff;
+        color: #243b2f;
+        z-index: 31;
+        border-radius: 16px;
+        display: none;
+        padding: 25px;
+        box-shadow: 0 24px 50px #0008;
+      }
+      .sources-panel.open {
+        display: block;
+      }
+      .sources-panel h4 {
+        margin: 0 0 12px;
+      }
+      .sources-panel p,
+      .sources-panel li {
+        font-size: 14px;
+        line-height: 1.7;
+      }
+      .sources-panel a {
+        color: #247358;
+        word-break: break-all;
+      }
+      .credits-hint {
+        font-size: 12px;
+        color: #8ca499;
+      }
+      @media (max-width: 750px) {
+        .viewerbar {
+          gap: 6px;
+          padding: 0 9px;
+        }
+        .viewerbar .title,
+        .viewerbar .hotkey {
+          display: none;
+        }
+        .viewerbar button {
+          font-size: 12px;
+          padding: 8px 10px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .slide {
+          transition: none;
+        }
+      }
+      @media print {
+        @page {
+          size: 16in 9in;
+          margin: 0;
+        }
+        html,
+        body {
+          height: auto !important;
+          background: #fff;
+          overflow: visible;
+          display: block;
+        }
+        .stage {
+          overflow: visible;
+          display: block;
+          height: auto;
+        }
+        .deck {
+          transform: none !important;
+          position: static;
+          height: auto;
+          width: 1440px;
+          box-shadow: none;
+        }
+        .slide {
+          position: relative !important;
+          display: block !important;
+          opacity: 1 !important;
+          visibility: visible !important;
+          page-break-after: always;
+          break-after: page;
+          width: 1440px;
+          height: 810px;
+        }
+        .viewerbar,
+        .note-panel,
+        .sources-panel {
+          display: none !important;
+        }
+      }
+
+      /* 05｜Web in LINE: two actual functional parts, not abstract promotion copy */
+      .s2 {
+        background: radial-gradient(circle at 96% 4%, #e4e9dd 0%, transparent 36%), var(--paper);
+      }
+      .s2 h2 {
+        font-size: 58px;
+        margin: 18px 0 12px;
+        line-height: 1.18;
+      }
+      .s2 > .sub {
+        font-size: 22px;
+        color: #587267;
+        line-height: 1.5;
+      }
+      .s2 .wi-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 31px;
+        margin-top: 29px;
+        position: relative;
+      }
+      .s2 .wi-card {
+        border-radius: 23px;
+        border: 1px solid #d6e1d7;
+        background: #fff;
+        min-height: 406px;
+        box-shadow: 0 18px 35px #163c2b12;
+        overflow: hidden;
+        position: relative;
+        padding: 27px 31px 0;
+      }
+      .s2 .wi-card.web {
+        background: #1d453a;
+        color: #f9faf2;
+        border-color: #1d453a;
+      }
+      .s2 .wi-card .wi-overline {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        font-size: 13px;
+        font-weight: 850;
+        letter-spacing: 1.7px;
+        color: #5f8972;
+      }
+      .s2 .wi-card.web .wi-overline {
+        color: #d9c393;
+      }
+      .s2 .wi-icon {
+        display: grid;
+        place-items: center;
+        width: 47px;
+        height: 47px;
+        border-radius: 12px;
+        background: #e8f1e7;
+        font-size: 22px;
+        color: #24664d;
+        letter-spacing: 0;
+      }
+      .s2 .wi-card.web .wi-icon {
+        background: #375e51;
+        color: #f0daab;
+      }
+      .s2 .wi-card h3 {
+        font-size: 30px;
+        line-height: 1.3;
+        margin: 16px 0 10px;
+        letter-spacing: -0.3px;
+      }
+      .s2 .wi-card .wi-desc {
+        font-size: 18px;
+        line-height: 1.62;
+        max-width: 500px;
+        color: #4e6b5b;
+      }
+      .s2 .wi-card.web .wi-desc {
+        color: #dbe9df;
+      }
+      .s2 .wi-graphic {
+        height: 144px;
+        position: absolute;
+        left: 31px;
+        right: 31px;
+        bottom: 0;
+        border-radius: 17px 17px 0 0;
+        background: #eef4ed;
+        overflow: hidden;
+        border: 1px solid #dce7db;
+        border-bottom: 0;
+      }
+      .s2 .wi-card.web .wi-graphic {
+        background: #315f50;
+        border-color: #51806c;
+      }
+      .s2 .wi-graphic-head {
+        height: 34px;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 0 14px;
+        font-size: 12px;
+        color: #3f7356;
+        font-weight: 850;
+        border-bottom: 1px solid #d2e0d0;
+        background: #e2eee0;
+      }
+      .s2 .wi-card.web .wi-graphic-head {
+        background: #274f42;
+        border-bottom-color: #4c7c66;
+        color: #e3d6b0;
+      }
+      .s2 .wi-dot {
+        height: 9px;
+        width: 9px;
+        background: #49b878;
+        border-radius: 50%;
+      }
+      .s2 .wi-msg {
+        border-radius: 10px;
+        background: #fff;
+        color: #365e47;
+        padding: 11px 15px;
+        display: inline-block;
+        margin: 17px 0 0 15px;
+        font-size: 14px;
+        box-shadow: 0 4px 9px #153d2212;
+      }
+      .s2 .wi-msg-action {
+        display: inline-block;
+        background: #40a463;
+        color: #fff;
+        border-radius: 10px;
+        padding: 11px 15px;
+        margin-left: 9px;
+        font-size: 14px;
+        font-weight: 750;
+      }
+      .s2 .wi-tiles {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 9px;
+        padding: 19px 14px;
+      }
+      .s2 .wi-tile {
+        background: #e7eee8;
+        color: #235f4b;
+        border-radius: 10px;
+        text-align: center;
+        padding: 13px 4px;
+        font-size: 16px;
+        font-weight: 800;
+      }
+      .s2 .wi-tile small {
+        display: block;
+        margin-top: 5px;
+        font-size: 11px;
+        color: #6b8672;
+        font-weight: 500;
+      }
+      .s2 .wi-bridge {
+        position: absolute;
+        z-index: 5;
+        left: 50%;
+        top: 53%;
+        transform: translate(-50%, -50%);
+        background: #e9ca90;
+        color: #244537;
+        padding: 10px 15px;
+        border-radius: 30px;
+        border: 5px solid var(--paper);
+        box-shadow: 0 6px 18px #18372f2a;
+        font-size: 14px;
+        white-space: nowrap;
+        font-weight: 900;
+      }
+      .s2 .wi-takeaway {
+        font-size: 19px;
+        margin-top: 20px;
+        font-weight: 800;
+        color: #356c54;
+      }
+      .s2 .wi-takeaway strong {
+        color: #153e31;
+      }
+
+      /* case portfolio: two collaborations plus one independent award */
+      .sCases {
+        background: #f5f5ed;
+      }
+      .sCases h2 {
+        font-size: 53px;
+        margin: 18px 0 8px;
+        line-height: 1.18;
+      }
+      .sCases .sub {
+        font-size: 19px;
+        line-height: 1.6;
+        color: #5b7568;
+      }
+      .sCases .cases-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 26px;
+        margin-top: 23px;
+      }
+      .sCases .case-card {
+        background: #fff;
+        border: 1px solid #e2e8dd;
+        border-radius: 21px;
+        overflow: hidden;
+        height: 343px;
+        box-shadow: 0 15px 35px rgba(25, 55, 40, 0.1);
+      }
+      .sCases .case-cover {
+        height: 205px;
+        position: relative;
+      }
+      .sCases .case-cover .case-illustration {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        opacity: 0.35;
+        color: #f1e8d1;
+      }
+      .sCases .case-cover img {
+        object-fit: cover;
+        filter: saturate(0.92);
+      }
+      .sCases .case-cover .film {
+        background: linear-gradient(0deg, rgba(12, 38, 27, 0.64), rgba(15, 49, 36, 0.07) 77%);
+      }
+      .sCases .case-cover .case-setting {
+        position: absolute;
+        left: 20px;
+        bottom: 17px;
+        z-index: 5;
+        color: #fff;
+        font-size: 15px;
+        font-weight: 800;
+        letter-spacing: 0.35px;
+        text-shadow: 0 2px 7px #123028aa;
+      }
+      .sCases .case-cover .image-label {
+        font-size: 10px;
+        letter-spacing: 0;
+        bottom: 14px;
+        right: 14px;
+        padding: 7px 9px;
+      }
+      .sCases .case-info {
+        padding: 18px 23px 16px;
+      }
+      .sCases .case-heading {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        white-space: nowrap;
+      }
+      .sCases .case-num {
+        color: #b88d52;
+        font-size: 15px;
+        font-weight: 900;
+        letter-spacing: 1px;
+      }
+      .sCases .case-heading h3 {
+        font-size: 29px;
+        line-height: 1.25;
+        color: #19372e;
+        font-weight: 850;
+      }
+      .sCases .case-info p {
+        font-size: 16px;
+        line-height: 1.6;
+        color: #67796e;
+        margin-top: 8px;
+      }
+      .sCases .case-award {
+        display: flex;
+        align-items: center;
+        gap: 23px;
+        margin-top: 22px;
+        min-height: 105px;
+        padding: 17px 26px;
+        background: #e8ede3;
+        border: 1px solid #d8e2d4;
+        border-radius: 18px;
+      }
+      .sCases .award-medal {
+        width: 67px;
+        height: 67px;
+        flex: none;
+        border-radius: 18px;
+        background: #d7b77b;
+        color: #18382b;
+        display: grid;
+        place-items: center;
+        font-size: 39px;
+        font-weight: 900;
+        box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.35);
+      }
+      .sCases .award-main {
+        flex: 1;
+      }
+      .sCases .award-main strong {
+        display: block;
+        color: #1b4333;
+        font-size: 22px;
+        line-height: 1.35;
+      }
+      .sCases .award-main p {
+        font-size: 15px;
+        line-height: 1.45;
+        color: #61796a;
+        margin-top: 5px;
+      }
+      .sCases .award-prize {
+        border-radius: 30px;
+        background: #fff6df;
+        border: 1px solid #e3c98e;
+        color: #7b5827;
+        font-size: 17px;
+        font-weight: 900;
+        padding: 9px 17px;
+        white-space: nowrap;
+      }
+
+      /* Actual applications: foreground the partner objective and execution, not cooperation labels. */
+      .sCases h2 {
+        font-size: 49px;
+        margin: 17px 0 8px;
+        letter-spacing: -1.6px;
+      }
+      .sCases .sub {
+        font-size: 19px;
+        line-height: 1.52;
+      }
+      .sCases .cases-grid {
+        margin-top: 20px;
+        gap: 26px;
+      }
+      .sCases .case-card {
+        height: 371px;
+      }
+      .sCases .case-cover {
+        height: 144px;
+      }
+      .sCases .case-cover .case-setting {
+        font-size: 14px;
+        bottom: 14px;
+      }
+      .sCases .case-info {
+        padding: 17px 24px 12px;
+      }
+      .sCases .case-use {
+        font-size: 23px;
+        color: #164636;
+        letter-spacing: -0.5px;
+        line-height: 1.32;
+        font-weight: 850;
+        white-space: nowrap;
+      }
+      .sCases .case-project {
+        font-size: 16px;
+        color: #8e744a;
+        font-weight: 800;
+        letter-spacing: 0.1px;
+        margin-top: 6px;
+      }
+      .sCases .case-detail {
+        display: flex;
+        gap: 13px;
+        align-items: flex-start;
+        margin-top: 13px;
+      }
+      .sCases .case-detail + .case-detail {
+        margin-top: 10px;
+      }
+      .sCases .case-detail-label {
+        font-size: 15px;
+        white-space: nowrap;
+        font-weight: 900;
+        color: #527367;
+        min-width: 76px;
+        padding-top: 2px;
+      }
+      .sCases .case-detail p {
+        font-size: 17px;
+        line-height: 1.53;
+        color: #536b5f;
+        margin: 0;
+      }
+      .sCases .case-award {
+        margin-top: 13px;
+        min-height: 121px;
+        padding: 9px 17px;
+        gap: 24px;
+      }
+      .sCases .award-photo {
+        width: 161px;
+        height: 103px;
+        flex: none;
+        border-radius: 12px;
+        overflow: hidden;
+        background: #cad7c9;
+        position: relative;
+        border: 1px solid #d4ded1;
+        box-shadow: 0 4px 12px rgba(20, 46, 35, 0.11);
+      }
+      .sCases .award-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 43%;
+        display: block;
+        position: relative;
+        z-index: 2;
+      }
+      .sCases .award-fallback {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        color: #2e5d48;
+        font-size: 17px;
+        font-weight: 850;
+        text-align: center;
+        line-height: 1.4;
+      }
+      .sCases .award-photo-fallback .award-fallback {
+        display: grid;
+      }
+      .sCases .award-main strong {
+        font-size: 23px;
+      }
+      .sCases .award-main p {
+        font-size: 16px;
+        margin-top: 6px;
+        line-height: 1.45;
+      }
+      .sCases .award-prize {
+        font-size: 16px;
+        padding: 8px 18px;
+      }
+
+      /* 2026-10-10 | Case page spatial redesign: large landscape photos + clear readable descriptions */
+      .sCases h2 {
+        max-width: 830px;
+        font-size: 46px;
+        letter-spacing: -1.65px;
+        margin: 16px 0 8px;
+        line-height: 1.15;
+      }
+      .sCases .sub {
+        max-width: 825px;
+        font-size: 18px;
+        line-height: 1.45;
+      }
+      .sCases .case-award {
+        position: absolute;
+        top: 92px;
+        right: 82px;
+        width: 403px;
+        height: 137px;
+        margin: 0;
+        padding: 10px 12px;
+        min-height: 0;
+        gap: 15px;
+        display: flex;
+        align-items: center;
+        background: #e8eee5;
+        border: 1px solid #d7e2d5;
+        border-radius: 16px;
+        box-shadow: 0 10px 23px rgba(26, 60, 43, 0.07);
+      }
+      .sCases .award-photo {
+        width: 152px;
+        height: 115px;
+        flex: 0 0 152px;
+        border-radius: 10px;
+      }
+      .sCases .award-photo img {
+        object-fit: cover;
+        object-position: center 42%;
+      }
+      .sCases .award-main {
+        min-width: 0;
+      }
+      .sCases .award-main strong {
+        font-size: 17px;
+        line-height: 1.32;
+        letter-spacing: -0.1px;
+      }
+      .sCases .award-main p {
+        font-size: 13.5px;
+        line-height: 1.5;
+        margin-top: 6px;
+      }
+      .sCases .cases-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 18px;
+        margin-top: 55px;
+      }
+      .sCases .case-card {
+        display: grid;
+        grid-template-columns: 40% minmax(0, 1fr);
+        height: 218px;
+        min-height: 0;
+        border-radius: 21px;
+      }
+      .sCases .case-cover {
+        height: 100%;
+        min-height: 0;
+      }
+      .sCases .case-cover .case-setting {
+        font-size: 15px;
+        left: 19px;
+        bottom: 17px;
+        max-width: 78%;
+      }
+      .sCases .case-cover .image-label {
+        right: 13px;
+        bottom: 13px;
+        font-size: 10px;
+      }
+      .sCases .case-info {
+        min-width: 0;
+        padding: 18px 26px 13px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .sCases .case-use {
+        font-size: 25px;
+        line-height: 1.25;
+        white-space: normal;
+      }
+      .sCases .case-project {
+        font-size: 17px;
+        line-height: 1.3;
+        margin-top: 6px;
+      }
+      .sCases .case-detail {
+        display: grid;
+        grid-template-columns: 88px minmax(0, 1fr);
+        gap: 12px;
+        margin-top: 11px;
+      }
+      .sCases .case-detail + .case-detail {
+        margin-top: 8px;
+      }
+      .sCases .case-detail-label {
+        font-size: 15.5px;
+        min-width: 0;
+        white-space: nowrap;
+        padding-top: 2px;
+      }
+      .sCases .case-detail p {
+        font-size: 17px;
+        line-height: 1.4;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stage" id="stage">
+      <main class="deck" id="deck" aria-label="實境效應事務所客戶洽談簡報">
+        <!-- 01 -->
+        <section
+          class="slide dark s1 active"
+          data-minutes="1:00"
+          data-notes="開場交代今天的分享方向：先介紹實境探索概念、適用場合與三個案例，再說明 WEB in LINE 如何整合 LINE 入口和 Web 互動、系統架構，以及委託合作需要經過的步驟。"
+        >
+          <div class="backdrop photo" data-photo="cover">
+            <svg class="fallback-shape" viewBox="0 0 900 800" preserveAspectRatio="xMidYMid slice">
+              <path d="M100 710V210h590v500 M70 255h660 M125 175h525 M390 70v120" stroke="#f5bf82" stroke-width="28" fill="none" opacity=".4" />
+              <circle cx="550" cy="190" r="230" fill="#a3ae85" opacity=".2" />
+            </svg>
+            <div class="film"></div>
+            <span class="image-label">場域照片・示意素材</span>
+          </div>
+          <div class="content">
+            <div class="topline">
+              實境效應事務所 <span>REALITY EFFECTS STUDIO <i class="line"></i></span>
+            </div>
+            <div class="eyebrow" style="margin-top: 93px; color: #d6bf92">WEB IN LINE · REAL-WORLD EXPLORATION</div>
+            <h1>讓真實場域，<br />成為<em>可以親自走進</em><br />的互動故事。</h1>
+            <p class="decktitle">WEB in LINE 實境探索互動系統｜合作洽談簡報</p>
+            <div class="strip"><span></span>LINE 入口 × Web 互動 × 真實場景</div>
+          </div>
+          <div class="brand">實境效應事務所 <small>WEB IN LINE</small></div>
+          <div class="slide-id">01 / 14</div>
+        </section>
+
+        <!-- 02 / 目錄：點擊章節卡片可直接跳轉 -->
+        <section
+          class="slide dark sAgenda"
+          data-minutes="0:30"
+          data-notes="用半分鐘讓客戶知道今天的談話順序：先認識實境探索、常見應用與實際案例，再介紹 Web in LINE 與入口優勢，接著解釋技術平台、提示及遊玩人數，最後說明設計稿準備、專案節點、成果交付及 Q&A。可點目錄章節直接跳到對應投影片，播放時也可按 T 返回這一頁。"
+        >
+          <div class="agenda-eyebrow kicker">TODAY'S CONVERSATION / 導覽目錄</div>
+          <div class="agenda-left">
+            <h2>今天我們<br /><em>聊什麼？</em></h2>
+            <p class="agenda-summary">從一場真實的探索體驗，<br />到一套可以落地的互動系統，<br />再到實際的合作方式。</p>
+            <div class="agenda-line"></div>
+            <p class="agenda-help">四個主題，快速掌握今天的分享。</p>
+          </div>
+          <nav class="agenda-list" aria-label="點選目錄章節跳轉">
+            <button class="agenda-jump" type="button" data-target-slide="3" aria-label="跳到第 3 頁：實境探索與應用">
+              <span class="agenda-number">01</span><span class="agenda-body"><span class="agenda-title">實境探索與應用</span><span class="agenda-description">概念、應用場景與實際案例。</span></span
+              ><span class="agenda-pages">03–05 ↗</span>
+            </button>
+            <button class="agenda-jump" type="button" data-target-slide="6" aria-label="跳到第 6 頁：Web in LINE 與使用優勢">
+              <span class="agenda-number">02</span
+              ><span class="agenda-body"><span class="agenda-title">Web in LINE 與使用優勢</span><span class="agenda-description">LINE 如何成為入口？為什麼選擇 LINE？</span></span
+              ><span class="agenda-pages">06–07 ↗</span>
+            </button>
+            <button class="agenda-jump" type="button" data-target-slide="8" aria-label="跳到第 8 頁：系統運作與遊玩支援">
+              <span class="agenda-number">03</span
+              ><span class="agenda-body"><span class="agenda-title">系統運作與遊玩支援</span><span class="agenda-description">第三方服務、關卡提示、同時遊玩人數。</span></span
+              ><span class="agenda-pages">08–10 ↗</span>
+            </button>
+            <button class="agenda-jump" type="button" data-target-slide="11" aria-label="跳到第 11 頁：合作流程與成果交付">
+              <span class="agenda-number">04</span
+              ><span class="agenda-body"><span class="agenda-title">合作流程與成果交付</span><span class="agenda-description">設計稿準備、專案流程、成果交付及 Q&A。</span></span
+              ><span class="agenda-pages">11–14 ↗</span>
+            </button>
+          </nav>
+          <div class="brand">實境效應事務所 <small>洽談目錄</small></div>
+          <div class="slide-id">02 / 14</div>
+        </section>
+
+        <!-- 03 / 新增：實境探索定義 -->
+        <section
+          class="slide sIntro"
+          data-minutes="0:55"
+          data-notes="這頁先講體驗形式，不急著講我們的技術服務。依原方案規格書，實境探索是在既有真實場域中融入遊戲機制，設計一條架空故事線。玩家走到現場、觀察建築與物件、解讀線索，再推進故事。最大差別是線索存在於真實世界，而非全部藏在手機裡。右側使用規格書的場域示意圖，四步驟橫向排列在頁面下方。"
+        >
+          <div class="eyebrow kicker">01 / REAL-WORLD EXPLORATION</div>
+          <div class="textblock">
+            <h2>什麼是<span class="accent">實境探索？</span></h2>
+            <p class="intro-lead">以真實場域為舞台，<br />讓玩家<em>親自走進故事</em>。</p>
+            <p class="intro-desc">把遊戲機制融入既有場域，以故事、線索與任務，引導玩家實地探索、觀察環境、解開謎題。</p>
+            <div class="intro-quote"><small>THE KEY DIFFERENCE｜核心差異</small>線索存在於真實世界，<br />而不在遊戲裡。</div>
+          </div>
+          <div class="intro-photo photo" data-photo="exploration">
+            <div class="film"></div>
+            <div class="photo-title">真實的地方，就是探索的起點。</div>
+            <span class="image-label">實境探索・場域示意圖</span>
+          </div>
+          <div class="intro-flow" aria-label="實境探索四步驟">
+            <div class="flow-chip">
+              <span>01</span>
+              <div>起點出發<small>進入故事</small></div>
+            </div>
+            <div class="flow-chip">
+              <span>02</span>
+              <div>前往定點<small>走入場域</small></div>
+            </div>
+            <div class="flow-chip">
+              <span>03</span>
+              <div>觀察現場<small>尋找線索</small></div>
+            </div>
+            <div class="flow-chip">
+              <span>04</span>
+              <div>解謎推進<small>完成任務</small></div>
+            </div>
+          </div>
+          <div class="brand">實境效應事務所 <small>認識實境探索</small></div>
+          <div class="slide-id">03 / 14</div>
+        </section>
+
+        <!-- 04 / 新增：常見應用場域 -->
+        <section
+          class="slide sUse"
+          data-minutes="0:50"
+          data-notes="快速帶過四個應用方向，沿用規格書原本的分類：文化導覽、觀光與城市探索、教育與企業訓練、品牌與文創體驗。它們共通的不是一定要有複雜謎題，而是讓參與者主動走動、觀察、參與。這頁只需讓客戶聯想到自己既有的場域或活動，不必逐一展開案例。圖片均為情境示意，非我們的正式作品。"
+        >
+          <div class="eyebrow kicker">02 / WHERE IT FITS</div>
+          <h2>實境探索，適合<span class="accent">哪些場合？</span></h2>
+          <p class="sub">讓原本被動觀看的空間，成為可以主動參與的體驗。</p>
+          <div class="use-grid">
+            <article class="use-card photo" data-photo="museum">
+              <div class="film"></div>
+              <div class="use-copy">
+                <div class="use-label">01 / CULTURE</div>
+                <h3>文化導覽</h3>
+                <p>博物館、歷史古蹟、地方文化<br />讓靜態解說變成主動探索的線索。</p>
+              </div>
+              <span class="image-label">文化場域・示意</span>
+            </article>
+            <article class="use-card photo" data-photo="oldtown">
+              <div class="film"></div>
+              <div class="use-copy">
+                <div class="use-label">02 / TOURISM</div>
+                <h3>觀光與城市探索</h3>
+                <p>景點、商圈、特色市集<br />帶遊客發現平常忽略的角落。</p>
+              </div>
+              <span class="image-label">街區場域・示意</span>
+            </article>
+            <article class="use-card photo" data-photo="education">
+              <div class="film"></div>
+              <div class="use-copy">
+                <div class="use-label">03 / LEARNING</div>
+                <h3>教育與企業訓練</h3>
+                <p>校園課程、團隊活動<br />在走動、觀察與討論中完成學習。</p>
+              </div>
+              <span class="image-label">教育場域・示意</span>
+            </article>
+            <article class="use-card photo" data-photo="exhibition">
+              <div class="film"></div>
+              <div class="use-copy">
+                <div class="use-label">04 / CREATIVE</div>
+                <h3>品牌與文創體驗</h3>
+                <p>主題展覽、IP 延伸<br />讓觀眾參與故事，而不只站著觀看。</p>
+              </div>
+              <span class="image-label">品牌活動・示意</span>
+            </article>
+          </div>
+          <div class="use-outro">從內容與場域出發，選擇適合的互動方式。</div>
+          <div class="brand">實境效應事務所 <small>應用場景</small></div>
+          <div class="slide-id">04 / 14</div>
+        </section>
+
+        <!-- 05 / 實際案例：合作承作 + 專業設計成果 -->
+        <section
+          class="slide sCases"
+          data-minutes="1:30"
+          data-notes="本頁不只是列出做過哪些作品，而是讓客戶看見兩種不同的導入方式。先看左邊：遊境感知所以新莊廟街為文化場域，把走讀和故事、現地探索、手機關卡、紙本道具結合，讓參與者在街區裡主動找線索。右邊：澎湖在地地方創生團隊神遊筆記，以鐵線清水宮為場域，透過自導式導覽、現地探索與關卡解謎，讓訪客自行走訪、認識地方信仰文化。這兩件合作都是利用互動系統落實原有內容與活動構想，不需要刻意區分『承作』與『共同開發』。下方《春日山物語》以實際得獎獎座照片佐證 2024 教育遊戲設計大賞銀獎，作為遊戲設計經驗的補充。圖片目前為場域參考照片，非這兩場活動的實拍；也不把這些過往作品說成全都使用現行標準版方案。"
+        >
+          <div class="eyebrow kicker">03 / ACTUAL APPLICATIONS</div>
+          <h2>實際案例｜場域活動如何<span class="accent">導入互動系統？</span></h2>
+          <p class="sub">兩個不同場域的應用案例，展示互動系統如何結合街區走讀與廟宇自導式導覽。</p>
+          <div class="case-award">
+            <div class="award-photo" title="2024 教育遊戲設計大賞實際銀獎獎座">
+              <img
+                src="https://pzbook.haohows.com/image/award.webp"
+                alt="春日山物語獲得的 2024 教育遊戲設計大賞銀獎實際獎座照片"
+                loading="eager"
+                decoding="async"
+                onerror="
+                  this.style.display = 'none';
+                  this.parentElement.classList.add('award-photo-fallback');
+                "
+              />
+              <span class="award-fallback">2024<br />銀獎實照</span>
+            </div>
+            <div class="award-main">
+              <strong>《春日山物語：從前有座春日山》</strong>
+              <p>自主遊戲設計作品｜2024 教育遊戲設計大賞<br />教育實境遊戲設計組・銀獎</p>
+            </div>
+          </div>
+          <div class="cases-grid">
+            <article class="case-card">
+              <div class="case-cover photo" data-photo="caseXinzhuang">
+                <svg class="case-illustration" viewBox="0 0 620 205" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                  <g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round">
+                    <path d="M18 178h590M64 178V87h135v91M208 178V103h107v75M329 178V73h170v105M500 178v-94h63v94" />
+                    <path d="M48 93l85-62 83 62M307 79l108-63 109 63M376 76V44h84v32M84 107h30v38H84zM144 107h30v38h-30zM354 94h38v52h-38zM425 94h47v52h-47z" />
+                    <path d="M30 179h550M20 188h600" stroke-dasharray="18 10" />
+                  </g>
+                </svg>
+                <div class="film"></div>
+                <span class="case-setting">新莊廟街｜文化走讀與街區探索</span><span class="image-label">場域示意・非活動實拍</span>
+              </div>
+              <div class="case-info">
+                <h3 class="case-use">街區走讀 × 場域探索 × 關卡互動</h3>
+                <p class="case-project">遊境感知所｜《最後傳聲者》</p>
+                <div class="case-detail">
+                  <span class="case-detail-label">團隊與目的</span>
+                  <p>以新莊廟街文化為題，讓參與者在走讀中主動接觸街區歷史與故事。</p>
+                </div>
+                <div class="case-detail">
+                  <span class="case-detail-label">執行方式</span>
+                  <p>結合走讀路線、現地線索、手機關卡互動與紙本道具，逐步推進劇情。</p>
+                </div>
+              </div>
+            </article>
+            <article class="case-card">
+              <div class="case-cover photo" data-photo="casePenghu">
+                <svg class="case-illustration" viewBox="0 0 620 205" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                  <g fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round">
+                    <path
+                      d="M64 181V113h494v68M44 118q80-8 119-48 66 61 151 0 75 59 139 0 60 53 125 48H44zM98 105V60h412v45M76 64q60-12 97-39 78 40 137 2 89 51 137-2 44 27 93 39H76zM126 183v-51h366v51M220 183v-48h170v48M252 183v-40h106v40"
+                    />
+                    <path d="M167 140h31v23h-31zM417 140h31v23h-31zM310 22V5M136 74v30M476 74v30" />
+                    <path d="M26 185h570" />
+                  </g>
+                </svg>
+                <div class="film"></div>
+                <span class="case-setting">澎湖鐵線清水宮｜地方信仰文化</span><span class="image-label">場域示意・非活動實拍</span>
+              </div>
+              <div class="case-info">
+                <h3 class="case-use">自導式導覽 × 場域探索 × 關卡解謎</h3>
+                <p class="case-project">神遊筆記｜《神明點點名》</p>
+                <div class="case-detail">
+                  <span class="case-detail-label">團隊與目的</span>
+                  <p>澎湖在地地方創生團隊，讓訪客自主探索清水宮，認識地方信仰文化。</p>
+                </div>
+                <div class="case-detail">
+                  <span class="case-detail-label">執行方式</span>
+                  <p>以廟宇為舞台，結合自導式導覽、現地觀察與解謎關卡，循線探索。</p>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="brand">實境效應事務所 <small>實際應用與得獎作品</small></div>
+          <div class="slide-id">05 / 14</div>
+        </section>
+
+        <!-- 06 -->
+        <section
+          class="slide s2"
+          data-minutes="1:40"
+          data-notes="這一頁只要讓客戶認識 Web in LINE 由兩個部分組成：第一個是 LINE 玩家入口，透過 LIFF 讓玩家從 LINE 官方帳號、圖文選單或活動連結開啟遊戲；依專案需求也能整合部分 LINE 功能。第二個是 Web 遊戲互動系統，負責劇情、任務、線索、解謎、驗證、進度保存與通關結算。這裡不必深入說明網頁部署原理；下一頁再談它對玩家與業主的好處。頁面下方是功能示意圖，不是實際遊戲截圖。"
+        >
+          <div class="eyebrow kicker">04 / HOW IT WORKS</div>
+          <h2>什麼是 <span class="accent">Web in LINE？</span></h2>
+          <p class="sub">由兩個部分組成：<strong>LINE 作為玩家入口</strong>，<strong>Web 負責遊戲互動。</strong></p>
+          <div class="wi-grid">
+            <article class="wi-card line">
+              <div class="wi-overline"><span class="wi-icon">↗</span>01 / LINE APP</div>
+              <h3>LINE｜玩家入口</h3>
+              <p class="wi-desc">利用 LINE 的 <strong>LIFF 功能</strong>，讓玩家直接從 LINE App 開啟 Web 遊戲；可由官方帳號、圖文選單或活動連結進入，並視需求整合部分 LINE 功能。</p>
+              <div class="wi-graphic" aria-label="LINE 入口情境示意">
+                <div class="wi-graphic-head"><span class="wi-dot"></span> LINE 官方帳號｜活動入口</div>
+                <span class="wi-msg">歡迎參加場域探索活動</span><span class="wi-msg-action">開啟遊戲 ↗</span>
+              </div>
+            </article>
+            <div class="wi-bridge" aria-label="以 LIFF 串接兩者">LIFF 串接 ↔</div>
+            <article class="wi-card web">
+              <div class="wi-overline"><span class="wi-icon">▦</span>02 / WEB GAME</div>
+              <h3>Web｜遊戲互動系統</h3>
+              <p class="wi-desc">遊戲本身由 Web 技術開發，提供實際的遊戲畫面與操作，包含<strong>劇情呈現、任務關卡、線索查閱、解謎驗證、進度保存及通關結算</strong>。</p>
+              <div class="wi-graphic" aria-label="Web 遊戲功能示意">
+                <div class="wi-graphic-head"><span class="wi-dot"></span> Web 互動遊戲｜功能示意</div>
+                <div class="wi-tiles">
+                  <div class="wi-tile">故事劇情<small>場景與角色</small></div>
+                  <div class="wi-tile">任務關卡<small>線索與挑戰</small></div>
+                  <div class="wi-tile">操作驗證<small>解答與通關</small></div>
+                </div>
+              </div>
+            </article>
+          </div>
+          <p class="wi-takeaway">玩家從 <strong>LINE 進入</strong>，遊戲的內容與操作由 <strong>Web 系統呈現</strong>。</p>
+          <div class="brand">實境效應事務所 <small>系統組成</small></div>
+          <div class="slide-id">06 / 14</div>
+        </section>
+
+        <!-- 06 -->
+        <section
+          class="slide s3"
+          data-minutes="1:45"
+          data-notes="這頁只講使用價值，不再解釋 LIFF 技術。玩家角度有兩點：第一，LINE 在台灣相當普及，官方 2026 年資料指出在台用戶超過 2,200 萬；玩家熟悉入口，也不用額外安裝遊戲 App，可減少學習門檻。第二，跳脫聊天室的文字問答，Web 能提供更多樣的畫面、解謎與操作挑戰，增加遊戲趣味。業主角度也有兩點：第一，LINE 普及且能延續既有 LINE OA 與活動入口，更容易推廣遊戲及銜接後續活動；第二，統一由相容手機的 LINE App 開啟，減少多瀏覽器環境和現場支援負擔，也不必另做 iOS、Android 原生遊戲 App。注意：這是減少相容性組合，不是保證任何可開 LINE 的手機皆能玩。LINE 在台用戶數出處：LINE 官方新聞稿（2026-06-23）。"
+        >
+          <div class="eyebrow kicker">05 / WHY LINE?</div>
+          <h2>為什麼選擇 <span class="accent">LINE</span> 作為遊戲入口？</h2>
+          <p class="sub">對玩家更容易參與、玩法更豐富；對業主更容易推廣與執行。</p>
+          <div class="why-grid">
+            <div class="why-card player">
+              <div class="why-head">
+                <span class="why-role-icon">▣</span>
+                <div><span class="why-role">玩家角度</span><span class="why-role-sub">PLAYER EXPERIENCE</span></div>
+              </div>
+              <div class="why-benefit">
+                <span class="why-n">01</span>
+                <div>
+                  <b>熟悉的 LINE，開啟就能玩</b>
+                  <p>LINE 在台用戶超過 2,200 萬，許多玩家早已熟悉操作；不需另外安裝遊戲 App，降低參與和學習門檻。</p>
+                </div>
+              </div>
+              <div class="why-benefit">
+                <span class="why-n">02</span>
+                <div>
+                  <b>跳脫聊天室，體驗更多互動</b>
+                  <p>不再侷限於訊息問答，透過 Web 呈現圖像、解謎及操作挑戰，讓遊戲更有趣。</p>
+                </div>
+              </div>
+            </div>
+            <div class="why-card organizer">
+              <div class="why-head">
+                <span class="why-role-icon">⌂</span>
+                <div><span class="why-role">業主角度</span><span class="why-role-sub">ORGANIZER VALUE</span></div>
+              </div>
+              <div class="why-benefit">
+                <span class="why-n">01</span>
+                <div>
+                  <b>容易推廣，延續既有 LINE OA</b>
+                  <p>利用 LINE 的普及程度降低活動進入門檻，並結合原有官方帳號、圖文選單與訊息功能，延續玩家互動和活動推廣。</p>
+                </div>
+              </div>
+              <div class="why-benefit">
+                <span class="why-n">02</span>
+                <div>
+                  <b>簡化現場支援與系統建置</b>
+                  <p>統一從手機 LINE 開啟，減少不同瀏覽器造成的相容性問題，也不必分別開發 iOS、Android 專用 App。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="bottomline">玩家容易參與、樂於體驗；業主容易推廣、安心執行。</p>
+          <div class="brand">實境效應事務所 <small>使用優點</small></div>
+          <div class="slide-id">07 / 14</div>
+        </section>
+
+        <!-- 07 -->
+        <section
+          class="slide s5"
+          data-minutes="1:50"
+          data-notes="這一頁不再講三個帳號的技術分工，而是幫客戶認識所使用的第三方服務。左邊 LINE：台灣玩家熟悉的通訊平台；LINE OA、LINE Developers、LIFF 都是官方服務。右邊 Cloudflare：提供全球網路、安全與網站應用服務的企業；我們採用其正式的 Pages 服務部署 Web 遊戲。重點是讓業主知道服務供應商的背景與可信度，不必把 LIFF 的技術細節講得太深入。多人承載案例留到後面的投影片說明；系統交付後由誰持有與管理，留在交付頁詳細說明。不承諾第三方平台永不故障。"
+        >
+          <div class="eyebrow kicker">06 / TRUSTED SERVICES</div>
+          <h2>我們採用哪些<span class="accent">第三方服務？</span></h2>
+          <p class="provider-intro">遊戲入口使用 LINE 官方服務；遊戲網頁則由 Cloudflare 的網路提供。</p>
+          <div class="provider-grid">
+            <article class="provider-card">
+              <div class="provider-head">
+                <div class="provider-mark line-mark" aria-hidden="true">LINE</div>
+                <div>
+                  <div class="provider-kicker">台灣熟悉的通訊平台</div>
+                  <h3>LINE</h3>
+                </div>
+              </div>
+              <div class="provider-lead">玩家熟悉的活動入口</div>
+              <p>LINE OA、LINE Developers 都是 LINE 官方提供的服務。本方案透過 LIFF，讓玩家直接在 LINE App 內開啟遊戲。</p>
+              <div class="provider-tags"><span>官方帳號</span><span>官方 LIFF 功能</span></div>
+              <a class="provider-link" href="https://developers.line.biz/" target="_blank" rel="noopener">LINE 官方網站 ↗</a>
+            </article>
+            <article class="provider-card">
+              <div class="provider-head">
+                <div class="provider-mark cloud-mark" aria-hidden="true">
+                  <svg viewBox="0 0 72 62" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M20 47h31c9 0 15-6 15-14 0-8-7-14-15-14h-2C47 11 40 6 32 6c-10 0-18 7-20 16C6 24 3 29 3 35c0 7 6 12 13 12h4z"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path d="M21 56h30" stroke="currentColor" stroke-width="5" stroke-linecap="round" />
+                  </svg>
+                </div>
+                <div>
+                  <div class="provider-kicker">全球網路基礎設施服務商</div>
+                  <h3>Cloudflare</h3>
+                </div>
+              </div>
+              <div class="provider-lead">網站運行所使用的服務</div>
+              <p>Cloudflare 提供網站加速、安全防護及網路應用服務。我們使用旗下的 Cloudflare Pages 部署並提供遊戲網頁。</p>
+              <div class="provider-tags"><span>全球網路</span><span>Pages 網頁部署</span></div>
+              <a class="provider-link" href="https://developers.cloudflare.com/pages/" target="_blank" rel="noopener">Cloudflare 官方網站 ↗</a>
+            </article>
+          </div>
+          <div class="provider-takeaway">
+            <div class="provider-takeaway-icon" aria-hidden="true">✓</div>
+            <div>
+              <b>採用 LINE 與 Cloudflare 正式提供的服務。</b>
+              <p>可查詢官方產品與技術文件，不必由業主另外架設網站伺服器。</p>
+            </div>
+          </div>
+          <div class="brand">實境效應事務所 <small>第三方服務介紹</small></div>
+          <div class="slide-id">08 / 14</div>
+        </section>
+
+        <!-- 08 -->
+        <section
+          class="slide s6"
+          data-minutes="1:45"
+          data-notes="這頁說明兩種關卡提示方式，重點在於內容管理彈性和體驗一致性的取捨。第一種由 Web 顯示提示入口，玩家點擊後開啟業主的 LINE OA 對話，提示訊息與自動回覆由業主自行設定，日後也能隨時變更而不需修改 Web 遊戲；這對已有 LINE OA 經營能力的團隊較方便。第二種直接把提示內容設計在 Web 遊戲介面中，風格與關卡更一致，玩家不用跳離原頁面；但內容定稿並上線後，不容易由業主自行即時修改，需重新調整 Web 內容。這兩種方式需在專案前期依活動需求確認，避免把 Web 內建提示誤認為客戶可後台自行編輯。畫面皆為介面示意，非實際遊戲截圖。"
+        >
+          <div class="eyebrow kicker">07 / IN-GAME HINTS</div>
+          <h2>玩家卡關時，<span class="accent">怎麼取得提示？</span></h2>
+          <p class="hint-intro">提供兩種提示呈現方式，依活動需求選擇管理彈性或遊戲一致性。</p>
+          <div class="hint-compare">
+            <article class="hint-choice">
+              <div class="hint-choice-header">
+                <span class="hint-number">01</span>
+                <h3>LINE OA 提示</h3>
+              </div>
+              <p class="hint-desc">Web 顯示提示入口，點擊後由 LINE OA 提供已設定的提示。</p>
+              <div class="hint-demo" aria-label="Web 顯示提示入口，轉至 LINE OA 自動回覆的示意流程">
+                <div class="hint-mini-window">
+                  <div class="hint-mini-top">WEB 遊戲 · 第 03 關</div>
+                  <div class="hint-mini-body">
+                    <div class="hint-failure">✕ 答案不正確</div>
+                    <span class="hint-mini-link">需要提示？開啟 LINE →</span>
+                  </div>
+                </div>
+                <div class="hint-arrow">→</div>
+                <div class="hint-mini-window hint-mini-oa">
+                  <div class="hint-mini-top">LINE OA · 關卡提示</div>
+                  <div class="hint-mini-body"><div class="hint-chat-bubble">試著看看石燈籠的底座，留意圖樣細節。</div></div>
+                </div>
+              </div>
+              <div class="hint-takeaway">
+                <span class="hint-takeaway-icon">↻</span>
+                <div>
+                  <strong>內容調整更有彈性</strong>
+                  <p>業主自行設定提示與自動回覆，也可以隨時更換內容。</p>
+                </div>
+              </div>
+            </article>
+            <article class="hint-choice integrated">
+              <div class="hint-choice-header">
+                <span class="hint-number">02</span>
+                <h3>Web 內建提示</h3>
+              </div>
+              <p class="hint-desc">提示直接呈現在 Web 遊戲畫面中，無須切換至 LINE OA。</p>
+              <div class="hint-demo" aria-label="Web 遊戲頁內直接顯示提示的示意畫面">
+                <div class="hint-integrated-phone">
+                  <div class="hint-mini-top">WEB 遊戲 · 第 03 關</div>
+                  <div class="hint-stage">
+                    <div class="hint-inline-modal">
+                      <strong>◆ 線索提示</strong>
+                      <p>石燈籠的底座，可能藏著你要找的記號。</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="hint-takeaway">
+                <span class="hint-takeaway-icon">✦</span>
+                <div>
+                  <strong>遊戲體驗更有一致感</strong>
+                  <p>提示與關卡風格整合；但內容定稿後較不易即時更改。</p>
+                </div>
+              </div>
+            </article>
+          </div>
+          <div class="hint-summary"><span>LINE OA：管理彈性</span><span class="hint-dot"></span><span>Web 內建：呈現一致</span></div>
+          <div class="brand">實境效應事務所 <small>玩家支援</small></div>
+          <div class="slide-id">09 / 14</div>
+        </section>
+
+        <!-- 09 -->
+        <section
+          class="slide dark s7"
+          data-minutes="1:55"
+          data-notes="這一頁先講我們的實際架構：首次進入時載入必要遊戲資源，約 5～8 MB（視專案有所不同）；主要任務邏輯與驗證在手機端執行，不需要每個操作都持續發送請求給後端，因此有利於降低多人同時遊玩的伺服器負擔。這不等於完全離線：LINE OA 提示、外部網頁、第三方統計和首次載入依然可能使用網路。右邊介紹 Cloudflare Pages 的公開案例：2023 年 Eurovision 投票入口尖峰每秒處理 230 萬次 HTTP 請求。最後帶出我們自己的活動實績：曾有 2 小時內 500 人同時遊玩的案例。官方來源：https://blog.cloudflare.com/how-cloudflare-scaled-and-protected-eurovision-2023-voting/ 。"
+        >
+          <div class="cap-header">
+            <div class="eyebrow kicker">08 / SCALE & ARCHITECTURE</div>
+            <h2>多人同時遊玩，系統如何承載？</h2>
+            <p>首次載入資源後，主要遊戲互動由玩家的手機端執行。</p>
+          </div>
+          <div class="cap-grid">
+            <div class="cap-panel">
+              <div class="cap-small-label">01 / 我們的系統架構</div>
+              <div class="cap-steps">
+                <div class="cap-step">
+                  <div class="cap-step-head"><span class="cap-step-icon">☁</span>首次進入遊戲</div>
+                  <div class="cap-key">約 5～8 MB</div>
+                  <div class="cap-step-desc">下載必要資源<br />依遊戲內容有所差異</div>
+                </div>
+                <div class="cap-arrow" aria-hidden="true">→</div>
+                <div class="cap-step">
+                  <div class="cap-step-head"><span class="cap-step-icon">▣</span>遊玩期間</div>
+                  <div class="cap-key">手機端運行</div>
+                  <div class="cap-step-desc">主要任務邏輯與驗證<br />無須每步持續連回伺服器</div>
+                </div>
+              </div>
+              <p class="cap-network">＊ LINE OA 提示、外部網頁及第三方統計等功能，仍可能需要網路連線。</p>
+            </div>
+            <div class="cap-panel cloud-case">
+              <div class="cap-small-label">02 / Cloudflare Pages 公開案例 · Eurovision 2023</div>
+              <div class="cap-stat"><span class="cap-stat-number">230</span><span class="cap-stat-unit">萬次／秒</span></div>
+              <div class="cap-stat-caption">投票入口尖峰 HTTP 請求量</div>
+              <div class="cap-case-desc">2023 歐洲歌唱大賽投票網頁採用 Cloudflare Pages，展現該平台處理大量網頁請求的實績。</div>
+              <a class="cap-source" href="https://blog.cloudflare.com/how-cloudflare-scaled-and-protected-eurovision-2023-voting/" target="_blank" rel="noopener noreferrer"
+                >Cloudflare 官方技術文章 ↗</a
+              >
+            </div>
+          </div>
+          <div class="cap-proof">
+            <div class="cap-proof-label">實績案例</div>
+            <div class="cap-proof-copy">2 小時內，<strong>500 人</strong>同時遊玩</div>
+          </div>
+          <div class="brand">實境效應事務所 <small>運行說明</small></div>
+          <div class="slide-id">10 / 14</div>
+        </section>
+
+        <!-- 10｜專案協作平台：素材填寫形成開發設計稿 -->
+        <section
+          class="slide s8"
+          data-minutes="2:10"
+          data-notes="這頁要回答的是客戶最直接的問題：『如果想委託開發，我需要準備哪些資料、用什麼方式提供？』我們已把遊戲設計需要的欄位放進專案協作平台，客戶直接透過表單輸入劇情文案、各關卡的任務與線索、答案及驗證方式，並上傳圖像素材。此處表單為概念示意，不是實際平台截圖。依欄位完成後，就形成一份完整的遊戲設計稿；雙方確認定稿後，我們依據這份設計稿開發。它是開發前的協作工具，並非成果交付後可自行即時更新遊戲的管理後台。若客戶不具備內容設計能力，也可另加購內容企畫與設計，這僅是補充選項，不是本頁介紹重點。"
+        >
+          <div class="eyebrow kicker">09 / GAME DESIGN MATERIALS</div>
+          <h2>遊戲開發，需要提供<span class="accent">哪些資料？</span></h2>
+          <p class="sub">透過專案協作平台，依表單填寫故事、關卡與素材；完成後就是遊戲開發的設計稿。</p>
+          <div class="layout">
+            <div class="editor-shell" aria-label="專案協作平台表單示意畫面">
+              <div class="editor-head">
+                <span>專案協作平台 <small>／表單示意畫面</small></span
+                ><span class="editor-state">開發前・內容填寫</span>
+              </div>
+              <div class="editor-body">
+                <div class="editor-nav">
+                  <div class="navlabel">專案總覽</div>
+                  <div class="navlabel">序幕／終幕</div>
+                  <div class="navlabel active">任務／關卡</div>
+                  <div class="navlabel">圖像素材</div>
+                  <div class="navlabel">設計稿確認</div>
+                </div>
+                <div class="editor-form">
+                  <label>關卡名稱｜文字欄位</label>
+                  <div class="fake-input">第 03 關｜石燈籠的記號</div>
+                  <label>故事／任務說明｜文字欄位</label>
+                  <div class="fake-input fake-area">請玩家抵達參道右側，仔細觀察石燈籠的雕刻細節，找出對應的線索……</div>
+                  <div class="form-bottom">
+                    <div>
+                      <label>答案／驗證設定｜選項與文字</label>
+                      <div class="fake-input">圖形選擇｜正確選項：第二組</div>
+                    </div>
+                    <div>
+                      <label>關卡圖片｜檔案上傳</label>
+                      <div class="fake-upload">＋ 上傳圖片</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="rightcolumn">
+              <div class="material-heading">需要準備的四類內容</div>
+              <div class="materials">
+                <div class="material">
+                  <div class="material-icon">01</div>
+                  <strong>故事與劇情</strong>
+                  <p>序幕、關卡劇情、終幕、角色對話等文案</p>
+                </div>
+                <div class="material">
+                  <div class="material-icon">02</div>
+                  <strong>關卡與謎題</strong>
+                  <p>任務說明、線索、題目與挑戰內容</p>
+                </div>
+                <div class="material">
+                  <div class="material-icon">03</div>
+                  <strong>答案與流程</strong>
+                  <p>正確答案、驗證方式及關卡順序</p>
+                </div>
+                <div class="material">
+                  <div class="material-icon">04</div>
+                  <strong>圖像素材</strong>
+                  <p>場景、角色、謎題圖片等所需圖檔</p>
+                </div>
+              </div>
+              <div class="material-method">文字填寫　＋　選項設定　＋　圖片上傳</div>
+            </div>
+          </div>
+          <div class="design-flow" aria-label="內容表單形成設計稿並進入系統開發的流程">
+            <div class="design-step"><span class="stepnum">1</span><strong>依表單填寫</strong></div>
+            <div class="design-step"><span class="stepnum">2</span><strong>形成遊戲設計稿</strong></div>
+            <div class="design-step"><span class="stepnum">3</span><strong>雙方確認定稿</strong></div>
+            <div class="design-step"><span class="stepnum">4</span><strong>依設計稿開發</strong></div>
+          </div>
+          <div class="design-footer"><span>※ 協作平台用於開發前的內容提交與確認，並非交付後的即時編輯後台。</span><span class="extra">沒有設計內容？可另加購內容企畫與設計服務。</span></div>
+          <div class="brand">實境效應事務所 <small>內容提交與開發依據</small></div>
+          <div class="slide-id">11 / 14</div>
+        </section>
+
+        <!-- 11 -->
+        <section
+          class="slide s9"
+          data-minutes="2:10"
+          data-notes="七階段流程：初步了解活動目標；正式報價與合約；業主整理素材並確認；素材鎖定後開始開發；提供測試環境並由業主驗收；驗收後支付尾款，正式部署；確認正式環境運作、結案並開始瑕疵保固。標準 3–6 週指的是『系統開發與功能實作』，不含前期撰稿與遲交素材。合約還規定具體驗收時限、異動與終止條件，這裡只講主要節點。"
+        >
+          <div class="eyebrow kicker">10 / PROJECT ROADMAP</div>
+          <h2>一個專案，會經過<span class="accent">哪些節點？</span></h2>
+          <p class="sub">從內容準備到系統上線，以確認好的規格逐步完成。</p>
+          <div class="timeline">
+            <div class="tcard">
+              <div class="index">01 / CONNECT</div>
+              <strong>初步接洽</strong>
+              <div class="ttext">了解活動目標、場域與時程</div>
+            </div>
+            <div class="tcard">
+              <div class="index">02 / PROPOSAL</div>
+              <strong>報價與簽約</strong>
+              <div class="ttext">確認範圍，支付第一期 50%</div>
+            </div>
+            <div class="tcard">
+              <div class="index">03 / CONTENT</div>
+              <strong>素材提交定稿</strong>
+              <div class="ttext">協作平台整理並確認開發依據</div>
+            </div>
+            <div class="tcard active">
+              <div class="index">04 / BUILD</div>
+              <strong>系統開發</strong>
+              <div class="ttext">模組組配、互動與功能實作</div>
+            </div>
+            <div class="tcard">
+              <div class="index">05 / TEST</div>
+              <strong>測試與驗收</strong>
+              <div class="ttext">依定稿流程檢查與修正</div>
+            </div>
+            <div class="tcard">
+              <div class="index">06 / LAUNCH</div>
+              <strong>尾款與交付</strong>
+              <div class="ttext">剩餘 50%，正式部署上線</div>
+            </div>
+            <div class="tcard">
+              <div class="index">07 / CLOSE</div>
+              <strong>正式結案</strong>
+              <div class="ttext">確認運作，啟動瑕疵保固</div>
+            </div>
+          </div>
+          <div class="metricbar">
+            <div class="metric">
+              <b>50% / 50%</b>
+              <p>首期款／驗收尾款</p>
+            </div>
+            <div class="metric">
+              <b>3～6 週</b>
+              <p>標準系統開發工期</p>
+            </div>
+            <div class="metric">
+              <b>30 日</b>
+              <p>交付後程式瑕疵保固</p>
+            </div>
+          </div>
+          <div class="fine">＊ 實際項目、驗收及權利義務以正式合約和報價單為準。</div>
+          <div class="brand">實境效應事務所 <small>專案節點</small></div>
+          <div class="slide-id">12 / 14</div>
+        </section>
+
+        <!-- 12｜成果交付：聚焦客戶關心的使用與管理問題 -->
+        <section
+          class="slide dark s10"
+          data-minutes="1:45"
+          data-notes="這一頁以四個互不重複的客戶問題，說明交付後的安排。第一，完成部署上線後，業主取得遊戲成果，部署於業主自己的帳號並依合約使用。第二，這是一次性建置，成果取得永久使用授權，沒有預設到期日，也沒有向我們持續支付系統租賃費或強制維護費的要求。第三，正式環境完成交付後，提供 30 日程式瑕疵保固，範圍為交付時已存在且可穩定重現的程式邏輯錯誤。第四，後續若要修改文案、圖像、關卡或新增功能，可另行委託並評估報價。第三方平台、網域與雲端服務可能產生的費用由業主負擔；正式權利義務以合約為準。"
+        >
+          <div class="orb"></div>
+          <div class="delivery-head">
+            <div class="eyebrow kicker">11 / AFTER DELIVERY</div>
+            <h2>系統交付與<span class="gold">後續服務</span></h2>
+            <p class="delivery-sub">一次性建置、永久使用授權；交付後的保固與調整方式一次說清楚。</p>
+          </div>
+          <div class="delivery-qa">
+            <article class="delivery-item">
+              <div class="question-head">
+                <span class="q-index">01</span>
+                <h3>交付後，我會得到什麼？</h3>
+              </div>
+              <p>取得正式上線的遊戲成果，部署於您自己的帳號中，由您持有環境並依合約使用。</p>
+            </article>
+            <article class="delivery-item">
+              <div class="question-head">
+                <span class="q-index">02</span>
+                <h3>遊戲需要持續付費才能使用嗎？</h3>
+              </div>
+              <p>一次性建置、永久使用授權，沒有預設到期日，也不需定期支付系統租賃費或強制維護費。</p>
+            </article>
+            <article class="delivery-item">
+              <div class="question-head">
+                <span class="q-index">03</span>
+                <h3>遊戲上線後發生問題怎麼辦？</h3>
+              </div>
+              <p>提供 30 日程式瑕疵保固，針對交付時已存在且可穩定重現的程式錯誤免費修正。</p>
+            </article>
+            <article class="delivery-item">
+              <div class="question-head">
+                <span class="q-index">04</span>
+                <h3>未來想修改或擴充遊戲怎麼辦？</h3>
+              </div>
+              <p>可另外委託修改故事、關卡或其他遊戲內容，也可增加功能，依實際需求評估報價。</p>
+            </article>
+          </div>
+          <p class="delivery-note">第三方平台、網域或雲端服務如產生費用，由業主自行負擔。詳細使用約定以正式合約為準。</p>
+          <div class="brand">實境效應事務所 <small>交付後的使用方式</small></div>
+          <div class="slide-id">13 / 14</div>
+        </section>
+
+        <!-- 13｜感謝聆聽／問題與交流 -->
+        <section
+          class="slide dark s11"
+          data-minutes="自由交流"
+          data-notes="本頁只邀請對方提出對方案介紹的疑問、想法或顧慮，不預設對方要採購，也不要求對方立即提供專案資料。可從遊戲使用方式、系統功能、服務與合作三類引導，但讓對方決定討論方向。若對方主動表達具體合作興趣，才視情況詢問：①場域與路線在哪裡？②目前已有什麼故事、謎題或活動內容？③期望哪些玩家參與、進行何種互動？④預計規模與時程？此四項僅供講者內部參考，不需在簡報中展示或主動逐題詢問。"
+        >
+          <div class="qna-eyebrow kicker">THANK YOU / Q&amp;A</div>
+          <h2>感謝聆聽 <span class="gold">問題與交流</span></h2>
+          <p class="qna-sub">關於今天介紹的 Web in LINE 實境探索方案，歡迎提出任何疑問。</p>
+          <div class="qna-feature">
+            <div class="icon">?</div>
+            <div>
+              <h3>關於剛才介紹的服務，有沒有想進一步了解的地方？</h3>
+              <p>無論是操作方式、功能、費用或合作流程，都可以一起討論。</p>
+            </div>
+          </div>
+          <div class="qna-label">也可以從以下方向提問</div>
+          <div class="question-topics">
+            <article class="question-topic">
+              <div class="topic-icon">
+                <svg viewBox="0 0 32 32" aria-hidden="true">
+                  <rect x="9" y="2.5" width="14" height="27" rx="3" />
+                  <path d="M13 6h6M15 25.5h2" />
+                </svg>
+              </div>
+              <h3>遊戲使用方式</h3>
+              <p>玩家如何進入與操作遊戲？</p>
+            </article>
+            <article class="question-topic">
+              <div class="topic-icon">
+                <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M13 3.5v7c-3.5-2.2-7 .1-7 3.8S9.7 20 13 17.8V29h7v-7c2.6 1.8 6 0 6-3.5S22.6 13 20 15V3.5z" /></svg>
+              </div>
+              <h3>系統功能</h3>
+              <p>互動玩法、驗證方式與使用限制。</p>
+            </article>
+            <article class="question-topic">
+              <div class="topic-icon">
+                <svg viewBox="0 0 32 32" aria-hidden="true">
+                  <path d="M4 10l8-5 5 3 5-3 7 5-7 8-5-3-6 6-7-7z" />
+                  <path d="M11 21l6 6 3-3M22 18l5 4-3 3" />
+                </svg>
+              </div>
+              <h3>服務與合作</h3>
+              <p>服務範圍、費用、流程與成果交付。</p>
+            </article>
+          </div>
+          <p class="qna-invite">也歡迎分享對本方案的想法、疑慮或建議。</p>
+          <div class="brand">實境效應事務所 <small>方案介紹・問題交流</small></div>
+          <div class="slide-id">14 / 14</div>
+        </section>
+      </main>
+    </div>
+
+    <footer class="viewerbar" aria-label="簡報播放工具列">
+      <div class="title">REALITY EFFECTS / WEB IN LINE</div>
+      <button id="prev" title="上一頁 (←)">← 上一頁</button><span class="pagecount" id="pageCount">01 / 13</span><button id="next" title="下一頁 (→)">下一頁 →</button
+      ><button id="tocBtn" title="返回目錄 (T)">目錄</button>
+      <div class="progress" id="progress" aria-label="頁面導覽"></div>
+      <button id="notesBtn" title="講者備註 (N)">講稿 N</button><button id="sourcesBtn">圖片／資料來源</button><button id="fullBtn" title="全螢幕 (F)">全螢幕 ⛶</button
+      ><span class="hotkey">← → 翻頁　T 目錄　F 全螢幕</span>
+    </footer>
+    <div class="note-panel" id="notePanel" role="region" aria-label="講者備註">
+      <span class="notetiming" id="noteTime"></span>
+      <h4>講者備註｜本頁說明建議</h4>
+      <div id="noteText"></div>
+    </div>
+    <div class="sources-panel" id="sourcesPanel" role="region" aria-label="圖片與公開資料來源">
+      <h4>圖片與公開資料來源</h4>
+      <p>
+        第 3 頁橫幅場域圖使用實境效應事務所提供的原規格書圖片；其他場域、博物館、街區、校園與活動照片目前採用網路示意圖；第 5 頁《春日山物語》獎座照片為本人提供的實物照片。Web in LINE
+        組成圖、關卡提示及協作平台畫面則為本檔用 HTML／CSS 製作的示意稿，<b>不是實際產品截圖</b>。
+      </p>
+      <ul>
+        <li><a target="_blank" rel="noopener" href="https://haohows.com/bizdocs/image/row01.webp">第 3 頁｜實境探索場域示意圖（原規格書圖片）</a></li>
+        <li><a target="_blank" rel="noopener" href="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e">京都街景／場域照片</a></li>
+        <li><a target="_blank" rel="noopener" href="https://images.unsplash.com/photo-1545569341-9eb8b30979d9">京都城市文化景觀照片</a></li>
+        <li><a target="_blank" rel="noopener" href="https://images.unsplash.com/photo-1517457373958-b7bdd4587205">群眾活動照片</a></li>
+        <li><a target="_blank" rel="noopener" href="https://images.unsplash.com/photo-1492684223066-81342ee5ff30">活動人群照片（備用）</a></li>
+        <li><a target="_blank" rel="noopener" href="https://unsplash.com/photos/people-walking-through-a-large-well-lit-museum-hall-Q8d7yBsTQZo">博物館參觀場景・文化導覽</a></li>
+        <li><a target="_blank" rel="noopener" href="https://unsplash.com/photos/people-walking-on-street-during-nighttime-YpsrN4LiDug">九份街區照片・觀光與城市探索</a></li>
+        <li><a target="_blank" rel="noopener" href="https://images.unsplash.com/photo-1523050854058-8df90110c9f1">校園場域照片・教育示意</a></li>
+        <li><a target="_blank" rel="noopener" href="https://images.unsplash.com/photo-1531058020387-3be344556be6">活動場景照片・品牌體驗示意</a></li>
+      </ul>
+      <p>
+        <b>歷年案例資料：</b><a href="https://www.accupass.com/event/2607310310411784089987" target="_blank" rel="noopener">《最後傳聲者》Accupass 活動頁</a>、<a
+          href="https://www.penghu-youth-map.com/peng-hu-qing-nian-gong-ban/%E7%A5%9E%E9%81%8A%E7%AD%86%E8%A8%98"
+          target="_blank"
+          rel="noopener"
+          >神遊筆記・澎湖青年 MAP</a
+        >、<a href="https://www.eg-da.org/%E6%AD%B7%E5%B1%86%E5%A4%A7%E8%B3%9E/egda-2024/%E5%BE%97%E7%8D%8E%E4%BD%9C%E5%93%81" target="_blank" rel="noopener">2024 EGDA 得獎名單</a>。
+      </p>
+      <p><b>《春日山物語》實際獎座照片：</b><a href="https://pzbook.haohows.com/image/award.webp" target="_blank" rel="noopener">2024 教育遊戲設計大賞銀獎實拍（實境效應事務所提供）</a>。</p>
+      <p>
+        <b>案例場域圖片（暫用，非活動實拍）：</b><a href="https://newtaipei.travel/zh-tw/attractions/detail/109693" target="_blank" rel="noopener">新北市觀光旅遊網・新莊廟街</a>、<a
+          href="https://penghu.info/OBE144F5A78E1BF6FB47"
+          target="_blank"
+          rel="noopener"
+          >澎湖知識服務平台・清水宮</a
+        >。正式對外使用請確認照片授權並以正式活動素材替換。
+      </p>
+      <p>
+        <b>第 8 頁第三方服務：</b> <a href="https://developers.line.biz/" target="_blank" rel="noopener">LINE Developers 官網</a>、<a
+          href="https://developers.cloudflare.com/pages/"
+          target="_blank"
+          rel="noopener"
+          >Cloudflare Pages 官方文件</a
+        >。
+      </p>
+      <p>
+        <b>LINE 台灣用戶數：</b>2026 年 6 月官方公布，在台用戶超過 2,200 萬（<a target="_blank" rel="noopener" href="https://www.linecorp.com/tw/pr/news/2026/0623">LINE 官方新聞稿，2026-06-23</a>）。
+      </p>
+      <p>
+        <b>公開數據引用：</b>2023 Eurovision 投票入口曾以 Cloudflare Pages 承載尖峰每秒 230 萬次 HTTP 請求（<a
+          target="_blank"
+          rel="noopener"
+          href="https://blog.cloudflare.com/how-cloudflare-scaled-and-protected-eurovision-2023-voting/"
+          >Cloudflare 官方技術文章，2023-06-23</a
+        >）。
+      </p>
+      <p>替換圖片：開啟 HTML 原始碼，在下方的 <code>IMAGES</code> 區塊變更網址即可；也可以填入相對檔案路徑，例如 <code>images/cover.jpg</code>。如圖片無法連線，簡報仍保留漸層與 SVG 背景。</p>
+      <p class="credits-hint">來源圖片僅用於暫時示意；正式對外使用前請再確認素材授權和情境適用性。</p>
+    </div>
+    <script>
+      /* ============================================================
+       * 圖片替換區：請直接將網址改成你的正式圖片網址或本機相對路徑。
+       * 示意圖片取自網路上的 Unsplash 圖庫（需要網路連線載入）。
+       * ============================================================ */
+      const IMAGES = {
+        cover: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=1800&q=86",
+        street: "https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=1400&q=83",
+        crowd: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=1600&q=86",
+        smallscene: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=850&q=80",
+        exploration: "https://haohows.com/bizdocs/image/row01.webp", // 規格書實境探索原圖（橫式 1873×665）
+        museum: "https://images.unsplash.com/photo-1754921829806-d536f8170a45?w=1050&q=82", // 博物館
+        oldtown: "https://images.unsplash.com/photo-1587306598228-c80f6e5e39ad?w=1050&q=82", // 九份老街
+        education: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1050&q=82", // 校園
+        exhibition: "https://images.unsplash.com/photo-1531058020387-3be344556be6?w=1050&q=82", // 活動現場
+        caseXinzhuang: "https://newtaipei.travel/content/images/attractions/53925/1024x768_attractions-image-qwvvs5h6ckqkhd_bdruiga.jpg", // 新莊廟街場域照片（非該活動實拍）
+        casePenghu: "https://penghu-info.jp-tyo-1.linodeobjects.com/01_Img/Show/23/10/bbc960d4525c0ea9d66c02624b0dff1c.jpg", // 澎湖鐵線清水宮場域照片（非該活動實拍）
+      };
+      const slides = Array.from(document.querySelectorAll(".slide"));
+      const progress = document.getElementById("progress"),
+        deck = document.getElementById("deck"),
+        stage = document.getElementById("stage");
+      let current = 0;
+      for (const [key, src] of Object.entries(IMAGES)) {
+        if (!src) continue;
+        document.querySelectorAll('[data-photo="' + key + '"]').forEach((el) => {
+          const img = document.createElement("img");
+          img.src = src;
+          img.alt = "暫用網路示意圖片";
+          img.loading = "lazy";
+          img.onerror = () => {
+            img.style.opacity = "0";
+          };
+          el.insertBefore(img, el.firstChild);
+        });
+      }
+      slides.forEach((slide, i) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.title = "跳到第 " + (i + 1) + " 頁";
+        btn.setAttribute("aria-label", btn.title);
+        btn.onclick = () => show(i);
+        progress.appendChild(btn);
+      });
+      function fit() {
+        const w = stage.clientWidth,
+          h = stage.clientHeight;
+        deck.style.transform = "scale(" + Math.min(w / 1440, h / 810) + ")";
+      }
+      function show(i) {
+        current = Math.max(0, Math.min(slides.length - 1, i));
+        slides.forEach((s, j) => {
+          s.classList.toggle("active", j === current);
+          s.setAttribute("aria-hidden", j === current ? "false" : "true");
+        });
+        Array.from(progress.children).forEach((b, j) => b.classList.toggle("active", j === current));
+        document.getElementById("pageCount").textContent = String(current + 1).padStart(2, "0") + " / " + slides.length;
+        document.getElementById("noteTime").textContent = "建議 " + slides[current].dataset.minutes;
+        document.getElementById("noteText").textContent = slides[current].dataset.notes;
+        location.hash = "slide-" + (current + 1);
+      }
+      document.querySelectorAll(".agenda-jump").forEach((btn) => btn.addEventListener("click", () => show(Number(btn.dataset.targetSlide) - 1)));
+      document.getElementById("tocBtn").onclick = () => show(1);
+      document.getElementById("prev").onclick = () => show(current - 1);
+      document.getElementById("next").onclick = () => show(current + 1);
+      document.getElementById("notesBtn").onclick = () => document.getElementById("notePanel").classList.toggle("open");
+      document.getElementById("sourcesBtn").onclick = () => document.getElementById("sourcesPanel").classList.toggle("open");
+      async function toggleFullscreen() {
+        if (!document.fullscreenElement) {
+          await document.documentElement.requestFullscreen?.();
+        } else {
+          await document.exitFullscreen?.();
+        }
+      }
+      document.getElementById("fullBtn").onclick = toggleFullscreen;
+      document.addEventListener("keydown", (e) => {
+        if (["ArrowRight", "PageDown", " ", "Enter"].includes(e.key)) {
+          if (e.target.tagName !== "BUTTON") {
+            e.preventDefault();
+            show(current + 1);
+          }
+        } else if (["ArrowLeft", "PageUp"].includes(e.key)) {
+          e.preventDefault();
+          show(current - 1);
+        } else if (e.key === "Home") {
+          show(0);
+        } else if (e.key === "End") {
+          show(slides.length - 1);
+        } else if (e.key.toLowerCase() === "f") {
+          toggleFullscreen();
+        } else if (e.key.toLowerCase() === "n") {
+          document.getElementById("notePanel").classList.toggle("open");
+        } else if (e.key.toLowerCase() === "t") {
+          show(1);
+        } else if (e.key === "Escape") {
+          document.getElementById("sourcesPanel").classList.remove("open");
+          document.getElementById("notePanel").classList.remove("open");
+        }
+      });
+      let touchX = null;
+      stage.addEventListener("touchstart", (e) => (touchX = e.changedTouches[0].screenX), { passive: true });
+      stage.addEventListener(
+        "touchend",
+        (e) => {
+          if (touchX == null) return;
+          const d = e.changedTouches[0].screenX - touchX;
+          if (Math.abs(d) > 70) show(current + (d < 0 ? 1 : -1));
+          touchX = null;
+        },
+        { passive: true },
+      );
+      window.addEventListener("resize", fit);
+      fit();
+      const initial = /^#slide-(\d+)$/.exec(location.hash);
+      show(initial ? Number(initial[1]) - 1 : 0);
+    </script>
+  </body>
+</html>
